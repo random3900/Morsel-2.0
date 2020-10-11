@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.morsel"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -30,5 +30,21 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    api 'com.google.android.material:material:1.1.0-alpha06'
+}
 
+apply plugin: 'com.android.application'
+// Add this line
+apply plugin: 'com.google.gms.google-services'
+
+dependencies {
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:25.12.0')
+
+    // Add the dependency for the Firebase SDK for Google Analytics
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation 'com.google.firebase:firebase-analytics'
+
+    // Add the dependencies for any other desired Firebase products
+    // https://firebase.google.com/docs/android/setup#available-libraries
 }

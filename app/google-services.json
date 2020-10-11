@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1085937502401",
+    "firebase_url": "https://morsel-a2477.firebaseio.com",
+    "project_id": "morsel-a2477",
+    "storage_bucket": "morsel-a2477.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085937502401:android:863ea00b1e2951bdc5ec40",
+        "android_client_info": {
+          "package_name": "com.example.morsel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085937502401-i2hfdilu1o0aimjlifpb047t6s0aj67a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.morsel",
+            "certificate_hash": "fd5cea381c8b51a201b1f956dc9a35bf0dd6e73c"
+          }
+        },
+        {
+          "client_id": "1085937502401-92g19mjinfseg5ils4q61n0h2f4q2ud6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC78LlmTxi31AShV2-H3eg0AWid5FH_H0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085937502401-92g19mjinfseg5ils4q61n0h2f4q2ud6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
