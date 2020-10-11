@@ -8,4 +8,5 @@
     <string name="shr_button_next">Next</string>
     <string name="shr_button_cancel">Cancel</string>
     <string name="morsel_error_password">Please enter a valid password</string>
+    <string name="morsel_logo_description">Morsel Logo</string>
 </resources>

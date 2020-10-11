@@ -20,7 +20,7 @@
             android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/morsel_logo"
-
+            android:contentDescription="@string/morsel_logo_description"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -32,12 +32,14 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:layout_margin="4dp"
+            android:id="@+id/username_text_input"
             android:hint="@string/morsel_hint_username">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:maxLines="1"
+                android:id="@+id/username_edit_text"
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout android:layout_height="wrap_content"
