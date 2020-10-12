@@ -17,23 +17,22 @@ public class SecondScreen extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_file, menu);
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu_file, menu);
         return true;
     }
 
     public void onClickLocation(View V){
-        Intent i = new Intent(this, location.class);
-        startActivity(i);
+//        Intent i = new Intent(this, location.class);
+//        startActivity(i);
     }
     public void onClickContribute(View V){
         Intent i = new Intent(this, donate.class);
         startActivity(i);
     }
     public void onClickVolunteer(View V){
-        Intent i = new Intent(this, volunteer.class);
-        startActivity(i);
+//        Intent i = new Intent(this, volunteer.class);
+//        startActivity(i);
     }
-
 
 }
