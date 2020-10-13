@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:id="@+id/hotspot_name"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+            <TextView
+                android:id="@+id/hotspot_avg_num"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/hotspot_name"
+                android:layout_toEndOf="@id/hotspot_name"
+                android:background="@color/colorPrimary"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                />
+
+            <TextView
+                android:id="@+id/hotspot_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/hotspot_avg_num"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+        </RelativeLayout>
+
+
+
+</LinearLayout>
