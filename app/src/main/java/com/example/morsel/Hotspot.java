@@ -2,18 +2,21 @@ package com.example.morsel;
 
 public class Hotspot {
     private String Id;
-    private String name;
+    private long avgnum;
     private double lat;
     private double lon;
-    private long avgnum;
+    private String name;
 
-    public Hotspot(String name, double lat, double lon, long avgnum){
+
+    public Hotspot(){
+    }
+
+    public Hotspot(long avgnum, double lat, double lon, String name){
         this.name = name;
         this.lat = lat;
         this.lon = lon;
         this.avgnum = avgnum;
     }
-
 
     public String getId() {
         return Id;
