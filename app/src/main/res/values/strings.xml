@@ -9,7 +9,4 @@
     <string name="shr_button_cancel">Cancel</string>
     <string name="morsel_error_password">Please enter a valid password</string>
     <string name="morsel_logo_description">Morsel Logo</string>
-    <string name="morsel_hint_email">Email</string>
-    <string name="morsel_hint_phone">Phone Number</string>
-    <string name="morsel_hint_address">Address</string>
 </resources>

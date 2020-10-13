@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,11 +46,5 @@ public class MainActivity extends AppCompatActivity implements NavigationHost{
         }
 
         transaction.commit();
-    }
-    public void onClickLogin(View v){
-        ((NavigationHost) this).navigateTo(new Login(), false);
-    }
-    public void onClickRegister(View v){
-        ((NavigationHost) this).navigateTo(new Registration(), false);
     }
 }

@@ -15,11 +15,11 @@ public class Registeration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registeration);
         uname=findViewById(R.id.et_r_username);
-//        password = findViewById(R.id.et_r_password);
+        password = findViewById(R.id.et_r_password);
         email = findViewById(R.id.et_r_email);
         address = findViewById(R.id.et_r_address);
         phoneno= findViewById(R.id.et_r_phoneno);
-  //      result = findViewById(R.id.resultView);
+        result = findViewById(R.id.resultView);
 
     }
 
@@ -56,8 +56,8 @@ public class Registeration extends AppCompatActivity {
 
     }
     public void onClickLogin(View v){
-//        Intent i=new Intent(this, login.class);
-//        startActivity(i);
+        Intent i=new Intent(this, login.class);
+        startActivity(i);
     }
 
 }

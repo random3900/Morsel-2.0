@@ -76,17 +76,7 @@
                 android:layout_toStartOf="@id/next_button"
                 android:layout_toLeftOf="@id/next_button"
                 android:text="@string/shr_button_cancel"/>
-            <TextView
-                android:id="@+id/go_to_reg_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="right"
-                android:layout_below="@id/cancel_button"
-                android:onClick="onClickRegister"
-                android:text="New to Morsel?"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="20sp" />
+
         </RelativeLayout>
     </LinearLayout>
 </ScrollView>
