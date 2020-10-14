@@ -24,6 +24,9 @@ import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -48,7 +51,7 @@ import static java.security.AccessController.getContext;
 
 public class HotspotsActivity extends AppCompatActivity {
 
-    static AppLocationService appLocationService;
+    AppLocationService appLocationService;
     private String locAddr;
 
     public static final String HOTSPOTS_CHILD = "hotspot list";
@@ -82,7 +85,7 @@ public class HotspotsActivity extends AppCompatActivity {
             }
         });
 
-//        appLocationService = new this.AppLocationService(getApplicationContext());
+        appLocationService = new AppLocationService(getApplicationContext());
 
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -145,18 +148,18 @@ public class HotspotsActivity extends AppCompatActivity {
                         String n = hotspot.child("name").getValue().toString();
                         h_temp = new Hotspot(a, lat, lon, n);
                         hl.add(h_temp);
-//                        Location location = appLocationService
-//                                .getLocation(LocationManager.GPS_PROVIDER);
-//                        if (location != null) {
-//                            double latitude = lat;
-//                            double longitude = lon;
-//                            LocationAddress locationAddress = new LocationAddress();
-//                            locationAddress.getAddressFromLocation(latitude, longitude,
-//                                    getApplicationContext(), new GeocoderHandler());
-//                            h_temp.setAddress(locAddr);
-//                            hl.add(h_temp);
-//                        } else {
-//                        }
+                        Location location = appLocationService
+                                .getLocation(LocationManager.GPS_PROVIDER);
+                        if (location != null) {
+                            double latitude = lat;
+                            double longitude = lon;
+                            LocationAddress locationAddress = new LocationAddress();
+                            locationAddress.getAddressFromLocation(latitude, longitude,
+                                    getApplicationContext(), new GeocoderHandler());
+                            h_temp.setAddress(locAddr);
+                            hl.add(h_temp);
+                        } else {
+                        }
                     }
                 }
                 HotspotAdapter h_adapter = new HotspotAdapter(hl);
@@ -184,5 +187,27 @@ public class HotspotsActivity extends AppCompatActivity {
             }
             return;
         }
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_file, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.dhist:
+                Intent i=new Intent(this,DonateHistory.class);
+                startActivity(i);
+                break;
+
+            case R.id.mlog:
+                Intent i1=new Intent(this,MainActivity.class);
+                startActivity(i1);
+                break;
+        }
+        return true;
     }
 }

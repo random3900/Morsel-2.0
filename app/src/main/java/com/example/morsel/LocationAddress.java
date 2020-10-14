@@ -13,9 +13,9 @@ import java.util.List;
 import java.util.Locale;
 
 public class LocationAddress {
-    private static final String TAG = "com.example.morsel.LocationAddress";
+    private final String TAG = "morsel.LocationAddress";
 
-    public static void getAddressFromLocation(final double latitude, final double longitude,
+    public void getAddressFromLocation(final double latitude, final double longitude,
                                               final Context context, final Handler handler) {
         Thread thread = new Thread() {
             @Override
@@ -37,7 +37,7 @@ public class LocationAddress {
                         result = sb.toString();
                     }
                 } catch (IOException e) {
-                    Log.e(TAG, "Unable connect to Geocoder", e);
+                    Log.e(TAG, "Can't connect - Geocoder", e);
                 } finally {
                     Message message = Message.obtain();
                     message.setTarget(handler);

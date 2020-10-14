@@ -23,6 +23,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.regex.Pattern;
+
 public class Registration extends Fragment {
     TextInputLayout uname_ti, password_ti, email_ti, address_ti, phoneno_ti;
     TextInputEditText uname_et, password_et, email_et, address_et, phoneno_et;
@@ -68,6 +70,8 @@ public class Registration extends Fragment {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d("REG", "createUserWithEmail:success");
+                                Toast.makeText(getActivity(), "Successfully Registered!!!",
+                                        Toast.LENGTH_SHORT).show();
                                 FirebaseUser user = mAuth.getCurrentUser();
 
                             } else {
@@ -93,6 +97,16 @@ public class Registration extends Fragment {
                         +"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
                         +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
                         +"([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
+        final Pattern PASSWORD_PATTERN =
+                Pattern.compile("^" +
+                        "(?=.*[0-9])" +         //at least 1 digit
+                        "(?=.*[a-z])" +         //at least 1 lower case letter
+                        "(?=.*[A-Z])" +         //at least 1 upper case letter
+                        "(?=.*[a-zA-Z])" +      //any letter
+                        "(?=.*[@#$%^&+=])" +    //at least 1 special character
+                        "(?=\\S+$)" +           //no white spaces
+                        ".{4,}" +               //at least 4 characters
+                        "$");
         String pno = phoneno_et.getText().toString();
 
         if (uname_et.getText().toString().isEmpty()){
@@ -104,8 +118,16 @@ public class Registration extends Fragment {
             password_ti.setError("Please enter a password");
             to_ret = false;
         }
-
+        else if(!PASSWORD_PATTERN.matcher(password_et.getText().toString()).matches())
+        {
+            password_ti.setError("Weak Password !!!");
+            to_ret = false;
+        }
         if(email_et.getText().toString().isEmpty()){
+            email_ti.setError("Please enter an email ID");
+            to_ret = false;
+        }
+        if((email_et.getText().toString().isEmpty())){
             email_ti.setError("Please enter an email ID");
             to_ret = false;
         }
@@ -131,5 +153,7 @@ public class Registration extends Fragment {
 
         return to_ret;
     }
-
+    public void onClickLogin(View v){
+        ((NavigationHost) getContext()).navigateTo(new Login(), false);
+    }
 }

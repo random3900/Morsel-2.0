@@ -1,9 +1,13 @@
 package com.example.morsel;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -58,6 +62,29 @@ public class Registeration extends AppCompatActivity {
     public void onClickLogin(View v){
 //        Intent i=new Intent(this, login.class);
 //        startActivity(i);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_file, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.dhist:
+                Intent i=new Intent(this,DonateHistory.class);
+                startActivity(i);
+                break;
+
+            case R.id.mlog:
+                Intent i1=new Intent(this,MainActivity.class);
+                startActivity(i1);
+                break;
+        }
+        return true;
     }
 
 }

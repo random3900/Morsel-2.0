@@ -25,9 +25,22 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.concurrent.Executor;
+import java.util.regex.Pattern;
 
 public class Login extends Fragment {
     private FirebaseAuth mAuth;
+
+    String Expn =
+            "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+                    +"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                    +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                    +"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                    +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                    +"([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
+    TextInputLayout passwordTextInput ;
+    TextInputEditText passwordEditText;
+    TextInputLayout usernameTextInput ;
+    TextInputEditText usernameEditText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,10 +48,10 @@ public class Login extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
-        final TextInputLayout passwordTextInput = view.findViewById(R.id.password_text_input);
-        final TextInputEditText passwordEditText = view.findViewById(R.id.password_edit_text);
-        final TextInputLayout usernameTextInput = view.findViewById(R.id.username_text_input);
-        final TextInputEditText usernameEditText = view.findViewById(R.id.username_edit_text);
+        passwordTextInput = view.findViewById(R.id.password_text_input);
+        passwordEditText = view.findViewById(R.id.password_edit_text);
+        usernameTextInput = view.findViewById(R.id.username_text_input);
+        usernameEditText = view.findViewById(R.id.username_edit_text);
         MaterialButton nextButton = view.findViewById(R.id.next_button);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +79,21 @@ public class Login extends Fragment {
     }
 
     private boolean isPasswordValid(@Nullable Editable text) {
-        return text != null && text.length() >= 8;
+        boolean to_ret = true;
+        if(passwordEditText.getText().toString().isEmpty()){
+            passwordTextInput.setError("Please enter a password");
+            to_ret = false;
+        }
+        if(usernameEditText.getText().toString().isEmpty()){
+            usernameTextInput.setError("Please enter an email ID");
+            to_ret = false;
+        }
+        else if(!(usernameEditText.getText().toString().matches(Expn)))
+        {
+            usernameEditText.setError("Enter a valid email !!");
+            to_ret = false;
+        }
+        return to_ret;
     }
 
     private void signIn(String email, String password){
@@ -96,6 +123,10 @@ public class Login extends Fragment {
     private void signOut() {
         mAuth.signOut();
 
+    }
+
+    public void onClickRegister(View v){
+        ((NavigationHost) getContext()).navigateTo(new Registration(), false);
     }
 
 }
