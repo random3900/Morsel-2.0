@@ -33,6 +33,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -47,11 +48,7 @@ import java.util.ArrayList;
 
 public class Hotspots extends Fragment {
 
-
-
-    private static final String TAG = "HOT";
     public static final String HOTSPOTS_CHILD = "hotspot list";
-    private static final int REQUEST_INVITE = 1;
     public static final String ANONYMOUS = "anonymous";
     private String mUsername;
     private SharedPreferences mSharedPreferences;
@@ -65,15 +62,25 @@ public class Hotspots extends Fragment {
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     private DatabaseReference mFirebaseDatabaseReference;
-//    private FirebaseRecyclerAdapter<Hotspot, HotspotViewHolder>
-//            mFirebaseAdapter;
+
+    FloatingActionButton add_button;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         Log.d("HOTSPOT","Inside Oncreate");
 
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_hotspots, container, false);
+
+        add_button = (FloatingActionButton)v.findViewById(R.id.add_hotspot_button);
+
+        add_button.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                ((NavigationHost) getContext()).navigateTo(new AddHotspot(), false);
+            }
+        });
+
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         // Set default username is anonymous.
         mUsername = ANONYMOUS;
@@ -145,14 +152,6 @@ public class Hotspots extends Fragment {
 
         return v;
     }
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
 
 }

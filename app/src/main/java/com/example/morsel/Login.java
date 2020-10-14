@@ -79,8 +79,8 @@ public class Login extends Fragment {
                             Log.d("Login", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                            Toast.makeText(getContext(), "Signin Successful", Toast.LENGTH_SHORT).show();
-                           // ((NavigationHost) getContext()).navigateTo(new Hotspots(), false);
-                            Intent i=new Intent(getActivity(),SecondScreen.class);
+//                            ((NavigationHost) getContext()).navigateTo(new Hotspots(), false);
+                           Intent i=new Intent(getActivity(),SecondScreen.class);
                             startActivity(i);
                         } else {
                             // If sign in fails, display a message to the user.

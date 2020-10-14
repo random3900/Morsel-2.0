@@ -70,3 +70,4 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:18.1.0'
 }
 apply plugin: 'com.google.gms.google-services'
+android.defaultConfig.vectorDrawables.useSupportLibrary true
