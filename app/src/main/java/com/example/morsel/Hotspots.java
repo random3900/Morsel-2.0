@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -35,26 +36,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
 
 public class Hotspots extends Fragment {
 
-    public static class HotspotViewHolder extends RecyclerView.ViewHolder {
-        TextView nameTextView;
-        TextView avgnumTextView;
-        TextView addressTextView;
 
-        public HotspotViewHolder(View v) {
-            super(v);
-            nameTextView = (TextView) itemView.findViewById(R.id.hotspot_name);
-            avgnumTextView = (TextView) itemView.findViewById(R.id.hotspot_avg_num);
-            addressTextView = (TextView) itemView.findViewById(R.id.hotspot_address);
-        }
-    }
 
     private static final String TAG = "HOT";
     public static final String HOTSPOTS_CHILD = "hotspot list";
@@ -72,8 +65,8 @@ public class Hotspots extends Fragment {
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     private DatabaseReference mFirebaseDatabaseReference;
-    private FirebaseRecyclerAdapter<Hotspot, HotspotViewHolder>
-            mFirebaseAdapter;
+//    private FirebaseRecyclerAdapter<Hotspot, HotspotViewHolder>
+//            mFirebaseAdapter;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -121,77 +114,45 @@ public class Hotspots extends Fragment {
 
         Log.d("HOTSPOT","Snapshot Parser set");
 
-        DatabaseReference hotspotsRef = mFirebaseDatabaseReference.child(HOTSPOTS_CHILD);
-        FirebaseRecyclerOptions<Hotspot> options =
-                new FirebaseRecyclerOptions.Builder<Hotspot>()
-                        .setQuery(hotspotsRef, parser)
-                        .build();
+        DatabaseReference hotspotsRefCity = mFirebaseDatabaseReference.child(HOTSPOTS_CHILD).child("Chennai");
 
-        Log.d("HOTSPOT","Inside Hotspot Reference Set");
 
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Hotspot, HotspotViewHolder>(options) {
+        hotspotsRefCity.addValueEventListener(new ValueEventListener() {
+                                              @Override
+                                              public void onDataChange(DataSnapshot snapshot) {
+                                                  final ArrayList<Hotspot> hl = new ArrayList<>();
+                                                  for (DataSnapshot area : snapshot.getChildren()) {
+                                                      for (DataSnapshot hotspot : area.getChildren()) {
+                                                          Hotspot h_temp;
+                                                          int a = Integer.parseInt(hotspot.child("avgnum").getValue().toString());
+                                                          double lat = Double.parseDouble(hotspot.child("lat").getValue().toString());
+                                                          double lon = Double.parseDouble(hotspot.child("long").getValue().toString());
+                                                          String n = hotspot.child("name").getValue().toString();
+                                                          h_temp = new Hotspot(a, lat, lon, n);
+                                                          hl.add(h_temp);
+                                                      }
+                                                  }
+                                                  HotspotAdapter h_adapter = new HotspotAdapter(hl);
+                                                  mHotspotRecyclerView.setAdapter(h_adapter);
+                                              }
+
             @Override
-            public HotspotViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-                Log.d("HOTSPOT","Inside View Holder");
-                return new HotspotViewHolder(inflater.inflate(R.layout.item_hotspot, viewGroup, false));
-
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(),"Database error",Toast.LENGTH_SHORT).show();
             }
+                                          });
 
-            @Override
-            protected void onBindViewHolder(final HotspotViewHolder viewHolder,
-                                            int position,
-                                            Hotspot hotspot) {
-                Log.d("HOTSPOT","Inside Bind View");
-                if (hotspot.getName() != null) {
-                    viewHolder.nameTextView.setText(hotspot.getName());
-                    viewHolder.nameTextView.setVisibility(TextView.VISIBLE);
-
-                    viewHolder.avgnumTextView.setText(Long.toString(hotspot.getAvgnum()));
-                    viewHolder.avgnumTextView.setVisibility(TextView.VISIBLE);
-
-                    viewHolder.addressTextView.setText(Double.toString(hotspot.getLat())+" "+Double.toString(hotspot.getLon()));
-                    viewHolder.addressTextView.setVisibility(TextView.VISIBLE);
-
-                }
-
-            }
-        };
-        Log.d("HOTSPOT","Firebase Adapter set");
-
-//        mFirebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-//            @Override
-//            public void onItemRangeInserted(int positionStart, int itemCount) {
-//                super.onItemRangeInserted(positionStart, itemCount);
-//                int hotspotCount = mFirebaseAdapter.getItemCount();
-//                int lastVisiblePosition =
-//                        mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
-//                // If the recycler view is initially being loaded or the
-//                // user is at the bottom of the list, scroll to the bottom
-//                // of the list to show the newly added message.
-//                if (lastVisiblePosition == -1 ||
-//                        (positionStart >= (hotspotCount - 1) &&
-//                                lastVisiblePosition == (positionStart - 1))) {
-//                    mHotspotRecyclerView.scrollToPosition(positionStart);
-//                }
-//            }
-//        });
-        Log.d("HOTSPOT",mFirebaseAdapter.toString());
-        mHotspotRecyclerView.setAdapter(mFirebaseAdapter);
-        Log.d("HOTSPOT",mHotspotRecyclerView.toString());
 
         return v;
     }
     @Override
     public void onPause() {
-        mFirebaseAdapter.stopListening();
         super.onPause();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mFirebaseAdapter.startListening();
     }
 
 }

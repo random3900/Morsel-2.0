@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:marLeft="0dp"
     android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
@@ -19,12 +18,11 @@
             android:id="@+id/hotspot_name"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:text="Anna Nagar"
             android:textStyle="bold"
             android:textColor="@color/colorAccent"
             android:layout_gravity="left"
             android:padding="5dp"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:textAppearance="?attr/textAppearanceHeadline6"/>
 
         <TextView
@@ -32,9 +30,8 @@
             android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="300"
             android:padding="5dp"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:textColor="@color/colorAccent"
             android:textAppearance="?attr/textAppearanceBody2"/>
         <TextView
@@ -42,7 +39,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|left"
-            android:text="No.2 Kutchery Street"
             android:textColor="@color/colorPrimaryDark"
             android:padding="5dp"
             android:layout_marginTop="40dp"
