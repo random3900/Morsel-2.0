@@ -6,6 +6,16 @@
     tools:context=".SecondScreen"
     android:background="@color/colorPrimary">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:id="@+id/huser"
+        android:textStyle="bold|italic"
+        android:textSize="20dp"
+        android:textColor="@color/colorAccent"
+        android:text="Hello User: "/>
 
     <TextView
         android:id="@+id/contribute"
@@ -13,6 +23,7 @@
         android:layout_height="100dp"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
+        android:layout_below="@+id/huser"
         android:background="@drawable/circle"
         android:gravity="center"
         android:textColor="@color/colorAccent"
