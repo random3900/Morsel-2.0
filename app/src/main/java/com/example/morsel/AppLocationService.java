@@ -32,7 +32,7 @@ public class AppLocationService extends Service implements LocationListener {
 
     public Location getLocation(String provider) {
         if (locationManager.isProviderEnabled(provider)) {
-            if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 locationManager.requestLocationUpdates(provider,
                         MIN_TIME_FOR_UPDATE, MIN_DISTANCE_FOR_UPDATE, this);
                 if (locationManager != null) {

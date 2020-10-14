@@ -1,17 +1,25 @@
 package com.example.morsel;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -40,7 +48,7 @@ import static java.security.AccessController.getContext;
 
 public class HotspotsActivity extends AppCompatActivity {
 
-    AppLocationService appLocationService;
+    static AppLocationService appLocationService;
     private String locAddr;
 
     public static final String HOTSPOTS_CHILD = "hotspot list";
@@ -58,11 +66,11 @@ public class HotspotsActivity extends AppCompatActivity {
     private FirebaseUser mFirebaseUser;
     private DatabaseReference mFirebaseDatabaseReference;
 
-    private Context context = this;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hotspots);
+
 
         Log.d("HOTSPOT","Inside Oncreate");
         FloatingActionButton add_button = findViewById(R.id.add_hotspot_button);
@@ -74,7 +82,7 @@ public class HotspotsActivity extends AppCompatActivity {
             }
         });
 
-        appLocationService = new AppLocationService(getApplicationContext());
+//        appLocationService = new this.AppLocationService(getApplicationContext());
 
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -129,7 +137,11 @@ public class HotspotsActivity extends AppCompatActivity {
                         Hotspot h_temp;
                         int a = Integer.parseInt(hotspot.child("avgnum").getValue().toString());
                         double lat = Double.parseDouble(hotspot.child("lat").getValue().toString());
-                        double lon = Double.parseDouble(hotspot.child("long").getValue().toString());
+                        double lon;
+                        if(hotspot.child("long").getValue()!=null)
+                            lon = Double.parseDouble(hotspot.child("long").getValue().toString());
+                        else
+                            lon = Double.parseDouble(hotspot.child("lon").getValue().toString());
                         String n = hotspot.child("name").getValue().toString();
                         h_temp = new Hotspot(a, lat, lon, n);
                         hl.add(h_temp);

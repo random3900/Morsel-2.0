@@ -77,7 +77,19 @@
                     android:id="@+id/add_hotspot_location_edit_text"/>
             </com.google.android.material.textfield.TextInputLayout>
 
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/add_hotspot_area"
+                android:layout_marginTop="10dp"
+                android:text="Enter Area" />
 
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/add_hotspot_city"
+                android:layout_marginTop="10dp"
+                android:text="Enter Area" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -89,6 +101,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     style="@style/Widget.Morsel.Button.TextButton"
+                    android:onClick="addHotspot"
                     android:text="@string/morsel_button_add"/>
 
                 <com.google.android.material.button.MaterialButton
@@ -98,8 +111,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
                     android:layout_marginRight="12dp"
-                    android:layout_toStartOf="@id/add_hotspot"
-                    android:layout_toLeftOf="@id/add_hotspot"
+                    android:onClick="cancelButton"
                     android:text="@string/morsel_button_cancel"/>
 
             </RelativeLayout>

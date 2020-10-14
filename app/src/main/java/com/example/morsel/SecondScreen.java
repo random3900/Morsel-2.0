@@ -52,7 +52,8 @@ public class SecondScreen extends AppCompatActivity {
     }
 
     public  void onClickHotspot(View v){
-
+        Intent i=new Intent(this,HotspotsActivity.class);
+        startActivity(i);
     }
 
 }
