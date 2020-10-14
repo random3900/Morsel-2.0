@@ -15,6 +15,7 @@
         <activity android:name=".AddHotspotActivity"></activity>
         <activity android:name=".HotspotsActivity" />
         <activity android:name=".MappedDetails" />
+        <activity android:name=".DonateHistory"></activity>
         <activity android:name=".donate2" />
         <activity android:name=".MainActivity">
             <intent-filter>
