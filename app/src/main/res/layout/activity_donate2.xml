@@ -11,27 +11,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Donate! Your Waste is Our Wealth!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="20dp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
         android:id="@+id/tv2"/>
-    <EditText
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/in_date2"
-        android:layout_below="@id/tv2"
-        android:layout_marginTop="82dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:hint="Enter the date"/>
+
 
     <EditText
         android:id="@+id/etFoodType2"
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/in_date2"
+        android:layout_below="@+id/tv2"
         android:layout_marginTop="20dp"
         android:hint="Enter the Food Type here"
         android:inputType="text"
@@ -39,43 +29,42 @@
 
     <EditText
         android:id="@+id/etQty2"
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/etFoodType2"
         android:layout_marginTop="20dp"
         android:hint="Enter the Quantity in grams here"
         android:inputType="number" />
 
-    <Button
+
+
+    <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SELECT DATE"
-        android:id="@+id/btn_date2"
-        android:layout_alignBottom="@+id/in_date2"
-        android:layout_toRightOf="@+id/in_date2"
-        android:layout_toEndOf="@+id/in_date2" />
+        android:id="@+id/ecity2"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/etQty2"
+        android:text="Enter area"
+       android:layout_alignRight="@+id/elat2"
+        android:layout_alignLeft="@+id/elat2"/>
 
-    <!--    <Button-->
-    <!--        android:id="@+id/btnModify"-->
-    <!--        android:layout_width="100dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_below="@+id/btnAdd"-->
-    <!--        android:layout_marginTop="20dp"-->
-    <!--        android:backgroundTint="@color/colorAccent"-->
-    <!--        android:background="@color/colorPrimary"-->
-    <!--        android:text="modify" />-->
-
-
-
-
-
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/earea2"
+        android:layout_below="@+id/etQty2"
+        android:layout_marginTop="10dp"
+        android:layout_alignRight="@+id/elon2"
+        android:layout_toRightOf="@+id/ecity2"
+        android:layout_marginLeft="80dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/elat2"
-        android:layout_below="@+id/etQty2"
-        android:hint="Enter lattitude"
+        android:layout_below="@+id/earea2"
+        android:hint="Enter latitude"
+        android:layout_marginTop="10dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -84,49 +73,26 @@
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:id="@+id/elon2"
-        android:layout_below="@+id/etQty2"
+        android:layout_below="@+id/ecity2"
         android:hint="Enter longitude"
-        android:layout_marginLeft="20dp"
+        android:layout_alignRight="@+id/etQty2"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="70dp"
         android:layout_toRightOf="@+id/elat2"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:id="@+id/earea2"
-        android:layout_below="@+id/elat2"
-        android:hint="Enter area"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ecity2"
-        android:layout_below="@+id/elat2"
-        android:hint="Enter City"
-        android:layout_toRightOf="@+id/earea2"
-        android:layout_marginLeft="20dp" />
 
 
     <Button
         android:id="@+id/submit2"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/earea2"
-        android:layout_marginTop="21dp"
+        android:layout_below="@id/elat2"
+        android:layout_marginTop="30dp"
         android:background="@color/colorPrimary"
         android:backgroundTint="@color/colorAccent"
         android:onClick="onClickSubmit2"
         android:text="Donate Now!!" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/res"
-        android:text="Result"
-        android:layout_below="@+id/submit2"
-        android:layout_marginTop="10dp"/>
+
 
 
 </RelativeLayout>

@@ -3,6 +3,8 @@ package com.example.morsel;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -45,5 +47,11 @@ public class MappedDetails extends AppCompatActivity {
         SimpleAdapter adap=new SimpleAdapter(this,lvl,R.layout.mapdetlv,entry,new int[]{R.id.t1,R.id.t2,R.id.t3,R.id.t4});
         lv.setAdapter(adap);
 
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_file, menu);
+        return true;
     }
 }
