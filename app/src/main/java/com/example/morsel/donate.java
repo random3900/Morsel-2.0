@@ -65,9 +65,7 @@ public class donate extends AppCompatActivity implements View.OnClickListener, D
 
     public void onClickSubmit(View v){
 
-            Intent i=new Intent(this, SecondScreen.class);
-            startActivity(i);
-
+            int qty= Integer.parseInt(etQty.getText().toString());
 
     }
 
