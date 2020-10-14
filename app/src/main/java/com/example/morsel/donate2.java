@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class donate2 extends AppCompatActivity {
 
-    private DatabaseReference mDatabase;
+    private DatabaseReference mDatabase,mDBw;
     TextView txt;
     String a,c;
     EditText ftype,fqty,flat,flon,fcity,farea;
@@ -62,11 +62,11 @@ public class donate2 extends AppCompatActivity {
                 }
 
                 String t=" ";
-                double ulat,ulon,hlat,hlon,dlat,dlon,a,c,r;
-                ulat=Double.parseDouble(flat.getText().toString());
-                ulon=Double.parseDouble(flon.getText().toString());
-                ulat=Math.toRadians(ulat);
-                ulon=Math.toRadians(ulon);
+                double ulat,ulon,hlat,hlon,dlat,dlon,a,c,r,ulat1,ulon1;
+                ulat1=Double.parseDouble(flat.getText().toString());
+                ulon1=Double.parseDouble(flon.getText().toString());
+                ulat=Math.toRadians(ulat1);
+                ulon=Math.toRadians(ulon1);
                 for(Hotspot h1:hl)
                 {
                     hlat=Math.toRadians(h1.getLat());
@@ -107,20 +107,34 @@ public class donate2 extends AppCompatActivity {
                 ArrayList<String> pl=new ArrayList<>();
                 ArrayList<String> dl=new ArrayList<>();
 
+                String ar=farea.getText().toString();
+                String ci=fcity.getText().toString();
+                mDBw=FirebaseDatabase.getInstance().getReference().child("dnmapping");
+                int i1=1;
                 for(Hotspot h1:hl)
                 {
                     nl.add(h1.getName());
                     cl.add(h1.getLat()+" "+h1.getLon());
                     pl.add(h1.getPackets()+"");
                     dl.add(h1.getDist()+"");
+                    mDBw.child("Trip"+i1).child("slat").setValue(ulat1);
+                    mDBw.child("Trip"+i1).child("slon").setValue(ulon1);
+                    mDBw.child("Trip"+i1).child("dlat").setValue(h1.getLat());
+                    mDBw.child("Trip"+i1).child("dlon").setValue(h1.getLon());
+                    mDBw.child("Trip"+i1).child("dist").setValue(h1.getDist());
+                    mDBw.child("Trip"+i1).child("packets").setValue(h1.getPackets());
+                    mDBw.child("Trip"+i1).child("area").setValue(ar);
+                    mDBw.child("Trip"+i1).child("city").setValue(ci);
+                    i1++;
                 }
+
+
                 Intent i=new Intent(getApplicationContext(),MappedDetails.class);
                 i.putStringArrayListExtra("nl",nl);
                 i.putStringArrayListExtra("cl",cl);
                 i.putStringArrayListExtra("pl",pl);
                 i.putStringArrayListExtra("dl",dl);
-                String ar=farea.getText().toString();
-                String ci=fcity.getText().toString();
+
                 i.putExtra("area",ar);
                 i.putExtra("city",ci);
                 startActivity(i);
