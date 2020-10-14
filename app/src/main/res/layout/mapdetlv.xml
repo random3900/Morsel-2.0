@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/t1"
+        android:text="Place"
+        android:textColor="@color/colorAccent"
+        android:textSize="30dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/t2"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="Coordinates"
+        android:textSize="15dp"
+        android:layout_below="@+id/t1"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/t3"
+        android:text="Packets"
+        android:textColor="@color/colorAccent"
+        android:layout_toRightOf="@id/t1"
+        android:textSize="30dp"
+        android:layout_marginLeft="170dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/t4"
+        android:layout_toRightOf="@+id/t2"
+        android:layout_below="@+id/t1"
+        android:layout_marginLeft="200dp"
+        android:text="Distance"
+        android:gravity="right"
+        android:textSize="15dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_alignRight="@id/t3"/>
+
+</RelativeLayout>

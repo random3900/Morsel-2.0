@@ -4,6 +4,8 @@ import java.util.*;
 import java.lang.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -20,6 +22,7 @@ public class donate2 extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     TextView txt;
+    String a,c;
     EditText ftype,fqty,flat,flon,fcity,farea;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,7 @@ public class donate2 extends AppCompatActivity {
 
     public void onClickSubmit2(View view)
     {
-        String a,c;
+
         a=farea.getText().toString();
         c=fcity.getText().toString();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("hotspot list").child(c).child(a);
@@ -99,9 +102,28 @@ public class donate2 extends AppCompatActivity {
                         dnmap.add(h1);
                     }
                 }
+                ArrayList<String> nl=new ArrayList<>();
+                ArrayList<String> cl=new ArrayList<>();
+                ArrayList<String> pl=new ArrayList<>();
+                ArrayList<String> dl=new ArrayList<>();
 
-                txt.setText(t);
-
+                for(Hotspot h1:hl)
+                {
+                    nl.add(h1.getName());
+                    cl.add(h1.getLat()+" "+h1.getLon());
+                    pl.add(h1.getPackets()+"");
+                    dl.add(h1.getDist()+"");
+                }
+                Intent i=new Intent(getApplicationContext(),MappedDetails.class);
+                i.putStringArrayListExtra("nl",nl);
+                i.putStringArrayListExtra("cl",cl);
+                i.putStringArrayListExtra("pl",pl);
+                i.putStringArrayListExtra("dl",dl);
+                String ar=farea.getText().toString();
+                String ci=fcity.getText().toString();
+                i.putExtra("area",ar);
+                i.putExtra("city",ci);
+                startActivity(i);
             }
 
             @Override
