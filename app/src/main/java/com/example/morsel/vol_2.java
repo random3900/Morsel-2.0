@@ -162,8 +162,8 @@ public class vol_2 extends AppCompatActivity implements
                 i1++;
             }
         }
-            Toast.makeText(getApplicationContext(),place+" ", Toast.LENGTH_SHORT).show();
-            Toast.makeText(getApplicationContext(),distance+" ", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),place+" ", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),distance+" ", Toast.LENGTH_SHORT).show();
             enter(place,distance);
         }
 
@@ -213,16 +213,16 @@ public class vol_2 extends AppCompatActivity implements
 
     public void enter(List<String> place,List<String> distance)
     {
-        Toast.makeText(getApplicationContext(),place+" ", Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(),distance+" ", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),place+" ", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),distance+" ", Toast.LENGTH_SHORT).show();
         HashMap<String,String> content ;
         List<Map<String, String>> messages = new ArrayList<>();
-        Toast.makeText(getApplicationContext(),distance.size()+"", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),distance.size()+"", Toast.LENGTH_SHORT).show();
         for(int i = 0 ; i < distance.size(); i++) {
             content = new HashMap<String, String>();
             content.put("pl", place.get(i));
             content.put("di", distance.get(i));
-            Toast.makeText(getApplicationContext(),"added", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),"added", Toast.LENGTH_SHORT).show();
             messages.add(content);
         }
 
