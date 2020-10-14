@@ -7,6 +7,7 @@ public class Hotspot implements Comparable {
     private double lon;
     private String name;
     private double dist;
+    private String address;
 
     public int getPackets() {
         return packets;
@@ -86,5 +87,13 @@ public class Hotspot implements Comparable {
             return 1;
         else
             return -1;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

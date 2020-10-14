@@ -2,6 +2,8 @@ package com.example.morsel;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -11,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -46,7 +50,12 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
+import android.location.Geocoder;
+
 public class Hotspots extends Fragment {
+
+    AppLocationService appLocationService;
+    private String locAddr;
 
     public static final String HOTSPOTS_CHILD = "hotspot list";
     public static final String ANONYMOUS = "anonymous";
@@ -80,6 +89,10 @@ public class Hotspots extends Fragment {
                 ((NavigationHost) getContext()).navigateTo(new AddHotspot(), false);
             }
         });
+
+        appLocationService = new AppLocationService(
+                getContext());
+
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         // Set default username is anonymous.
@@ -136,7 +149,19 @@ public class Hotspots extends Fragment {
                                                           double lon = Double.parseDouble(hotspot.child("long").getValue().toString());
                                                           String n = hotspot.child("name").getValue().toString();
                                                           h_temp = new Hotspot(a, lat, lon, n);
-                                                          hl.add(h_temp);
+
+                                                          Location location = appLocationService
+                                                                  .getLocation(LocationManager.GPS_PROVIDER);
+                                                          if (location != null) {
+                                                              double latitude = lat;
+                                                              double longitude = lon;
+                                                              LocationAddress locationAddress = new LocationAddress();
+                                                              locationAddress.getAddressFromLocation(latitude, longitude,
+                                                                      getContext(), new GeocoderHandler());
+                                                              h_temp.setAddress(locAddr);
+                                                              hl.add(h_temp);
+                                                          } else {
+                                                          }
                                                       }
                                                   }
                                                   HotspotAdapter h_adapter = new HotspotAdapter(hl);
@@ -153,5 +178,18 @@ public class Hotspots extends Fragment {
         return v;
     }
 
-
+    private class GeocoderHandler extends Handler {
+        @Override
+        public void handleMessage(Message message) {
+            switch (message.what) {
+                case 1:
+                    Bundle bundle = message.getData();
+                    locAddr = bundle.getString("address");
+                    break;
+                default:
+                    locAddr = null;
+            }
+            return;
+        }
+    }
 }

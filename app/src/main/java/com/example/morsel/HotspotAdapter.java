@@ -39,7 +39,7 @@ public class HotspotAdapter extends RecyclerView.Adapter<HotspotAdapter.HotspotV
     @Override
     public void onBindViewHolder(@NonNull HotspotViewHolder holder, int position) {
         Hotspot h = mCustomHotspot.get(position);
-        holder.addressTextView.setText(Double.toString(h.getLat())+" "+Double.toString(h.getLon()));
+        holder.addressTextView.setText(h.getAddress());
         holder.avgnumTextView.setText(Long.toString(h.getAvgnum()));
         holder.nameTextView.setText(h.getName());
     }
