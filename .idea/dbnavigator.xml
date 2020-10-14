@@ -23,21 +23,15 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="fe7e31c4-85dd-4377-9934-827b2c7d44c7">
-        <schema name="main" object-types="view, column, dataset trigger, table, constraint, index" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="fe7e31c4-85dd-4377-9934-827b2c7d44c7">
-      <console name="Connection" type="STANDARD" schema="main" session="Main" />
+      <console name="Connection" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="fe7e31c4-85dd-4377-9934-827b2c7d44c7" object-ref="schemas/main/tables/historydet" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="fe7e31c4-85dd-4377-9934-827b2c7d44c7" />

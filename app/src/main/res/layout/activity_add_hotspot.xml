@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddHotspotActivity">
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal|center_vertical"
@@ -77,29 +75,49 @@
                     android:id="@+id/add_hotspot_location_edit_text"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/add_hotspot_area"
-                android:layout_marginTop="10dp"
-                android:text="Enter Area" />
-
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/add_hotspot_city"
-                android:layout_marginTop="10dp"
-                android:text="Enter Area" />
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enter Area"
+                    android:id="@+id/arTV"/>
+                <AutoCompleteTextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/add_hotspot_area"
+                    android:layout_below="@+id/arTV"/>
+
+                <TextView
+                    android:id="@+id/cTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="37dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_toRightOf="@+id/arTV"
+                    android:paddingLeft="100dp"
+                    android:text="Enter City" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/add_hotspot_city"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cTV"
+                    android:layout_marginLeft="56dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toRightOf="@id/add_hotspot_area"
+                    android:paddingLeft="100dp" />
+
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/add_hotspot"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
+                    android:layout_below="@+id/add_hotspot_area"
                     style="@style/Widget.Morsel.Button.TextButton"
                     android:onClick="addHotspot"
                     android:text="@string/morsel_button_add"/>
@@ -111,6 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
                     android:layout_marginRight="12dp"
+                    android:layout_below="@+id/add_hotspot_area"
                     android:onClick="cancelButton"
                     android:text="@string/morsel_button_cancel"/>
 

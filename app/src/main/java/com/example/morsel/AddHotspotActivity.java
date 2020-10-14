@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
 
 import com.google.android.material.button.MaterialButton;
@@ -30,7 +32,7 @@ public class AddHotspotActivity extends AppCompatActivity {
     TextInputEditText nameEditText;
     TextInputLayout avgNumTextInput;
     TextInputEditText avgNumEditText;
-    Spinner city,area;
+    AutoCompleteTextView city,area;
     ArrayList<String> cities ;
     ArrayList<String> areas;
     ArrayAdapter<String> adap_cities;
@@ -49,8 +51,10 @@ public class AddHotspotActivity extends AppCompatActivity {
         nameEditText = findViewById(R.id.add_hotspot_name_edit_text);
         avgNumTextInput = findViewById(R.id.add_hotspot_num);
         avgNumEditText = findViewById(R.id.add_hotspot_num_edit_text);
-        city=(Spinner)findViewById(R.id.add_hotspot_city);
-        area=(Spinner)findViewById(R.id.add_hotspot_area);
+        city=(AutoCompleteTextView) findViewById(R.id.add_hotspot_city);
+        city.setThreshold(1);
+        area=(AutoCompleteTextView) findViewById(R.id.add_hotspot_area);
+        area.setThreshold(1);
         addButton = findViewById(R.id.add_hotspot_button);
         cancel = findViewById(R.id.cancel_add_hotspot);
 
@@ -66,6 +70,14 @@ public class AddHotspotActivity extends AppCompatActivity {
                 }
                 adap_cities=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item, cities);
                 city.setAdapter(adap_cities);
+                city.setOnTouchListener(new View.OnTouchListener(){
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event){
+                        city.showDropDown();
+                        return false;
+                    }
+                });
+
                 city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -80,6 +92,14 @@ public class AddHotspotActivity extends AppCompatActivity {
                                 }
                                 adap_areas=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,areas);
                                 area.setAdapter(adap_areas);
+                                area.setOnTouchListener(new View.OnTouchListener(){
+                                    @Override
+                                    public boolean onTouch(View v, MotionEvent event){
+                                        area.showDropDown();
+                                        return false;
+                                    }
+                                });
+
                                 area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                     @Override
                                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -123,7 +143,8 @@ public class AddHotspotActivity extends AppCompatActivity {
         Hotspot h = new
                 Hotspot(a, lat, lon, n);
         FirebaseDatabase.getInstance().getReference().child("hotspot list").child(c).child(ar).push().setValue(h);
-        Intent i=new Intent(AddHotspotActivity.this,HotspotsActivity.class);
+
+            Intent i=new Intent(AddHotspotActivity.this,HotspotsActivity.class);
         startActivity(i);
     }
     public void cancelButton(View view) {
