@@ -8,10 +8,13 @@
     android:layout_marginTop="10dp"
     tools:context=".MappedDetails">
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/donorname"
+        android:textSize="20dp"
+        android:textColor="@color/colorAccent"
         android:text="Name"/>
 
     <TextView
@@ -20,18 +23,22 @@
         android:layout_below="@+id/donorname"
         android:id="@+id/areadet"
         android:text="Area"
+        android:textColor="@color/colorAccent"
+        android:textSize="20dp"
         android:layout_marginTop="20dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/areadet"
         android:id="@+id/citydet"
+        android:textSize="25dp"
         android:text="City"
+        android:textColor="@color/colorAccent"
         android:layout_marginTop="20dp"/>
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/mlv"
         android:layout_below="@+id/citydet"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="50dp"/>
 </RelativeLayout>

@@ -21,6 +21,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +35,7 @@ import java.util.ArrayList;
 public class donate2 extends AppCompatActivity {
 
     private DatabaseReference mDatabase,mDBw,mDB1;
+    FirebaseAuth mauth;
     TextView txt;
     String a,c;
     EditText ftype,fqty,flat,flon;
@@ -48,9 +52,9 @@ public class donate2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donate2);
-
+        mauth=FirebaseAuth.getInstance();
         db = openOrCreateDatabase("FoodsDB", Context.MODE_PRIVATE, null);
-        db.execSQL("CREATE TABLE IF NOT EXISTS historyd(tdate date,fname VARCHAR,qty NUMERIC, location VARCHAR);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS historydet(email VARCHAR,tdate date,fname VARCHAR,qty NUMERIC, location VARCHAR);");
 
         ftype=findViewById(R.id.etFoodType2);
         fqty=findViewById(R.id.etQty2);
@@ -153,7 +157,7 @@ public class donate2 extends AppCompatActivity {
                 {
                     int a=Integer.parseInt(d.child("avgnum").getValue().toString());
                     double lat=Double.parseDouble(d.child("lat").getValue().toString());
-                    double lon=Double.parseDouble(d.child("long").getValue().toString());
+                    double lon=Double.parseDouble(d.child("lon").getValue().toString());
                     String n=d.child("name").getValue().toString();
                     h=new Hotspot(a,lat,lon,n);
                     hl.add(h);
@@ -199,7 +203,8 @@ public class donate2 extends AppCompatActivity {
                 {
                     req=h1.getAvgnum()*450;
                     String loc="("+h1.getLat()+","+h1.getLon()+")";
-                    db.execSQL("INSERT INTO historyd VALUES('" + d + "','" + ftype.getText() +
+                    FirebaseUser u=mauth.getCurrentUser();
+                    db.execSQL("INSERT INTO historydet VALUES('"+u.getEmail()+"','" + d + "','" + ftype.getText() +
                             "','" + fqty.getText() + "','"+ loc+ "');");
                     if(req>=avail)
                     {
@@ -229,7 +234,7 @@ public class donate2 extends AppCompatActivity {
                     nl.add(h1.getName());
                     cl.add(h1.getLat()+" "+h1.getLon());
                     pl.add(h1.getPackets()+"");
-                    dl.add(h1.getDist()+"");
+                    dl.add(String.format("%.20f",h1.getDist()));
                     mDBw.child("Trip"+i1).child("slat").setValue(ulat1);
                     mDBw.child("Trip"+i1).child("slon").setValue(ulon1);
                     mDBw.child("Trip"+i1).child("dlat").setValue(h1.getLat());

@@ -9,13 +9,25 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SecondScreen extends AppCompatActivity {
 
+    String email,name;
+    private FirebaseAuth mauth;
+    TextView t;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_screen);
+        mauth=FirebaseAuth.getInstance();
+        FirebaseUser user=mauth.getCurrentUser();
+        t=findViewById(R.id.huser);
+        t.setText("Hello User: "+user.getEmail());
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -30,6 +42,7 @@ public class SecondScreen extends AppCompatActivity {
         {
             case R.id.dhist:
                 Intent i=new Intent(this,DonateHistory.class);
+
                 startActivity(i);
                 break;
 

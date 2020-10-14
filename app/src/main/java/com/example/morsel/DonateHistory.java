@@ -19,6 +19,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.GridView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -27,6 +30,7 @@ public class DonateHistory extends AppCompatActivity implements DatePickerDialog
     GridView gv;
     EditText e;
     SQLiteDatabase db;
+    FirebaseAuth mauth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +38,7 @@ public class DonateHistory extends AppCompatActivity implements DatePickerDialog
         db = openOrCreateDatabase("FoodsDB", Context.MODE_PRIVATE, null);
         gv=findViewById(R.id.gv);
         e=findViewById(R.id.edate);
-
+        mauth=FirebaseAuth.getInstance();
     }
 
     public void seldate(View v){
@@ -58,9 +62,10 @@ public class DonateHistory extends AppCompatActivity implements DatePickerDialog
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
 
-        String d=i2+"/"+i1+"/"+i;
+        String d=i+"/"+i1+"/"+i2;
         e.setText(d);
-        Cursor c=db.rawQuery("select fname,qty,location from historyd where tdate="+d,null);
+        FirebaseUser u=mauth.getCurrentUser();
+        Cursor c=db.rawQuery("select fname,qty,location from historydet where tdate='"+d+"' and email='"+u.getEmail()+"';",null);
         ArrayList<String> q=new ArrayList<>();
         if (c.getCount() == 0) {
             showMessage("Error", "No records found");
