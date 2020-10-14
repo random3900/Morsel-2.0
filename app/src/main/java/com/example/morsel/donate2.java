@@ -3,13 +3,17 @@ package com.example.morsel;
 import java.util.*;
 import java.lang.*;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
+
 public class donate2 extends AppCompatActivity {
 
     private DatabaseReference mDatabase,mDBw,mDB1;
@@ -35,10 +40,18 @@ public class donate2 extends AppCompatActivity {
     ArrayList<String> areas;
     ArrayAdapter<String> adap1;
     ArrayAdapter<String> adap2;
+    private int mYear, mMonth, mDay;
+
+    SQLiteDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donate2);
+
+        db = openOrCreateDatabase("FoodsDB", Context.MODE_PRIVATE, null);
+        db.execSQL("CREATE TABLE IF NOT EXISTS historyd(tdate date,fname VARCHAR,qty NUMERIC, location VARCHAR);");
+
         ftype=findViewById(R.id.etFoodType2);
         fqty=findViewById(R.id.etQty2);
         flat=findViewById(R.id.elat2);
@@ -105,13 +118,29 @@ public class donate2 extends AppCompatActivity {
             }
         });
 
+    }
 
-
-
+    public void showMessage(String title, String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
     }
 
     public void onClickSubmit2(View view)
     {
+        final Calendar c1 = Calendar.getInstance();
+        mYear = c1.get(Calendar.YEAR);
+        mMonth = c1.get(Calendar.MONTH);
+        mDay = c1.get(Calendar.DAY_OF_MONTH);
+        if (fqty.getText().toString().trim().length() == 0 || ftype.getText().toString().trim().length() == 0 ||
+                a.trim().length() == 0|| c.trim().length() == 0 || flat.getText().toString().trim().length() == 0 ||
+                flon.getText().toString().trim().length()==0) {
+            showMessage("Error", "Please enter all values");
+            return;
+        }
+
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("hotspot list").child(c).child(a);
         mDatabase.addValueEventListener(new ValueEventListener() {
@@ -134,6 +163,15 @@ public class donate2 extends AppCompatActivity {
                 double ulat,ulon,hlat,hlon,dlat,dlon,a1,c1,r,ulat1,ulon1;
                 ulat1=Double.parseDouble(flat.getText().toString());
                 ulon1=Double.parseDouble(flon.getText().toString());
+
+                if(hl.size()==0)
+                {
+                    showMessage("Oops","No requirement. Thank you for your initiative");
+                    return;
+                }
+                String d=mYear+"/"+mMonth+"/"+mDay;
+
+
                 ulat=Math.toRadians(ulat1);
                 ulon=Math.toRadians(ulon1);
                 for(Hotspot h1:hl)
@@ -150,6 +188,9 @@ public class donate2 extends AppCompatActivity {
                     h1.setDist(c1 * r);
 
                 }
+
+
+
                 Collections.sort(hl);
                 ArrayList<Hotspot> dnmap=new ArrayList<>();
                 double avail,req;
@@ -157,6 +198,9 @@ public class donate2 extends AppCompatActivity {
                 for(Hotspot h1:hl)
                 {
                     req=h1.getAvgnum()*450;
+                    String loc="("+h1.getLat()+","+h1.getLon()+")";
+                    db.execSQL("INSERT INTO historyd VALUES('" + d + "','" + ftype.getText() +
+                            "','" + fqty.getText() + "','"+ loc+ "');");
                     if(req>=avail)
                     {
                         h1.setPackets((int) Math.floor(avail/450));
@@ -171,6 +215,8 @@ public class donate2 extends AppCompatActivity {
                         dnmap.add(h1);
                     }
                 }
+
+
                 ArrayList<String> nl=new ArrayList<>();
                 ArrayList<String> cl=new ArrayList<>();
                 ArrayList<String> pl=new ArrayList<>();
@@ -217,6 +263,23 @@ public class donate2 extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_file, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.dhist:
+                Intent i=new Intent(this,DonateHistory.class);
+                startActivity(i);
+                break;
+
+            case R.id.mlog:
+                Intent i1=new Intent(this,MainActivity.class);
+                startActivity(i1);
+                break;
+        }
         return true;
     }
 }

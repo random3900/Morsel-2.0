@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MappedDetails"></activity>
+        <activity android:name=".DonateHistory"></activity>
+        <activity android:name=".MappedDetails" />
         <activity android:name=".donate2" />
         <activity android:name=".MainActivity">
             <intent-filter>
