@@ -1,45 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondScreen">
+    tools:context=".SecondScreen"
+    android:background="@color/colorPrimary">
 
 
-    <Button
+    <TextView
         android:id="@+id/contribute"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/circle"
-
+        android:gravity="center"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
         android:text="Contribute"
         android:onClick="onClickContribute"/>
-    <Button
-    android:id="@+id/shareloc"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="Share Location"
-        android:background="@drawable/circle"
 
-        android:layout_centerVertical="true"
-        android:layout_centerInParent="true"
-        android:layout_below="@+id/contribute"
-        android:layout_marginTop="50dp"
-        android:onClick="onClickLocation"/>
-
-    <Button
+    <TextView
       android:layout_width="100dp"
         android:layout_height="100dp"
         android:text="Volunteer"
-
-      android:background="@drawable/circle"
+        android:background="@drawable/circle"
+        android:gravity="center"
+        android:id="@+id/volunteer"
         android:layout_centerVertical="true"
         android:layout_centerInParent="true"
-        android:layout_below="@+id/shareloc"
+        android:layout_below="@+id/contribute"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
         android:layout_marginTop="50dp"
        android:onClick="onClickVolunteer"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="Hotspot List"
+        android:background="@drawable/circle"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/volunteer"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:layout_marginTop="50dp"
+        android:onClick="onClickHotspot"/>
 
 </RelativeLayout>
