@@ -1,5 +1,6 @@
 package com.example.morsel;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -77,8 +78,10 @@ public class Login extends Fragment {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("Login", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-//                            Toast.makeText(getContext(), "Signin Successful", Toast.LENGTH_SHORT).show();
-                            ((NavigationHost) getContext()).navigateTo(new Hotspots(), false);
+                           Toast.makeText(getContext(), "Signin Successful", Toast.LENGTH_SHORT).show();
+                           // ((NavigationHost) getContext()).navigateTo(new Hotspots(), false);
+                            Intent i=new Intent(getActivity(),SecondScreen.class);
+                            startActivity(i);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("Login", "signInWithEmail:failure", task.getException());

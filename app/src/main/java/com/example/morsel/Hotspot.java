@@ -1,17 +1,26 @@
 package com.example.morsel;
 
-public class Hotspot {
+public class Hotspot implements Comparable {
     private String Id;
-    private long avgnum;
+    private int avgnum;
     private double lat;
     private double lon;
     private String name;
+    private double dist;
 
+    public int getPackets() {
+        return packets;
+    }
 
+    public void setPackets(int packets) {
+        this.packets = packets;
+    }
+
+    private int packets;
     public Hotspot(){
     }
 
-    public Hotspot(long avgnum, double lat, double lon, String name){
+    public Hotspot(int avgnum, double lat, double lon, String name){
         this.name = name;
         this.lat = lat;
         this.lon = lon;
@@ -50,11 +59,32 @@ public class Hotspot {
         this.lon = lon;
     }
 
-    public long getAvgnum() {
+    public int getAvgnum() {
         return avgnum;
     }
 
-    public void setAvgnum(long avgnum) {
+    public void setAvgnum(int avgnum) {
         this.avgnum = avgnum;
+    }
+
+    public double getDist() {
+        return dist;
+    }
+
+    public void setDist(double d){this.dist=d;}
+
+
+
+    @Override
+    public int compareTo(Object h) {
+        double d,d1;
+        d1=((Hotspot)h).getDist();
+        d=getDist();
+        if(d1==d)
+            return 0;
+        else if(d1>d)
+            return 1;
+        else
+            return -1;
     }
 }

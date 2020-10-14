@@ -1,44 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SecondScreen">
 
 
-<!--    <Button-->
-<!--        android:id="@+id/contribute"-->
-<!--        android:layout_width="100dp"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:layout_marginTop="50dp"-->
-<!--        android:background="@drawable/circle"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:text="Contribute"-->
-<!--        android:onClick="onClickContribute"/>-->
+    <Button
+        android:id="@+id/contribute"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/circle"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorAccent"
+        android:text="Contribute"
+        android:onClick="onClickContribute"/>
+    <Button
+    android:id="@+id/shareloc"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="Share Location"
+        android:background="@drawable/circle"
+        android:textColor="@color/colorAccent"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/contribute"
+        android:layout_marginTop="50dp"
+        android:onClick="onClickLocation"/>
 
-<!--    <Button-->
-<!--        android:id="@+id/shareloc"-->
-<!--        android:layout_width="100dp"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:text="Share Location"-->
-<!--        android:background="@drawable/circle"-->
-<!--        android:layout_centerVertical="true"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:layout_below="@+id/contribute"-->
-<!--        android:layout_marginTop="50dp"-->
-<!--        android:onClick="onClickLocation"/>-->
-
-<!--    <Button-->
-<!--        android:layout_width="100dp"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:text="Volunteer"-->
-<!--        android:background="@drawable/circle"-->
-<!--        android:layout_centerVertical="true"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:layout_below="@+id/shareloc"-->
-<!--        android:layout_marginTop="50dp"-->
-<!--        android:onClick="onClickVolunteer"/>-->
+    <Button
+      android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="Volunteer"
+        android:textColor="@color/colorAccent"
+      android:background="@drawable/circle"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/shareloc"
+        android:layout_marginTop="50dp"
+       android:onClick="onClickVolunteer"/>
 
 </RelativeLayout>
