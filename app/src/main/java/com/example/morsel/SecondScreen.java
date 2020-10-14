@@ -22,10 +22,7 @@ public class SecondScreen extends AppCompatActivity {
         return true;
     }
 
-    public void onClickLocation(View V){
-//        Intent i = new Intent(this, location.class);
-//        startActivity(i);
-    }
+
     public void onClickContribute(View V){
         Intent i = new Intent(this, donate2.class);
         startActivity(i);
@@ -33,6 +30,10 @@ public class SecondScreen extends AppCompatActivity {
     public void onClickVolunteer(View V){
 //        Intent i = new Intent(this, volunteer.class);
 //        startActivity(i);
+    }
+
+    public  void onClickHotspot(View v){
+
     }
 
 }
