@@ -26,6 +26,10 @@
         </activity>
         <activity android:name=".SecondScreen" />
         <activity android:name=".donate" />
+        <activity android:name=".vol_5"></activity>
+        <activity android:name=".vol_3" />
+        <activity android:name=".vol_2" />
+        <activity android:name=".vol_1" />
     </application>
 
 </manifest>
