@@ -75,7 +75,6 @@ public class MappedDetails extends AppCompatActivity {
                 if(i==0)
                     return;
                 String url="geo:"+cl.get(i-1)+"?z=17";
-                Toast.makeText(getApplicationContext(), ""+cl.get(i-1),Toast.LENGTH_SHORT).show();
                 Uri location;
                 location = Uri.parse(url);
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
