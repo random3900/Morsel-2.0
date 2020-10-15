@@ -1,10 +1,14 @@
 package com.example.morsel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -145,5 +149,28 @@ public class vol_3 extends AppCompatActivity implements View.OnClickListener {
             }*/
             tv_acc.setText("Thank you for accepting the order\nDon't turn off your location");
         }
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_file, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.dhist:
+                Intent i=new Intent(this,DonateHistory.class);
+
+                startActivity(i);
+                break;
+
+            case R.id.mlog:
+                Intent i1=new Intent(this,MainActivity.class);
+                startActivity(i1);
+                break;
+        }
+        return true;
     }
 }

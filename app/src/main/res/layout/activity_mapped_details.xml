@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="10dp"
+
     android:layout_marginTop="10dp"
     tools:context=".MappedDetails">
 
@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/donorname"
         android:textSize="20dp"
+        android:layout_marginLeft="10dp"
         android:textColor="@color/colorAccent"
         android:text="Name"/>
 
@@ -23,6 +24,7 @@
         android:layout_below="@+id/donorname"
         android:id="@+id/areadet"
         android:text="Area"
+        android:layout_marginLeft="10dp"
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
         android:layout_marginTop="20dp"/>
@@ -31,7 +33,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/areadet"
         android:id="@+id/citydet"
-        android:textSize="25dp"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
         android:text="City"
         android:textColor="@color/colorAccent"
         android:layout_marginTop="20dp"/>
@@ -40,5 +43,5 @@
         android:layout_height="wrap_content"
         android:id="@+id/mlv"
         android:layout_below="@+id/citydet"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="70dp"/>
 </RelativeLayout>

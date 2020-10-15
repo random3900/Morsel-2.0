@@ -59,26 +59,5 @@ public class MainActivity extends AppCompatActivity implements NavigationHost{
     public void onClickRegister(View v){
         ((NavigationHost) this).navigateTo(new Registration(), false);
     }
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_file, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId())
-        {
-            case R.id.dhist:
-                Intent i=new Intent(this,DonateHistory.class);
-                startActivity(i);
-                break;
-
-            case R.id.mlog:
-                Intent i1=new Intent(this,MainActivity.class);
-                startActivity(i1);
-                break;
-        }
-        return true;
-    }
 }

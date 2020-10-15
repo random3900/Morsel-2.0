@@ -26,7 +26,7 @@
         android:layout_below="@+id/huser"
         android:background="@drawable/circle"
         android:gravity="center"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:text="Contribute"
         android:onClick="onClickContribute"/>
@@ -41,7 +41,7 @@
         android:layout_centerVertical="true"
         android:layout_centerInParent="true"
         android:layout_below="@+id/contribute"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_marginTop="50dp"
        android:onClick="onClickVolunteer"/>
@@ -55,7 +55,7 @@
         android:layout_centerVertical="true"
         android:layout_centerInParent="true"
         android:layout_below="@+id/volunteer"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_marginTop="50dp"
         android:onClick="onClickHotspot"/>

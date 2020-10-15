@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -22,6 +25,10 @@ public class MappedDetails extends AppCompatActivity {
 
     String area,city;
     private FirebaseAuth mauth;
+    ArrayList<String> nl=new ArrayList<>();
+    ArrayList<String> cl=new ArrayList<>();
+    ArrayList<String> pl=new ArrayList<>();
+    ArrayList<String> dl=new ArrayList<>();
     TextView tn,ta,tc;
     ListView lv;
     @Override
@@ -30,10 +37,10 @@ public class MappedDetails extends AppCompatActivity {
         setContentView(R.layout.activity_mapped_details);
         mauth=FirebaseAuth.getInstance();
         FirebaseUser u=mauth.getCurrentUser();
-        ArrayList<String> nl=(ArrayList<String>)getIntent().getStringArrayListExtra("nl");
-        ArrayList<String> cl=(ArrayList<String>)getIntent().getStringArrayListExtra("cl");
-        ArrayList<String> pl=(ArrayList<String>)getIntent().getStringArrayListExtra("pl");
-        ArrayList<String> dl=(ArrayList<String>)getIntent().getStringArrayListExtra("dl");
+        nl=(ArrayList<String>)getIntent().getStringArrayListExtra("nl");
+        cl=(ArrayList<String>)getIntent().getStringArrayListExtra("cl");
+        pl=(ArrayList<String>)getIntent().getStringArrayListExtra("pl");
+       dl=(ArrayList<String>)getIntent().getStringArrayListExtra("dl");
         area=getIntent().getStringExtra("area");
         city=getIntent().getStringExtra("city");
         tn=findViewById(R.id.donorname);
@@ -45,18 +52,34 @@ public class MappedDetails extends AppCompatActivity {
         lv=findViewById(R.id.mlv);
         HashMap<String,String> hm;
         ArrayList<HashMap<String,String>> lvl=new ArrayList<>();
+        hm=new HashMap<String, String>();
+        hm.put("name","Place");
+        hm.put("pack","Pkts");
+        hm.put("addr","\n");
+        lvl.add(hm);
         for(int i=0;i<nl.size();i++)
         {
             hm=new HashMap<String, String>();
             hm.put("name",nl.get(i));
-            hm.put("coord",cl.get(i));
-            hm.put("dist",dl.get(i)+" Km");
-            hm.put("pack",pl.get(i)+" packets");
+            hm.put("pack",pl.get(i));
+            hm.put("addr"," ");
             lvl.add(hm);
         }
-        String[] entry=new String[]{"name","coord","pack","dist"};
-        SimpleAdapter adap=new SimpleAdapter(this,lvl,R.layout.mapdetlv,entry,new int[]{R.id.t1,R.id.t2,R.id.t3,R.id.t4});
+        String[] entry=new String[]{"name","pack","addr"};
+        SimpleAdapter adap=new SimpleAdapter(this,lvl,R.layout.item_hotspot,entry,new int[]{R.id.hotspot_name,R.id.hotspot_avg_num,R.id.hotspot_address});
         lv.setAdapter(adap);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i==0)
+                    return;
+                String url="geo:"+cl.get(i-1)+"?z=17";
+                Uri location;
+                location = Uri.parse(url);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
+                startActivity(mapIntent);
+            }
+        });
 
     }
 
