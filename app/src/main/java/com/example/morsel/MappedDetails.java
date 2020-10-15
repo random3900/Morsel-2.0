@@ -43,12 +43,12 @@ public class MappedDetails extends AppCompatActivity {
        dl=(ArrayList<String>)getIntent().getStringArrayListExtra("dl");
         area=getIntent().getStringExtra("area");
         city=getIntent().getStringExtra("city");
-        tn=findViewById(R.id.donorname);
-        tn.setText("Name: "+u.getEmail());
-        ta=findViewById(R.id.areadet);
-        ta.setText("Area: "+area);
-        tc=findViewById(R.id.citydet);
-        tc.setText("City: "+city);
+        tn=findViewById(R.id.nameval);
+        tn.setText(u.getEmail());
+        ta=findViewById(R.id.areaval);
+        ta.setText(area);
+        tc=findViewById(R.id.cityval);
+        tc.setText(city);
         lv=findViewById(R.id.mlv);
         HashMap<String,String> hm;
         ArrayList<HashMap<String,String>> lvl=new ArrayList<>();
