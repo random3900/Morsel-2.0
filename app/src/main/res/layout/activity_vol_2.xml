@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".MainActivity">
 
     <EditText
@@ -11,7 +12,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/et_dis"
         android:inputType="number"
-        android:hint="Type distance"
+        android:hint="Type the distance to search"
+        android:textColor="@color/textColorPrimary"
         android:maxLength="3"
         android:layout_marginLeft="10dp"
         />
@@ -20,6 +22,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/lv_vol"
         android:layout_below="@id/et_dis"
+        android:textColor="@color/textColorPrimary"
         android:layout_marginLeft="10dp"
         />
 

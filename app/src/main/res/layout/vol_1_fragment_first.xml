@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pink"
+    android:background="@color/colorPrimary"
     tools:context=".vol_1_FirstFragment">
 
     <EditText
@@ -12,10 +12,11 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:hint="Enter the current location"
+        android:hint="Enter the location (lat,lon)"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:inputType="text"
+        android:textColor="@color/textColorPrimary"
         android:textSize="15sp" />
 
     <EditText
@@ -24,10 +25,11 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="180dp"
-        android:hint="Weight you can carry (in kgs)"
+        android:hint="No. of packets you can carry"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:textColor="@color/textColorPrimary"
         android:inputType="number"
         android:textSize="15sp" />
 
@@ -39,6 +41,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="Volunteer"
+        android:background="@color/colorPrimaryDark"
         android:textSize="20sp"
         android:textStyle="bold" />
 

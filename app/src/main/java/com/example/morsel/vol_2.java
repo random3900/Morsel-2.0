@@ -237,6 +237,10 @@ public class vol_2 extends AppCompatActivity implements
                         android.R.id.text2,
                 });
         lv_vol.setAdapter(adapter);
+        if(distance.size()==0)
+        {
+            Toast.makeText(getApplicationContext(),"No hotspots nearby in the surrounding of 50 kms", Toast.LENGTH_LONG).show();
+        }
 
         et_dis.addTextChangedListener(new TextWatcher() {
 

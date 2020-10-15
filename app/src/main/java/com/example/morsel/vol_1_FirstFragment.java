@@ -34,6 +34,7 @@ public class vol_1_FirstFragment extends Fragment implements View.OnClickListene
     SQLiteDatabase db;
     int reg_vol_id = 1;
     Integer id = 1;
+    int f=1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,13 +58,45 @@ public class vol_1_FirstFragment extends Fragment implements View.OnClickListene
             mDatabase = FirebaseDatabase.getInstance().getReference().child("volunteer");
             //mdb = FirebaseDatabase.getInstance().getReference().child("volunteer").child("vol"+"_"+id);
 
+                    f=1;
+                    if (et_loc.getText().toString().isEmpty() || et_weight.getText().toString().isEmpty()) {
+                        showMessage("Error", "Please enter all values");
+                        f=0;
+                    }
+                    else{
+                        String[] loc2 =(et_loc.getText().toString()).split(",");
+                        if(loc2.length!=2)
+                        {
+                            Toast.makeText(getActivity(),"Enter a valid location",Toast.LENGTH_SHORT).show();
+                            f=0;
+                        }
+                        if(loc2.length==2)
+                        {
+                            try {
+                                double number = Double.parseDouble(loc2[0]);
+                            } catch (NumberFormatException e) {
+                                f=0;
+                                Toast.makeText(getActivity(),"Enter a valid location",Toast.LENGTH_SHORT).show();
+                            }
+                            try {
+                                double number1 = Double.parseDouble(loc2[1]);
+                            } catch (NumberFormatException ex) {
+                                f=0;
+                                Toast.makeText(getActivity(),"Enter a valid location",Toast.LENGTH_SHORT).show();
+                            }
 
-                    if (et_loc.getText() != null && et_weight.getText() != null) {
-                        Integer weight = Integer.parseInt(et_weight.getText().toString());
-                        String loc = et_loc.getText().toString();
-                        Vol vol = new Vol(id,loc,weight);
-                        mDatabase.setValue("vol"+id);
-                        mDatabase.child("vol"+id).setValue(vol);
+                        }
+                        if(Integer.parseInt(et_weight.getText().toString())<=0)
+                        {
+                            f=0;
+                            Toast.makeText(getActivity(),"Enter a valid packets no",Toast.LENGTH_SHORT).show();
+                        }
+                        if(f==1) {
+                            Integer weight = Integer.parseInt(et_weight.getText().toString());
+                            String loc = et_loc.getText().toString();
+                            Vol vol = new Vol(id, loc, weight);
+                            mDatabase.setValue("vol" + id);
+                            mDatabase.child("vol" + id).setValue(vol);
 
 
                         /*Cursor c = db.rawQuery("SELECT * FROM vol WHERE vol_id ='" + String.valueOf(reg_vol_id) + "'", null);
@@ -78,12 +111,10 @@ public class vol_1_FirstFragment extends Fragment implements View.OnClickListene
                         if (c1.moveToFirst()) {
                             Toast.makeText(getActivity(), c1.getString(1), Toast.LENGTH_LONG).show();
                         }*/
-                        Intent i1 = new Intent(getActivity(), vol_2.class);
-                        i1.putExtra("id_vol",String.valueOf(id));
-                        startActivity(i1);
-                    }
-                    else {
-                        showMessage("Error", "Please enter all values");
+                            Intent i1 = new Intent(getActivity(), vol_2.class);
+                            i1.putExtra("id_vol", String.valueOf(id));
+                            startActivity(i1);
+                        }
                     }
 
                 }

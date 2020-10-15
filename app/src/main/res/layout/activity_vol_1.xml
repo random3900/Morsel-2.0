@@ -15,7 +15,7 @@
         android:id="@+id/tb_mode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/button_background_color"
+        android:background="@color/colorPrimaryDark"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:text="Mode"
@@ -23,19 +23,19 @@
         android:textOn="Deactivate"
         android:layout_marginBottom="10dp"/>
 
-    <Button
+    <!--<Button
         android:id="@+id/btn_ord_status"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/button_background_color"
         android:textColor="@color/white"
         android:text="Order Delivery Status"
-        android:textSize="20sp" />
+        android:textSize="20sp" />-->
 
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
-        android:background="@color/colorAccent" />
+        android:background="@color/colorPrimary" />
 </LinearLayout>
