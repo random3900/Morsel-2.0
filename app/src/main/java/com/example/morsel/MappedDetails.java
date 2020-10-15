@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -74,6 +75,7 @@ public class MappedDetails extends AppCompatActivity {
                 if(i==0)
                     return;
                 String url="geo:"+cl.get(i-1)+"?z=17";
+                Toast.makeText(getApplicationContext(), ""+cl.get(i-1),Toast.LENGTH_SHORT).show();
                 Uri location;
                 location = Uri.parse(url);
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
