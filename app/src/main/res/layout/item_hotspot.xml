@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        app:strokeWidth="1dp"
-        app:strokeColor="@color/colorPrimaryDark"
+        app:strokeWidth="0.5dp"
+        app:strokeColor="#73B946"
         app:cardBackgroundColor="@color/colorPrimary"
         app:shapeAppearance="?attr/shapeAppearanceOverlay">
 

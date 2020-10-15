@@ -57,7 +57,8 @@ public class Login extends Fragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            signIn(usernameEditText.getText().toString(), passwordEditText.getText().toString());
+            if (isPasswordValid(passwordEditText.getText()))
+                signIn(usernameEditText.getText().toString(), passwordEditText.getText().toString());
             }
         });
 
@@ -114,6 +115,9 @@ public class Login extends Fragment {
                             Log.w("Login", "signInWithEmail:failure", task.getException());
                             Toast.makeText(getActivity(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
+                            passwordTextInput.setError("Incorrect Email or Password");
+                            usernameTextInput.setError("Incorrect Email or Password");
+
                             //updateUI(null);
                         }
                     }

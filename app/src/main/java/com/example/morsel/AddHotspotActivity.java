@@ -140,17 +140,37 @@ public class AddHotspotActivity extends AppCompatActivity {
 
     }
     public void addHotspot(View v){
-        int a = Integer.parseInt(avgNumEditText.getText().toString());
-        double lat = Double.parseDouble(addressEditText.getText().toString().split(" ")[0]);
-        double lon = Double.parseDouble(addressEditText.getText().toString().split(" ")[1]);;
-        String n = nameEditText.getText().toString();
-        Hotspot h = new
-                Hotspot(a, lat, lon, n);
-        FirebaseDatabase.getInstance().getReference().child("hotspot list").child(c).child(ar).push().setValue(h);
+        if(isValid()) {
+            int a = Integer.parseInt(avgNumEditText.getText().toString());
+            double lat = Double.parseDouble(addressEditText.getText().toString().split(" ")[0]);
+            double lon = Double.parseDouble(addressEditText.getText().toString().split(" ")[1]);;
+            String n = nameEditText.getText().toString();
 
-            Intent i=new Intent(AddHotspotActivity.this,HotspotsActivity.class);
-        startActivity(i);
+            Hotspot h = new
+                    Hotspot(a, lat, lon, n);
+            FirebaseDatabase.getInstance().getReference().child("hotspot list").child(c).child(ar).push().setValue(h);
+
+            Intent i = new Intent(AddHotspotActivity.this, HotspotsActivity.class);
+            startActivity(i);
+        }
     }
+    public boolean isValid(){
+        boolean to_ret = true;
+        if(avgNumEditText.getText().toString()==null||avgNumEditText.getText().toString().equals("")){
+            avgNumTextInput.setError("Enter Number of Residents");
+            to_ret = false;
+        }
+        if(nameEditText.getText().toString()==null||nameEditText.getText().toString().equals("")){
+            nameTextInput.setError("Enter Hotspot Name");
+            to_ret = false;
+        }
+        if(addressEditText.getText().toString()==null||addressEditText.getText().toString().equals("")){
+            addressTextInput.setError("Enter Address in Latitude Longitude Format");
+            to_ret = false;
+        }
+        return to_ret;
+    }
+
     public void cancelButton(View view) {
         Intent i=new Intent(AddHotspotActivity.this,HotspotsActivity.class);
         startActivity(i);
