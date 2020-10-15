@@ -58,10 +58,12 @@ public class vol_3 extends AppCompatActivity implements View.OnClickListener {
         mdb.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                int ids = Integer.parseInt(snapshot.child("vol_id").getValue().toString());
-                if(ids==(id)) {
-                    w1 = Integer.parseInt(snapshot.child("vol_weight").getValue().toString());
-                    //Toast.makeText(getApplicationContext(), lat1d+" "+lon1d, Toast.LENGTH_SHORT).show();
+                if (snapshot.child("vol_id").getValue()!=null && snapshot.child("vol_weight").getValue()!=null) {
+                    int ids = Integer.parseInt(snapshot.child("vol_id").getValue().toString());
+                    if (ids == (id)) {
+                        w1 = Integer.parseInt(snapshot.child("vol_weight").getValue().toString());
+                        //Toast.makeText(getApplicationContext(), lat1d+" "+lon1d, Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
