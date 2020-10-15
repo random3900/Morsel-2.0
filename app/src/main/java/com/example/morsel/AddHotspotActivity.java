@@ -140,7 +140,9 @@ public class AddHotspotActivity extends AppCompatActivity {
 
     }
     public void addHotspot(View v){
-        if(isValid()) {
+        if(!isValid()){
+            return;
+        }
             int a = Integer.parseInt(avgNumEditText.getText().toString());
             double lat = Double.parseDouble(addressEditText.getText().toString().split(" ")[0]);
             double lon = Double.parseDouble(addressEditText.getText().toString().split(" ")[1]);;
@@ -148,11 +150,14 @@ public class AddHotspotActivity extends AppCompatActivity {
 
             Hotspot h = new
                     Hotspot(a, lat, lon, n);
-            FirebaseDatabase.getInstance().getReference().child("hotspot list").child(c).child(ar).push().setValue(h);
+            if(c==null)c=city.getText().toString();
+            if(ar==null)ar=area.getText().toString();
+
+        FirebaseDatabase.getInstance().getReference().child("hotspot list").child(c).child(ar).push().setValue(h);
 
             Intent i = new Intent(AddHotspotActivity.this, HotspotsActivity.class);
             startActivity(i);
-        }
+
     }
     public boolean isValid(){
         boolean to_ret = true;
