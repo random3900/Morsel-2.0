@@ -122,13 +122,14 @@ public class vol_2 extends AppCompatActivity implements
         mdb.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                int ids = Integer.parseInt(snapshot.child("vol_id").getValue().toString());
-                if(ids==(id))
-                {
-                    String[] loc2 =(snapshot.child("vol_loc").getValue().toString()).split(",");
-                    lat1d = Double.parseDouble(loc2[0]);
-                    lon1d = Double.parseDouble(loc2[1]);
-                    //Toast.makeText(getApplicationContext(), lat1d+" "+lon1d, Toast.LENGTH_SHORT).show();
+                if(snapshot.child("vol_id").getValue()!=null&&snapshot.child("vol_loc").getValue()!=null) {
+                    int ids = Integer.parseInt(snapshot.child("vol_id").getValue().toString());
+                    if (ids == (id)) {
+                        String[] loc2 = (snapshot.child("vol_loc").getValue().toString()).split(",");
+                        lat1d = Double.parseDouble(loc2[0]);
+                        lon1d = Double.parseDouble(loc2[1]);
+                        //Toast.makeText(getApplicationContext(), lat1d+" "+lon1d, Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
@@ -237,6 +238,10 @@ public class vol_2 extends AppCompatActivity implements
                         android.R.id.text2,
                 });
         lv_vol.setAdapter(adapter);
+        if(distance.size()==0)
+        {
+            Toast.makeText(getApplicationContext(),"No hotspots nearby in the surrounding of 50 kms", Toast.LENGTH_LONG).show();
+        }
 
         et_dis.addTextChangedListener(new TextWatcher() {
 

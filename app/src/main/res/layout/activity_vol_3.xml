@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pink"
+    android:background="@color/colorPrimary"
     tools:context=".vol_3">
 
     <TextView
@@ -13,6 +13,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:text="Source location"
+        android:textColor="@color/textColorPrimary"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textSize="15sp" />
@@ -24,6 +25,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="75dp"
         android:text="Destination location"
+        android:textColor="@color/textColorPrimary"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textSize="15sp" />
@@ -35,6 +37,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="125dp"
         android:text="Distance to source"
+        android:textColor="@color/textColorPrimary"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textSize="15sp" />
@@ -45,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="195dp"
+        android:textColor="@color/textColorPrimary"
         android:text="Distance between src and dst"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -57,6 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="255dp"
+        android:textColor="@color/textColorPrimary"
         android:text="Food weight"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -68,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="295dp"
+        android:textColor="@color/textColorPrimary"
         android:text="Food weight comparison"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -81,6 +87,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="Accept to Volunteer"
+        android:background="@color/colorPrimaryDark"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -91,6 +98,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="415dp"
         android:text=""
+        android:textColor="@color/textColorPrimary"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textSize="15sp" />

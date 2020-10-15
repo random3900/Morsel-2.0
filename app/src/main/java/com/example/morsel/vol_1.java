@@ -26,12 +26,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 
-public class vol_1 extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
+public class vol_1 extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
     private DatabaseReference mDatabase,mDBw;
     ToggleButton tb_mode;
     SQLiteDatabase db;
-    Button btn_ods;
+    //Button btn_ods;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +39,8 @@ public class vol_1 extends AppCompatActivity implements CompoundButton.OnChecked
         setContentView(R.layout.activity_vol_1);
 
         tb_mode =  findViewById(R.id.tb_mode);
-        btn_ods =  findViewById(R.id.btn_ord_status);
-        btn_ods.setOnClickListener(this);
+        //btn_ods =  findViewById(R.id.btn_ord_status);
+        //btn_ods.setOnClickListener(this);
         tb_mode.setOnCheckedChangeListener(this);
     }
 
@@ -62,7 +62,7 @@ public class vol_1 extends AppCompatActivity implements CompoundButton.OnChecked
         }
     }
 
-     private void loadFragment(Fragment fragment) {
+    private void loadFragment(Fragment fragment) {
         // create a FragmentManager
         FragmentManager fm = getSupportFragmentManager();
 
@@ -77,14 +77,14 @@ public class vol_1 extends AppCompatActivity implements CompoundButton.OnChecked
         fragmentTransaction.commit(); // save the changes
     }
 
-    @Override
-    public void onClick(View view) {
+    //@Override
+    /*public void onClick(View view) {
         if(view.getId()==btn_ods.getId())
         {
             //Intent i3=new Intent(this,vol_5.class);
             //startActivity(i3);
         }
-    }
+    }*/
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_file, menu);

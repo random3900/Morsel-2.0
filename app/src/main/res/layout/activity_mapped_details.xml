@@ -10,38 +10,74 @@
 
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/donorname"
         android:textSize="20dp"
+        android:textStyle="bold"
         android:layout_marginLeft="10dp"
         android:textColor="@color/colorAccent"
         android:text="Name"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nameval"
+        android:text="mailid"
+        android:gravity="right"
+        android:textStyle="italic"
+        android:textColor="@color/colorAccent"
+        android:layout_below="@+id/donorname"
+        android:layout_marginTop="10dp"
+        android:layout_alignRight="@id/donorname"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/donorname"
+        android:layout_below="@+id/nameval"
         android:id="@+id/areadet"
         android:text="Area"
+        android:textStyle="bold"
         android:layout_marginLeft="10dp"
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
         android:layout_marginTop="20dp"/>
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/areaval"
+        android:text="mailid"
+        android:gravity="right"
+        android:textStyle="italic"
+        android:textColor="@color/colorAccent"
+        android:layout_below="@+id/areadet"
+        android:layout_marginTop="10dp"
+        android:layout_alignRight="@id/donorname"/>
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/areadet"
+        android:layout_below="@+id/areaval"
         android:id="@+id/citydet"
         android:textSize="20dp"
         android:layout_marginLeft="10dp"
         android:text="City"
+        android:textStyle="bold"
         android:textColor="@color/colorAccent"
         android:layout_marginTop="20dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cityval"
+        android:text="mailid"
+        android:gravity="right"
+        android:textStyle="italic"
+        android:textColor="@color/colorAccent"
+        android:layout_below="@+id/citydet"
+        android:layout_marginTop="10dp"
+        android:layout_alignRight="@id/donorname"/>
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/mlv"
-        android:layout_below="@+id/citydet"
-        android:layout_marginTop="70dp"/>
+        android:layout_below="@+id/cityval"
+        android:layout_marginTop="50dp"/>
 </RelativeLayout>

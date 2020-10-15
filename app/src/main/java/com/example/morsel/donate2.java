@@ -136,7 +136,7 @@ public class donate2 extends AppCompatActivity {
     {
         final Calendar c1 = Calendar.getInstance();
         mYear = c1.get(Calendar.YEAR);
-        mMonth = c1.get(Calendar.MONTH);
+        mMonth = c1.get(Calendar.MONTH)+1;
         mDay = c1.get(Calendar.DAY_OF_MONTH);
         if (fqty.getText().toString().trim().length() == 0 || ftype.getText().toString().trim().length() == 0 ||
                 a.trim().length() == 0|| c.trim().length() == 0 || flat.getText().toString().trim().length() == 0 ||
@@ -232,7 +232,7 @@ public class donate2 extends AppCompatActivity {
                 for(Hotspot h1:hl)
                 {
                     nl.add(h1.getName());
-                    cl.add(h1.getLat()+" "+h1.getLon());
+                    cl.add(h1.getLat()+","+h1.getLon());
                     pl.add(h1.getPackets()+"");
                     dl.add(String.format("%.20f",h1.getDist()));
                     mDBw.child("Trip"+i1).child("slat").setValue(ulat1);

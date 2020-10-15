@@ -23,8 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv2"
         android:layout_marginTop="20dp"
+        android:textCursorDrawable="@color/colorAccent"
         android:hint="Enter the Food Type here"
-        android:inputType="text"
         android:selectAllOnFocus="true" />
 
     <EditText
@@ -33,27 +33,48 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/etFoodType2"
         android:layout_marginTop="20dp"
+        android:textCursorDrawable="@color/colorAccent"
         android:hint="Enter the Quantity in grams here"
         android:inputType="number" />
 
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/entcity"
+        android:text="Select City"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/etQty2"/>
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ecity2"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/etQty2"
-        android:text="Enter area"
+        android:layout_below="@+id/entcity"
+        android:text="Enter city"
+        android:textCursorDrawable="@color/colorAccent"
        android:layout_alignRight="@+id/elat2"
         android:layout_alignLeft="@+id/elat2"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/entarea"
+        android:text="Select Area"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/etQty2"
+        android:layout_marginLeft="80dp"
+        android:layout_alignRight="@+id/elon2"
+        android:gravity="center"
+        android:layout_toRightOf="@+id/entcity"/>
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/earea2"
-        android:layout_below="@+id/etQty2"
+        android:layout_below="@+id/entarea"
         android:layout_marginTop="10dp"
+        android:textCursorDrawable="@color/colorAccent"
         android:layout_alignRight="@+id/elon2"
         android:layout_toRightOf="@+id/ecity2"
         android:layout_marginLeft="80dp" />
@@ -62,21 +83,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/elat2"
-        android:layout_below="@+id/earea2"
+        android:layout_below="@+id/ecity2"
         android:hint="Enter latitude"
-        android:layout_marginTop="10dp"
+        android:inputType="numberDecimal"
+        android:layout_marginTop="30dp"
+        android:textCursorDrawable="@color/colorAccent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
+        android:inputType="numberDecimal"
         android:id="@+id/elon2"
-        android:layout_below="@+id/ecity2"
+        android:layout_below="@+id/earea2"
         android:hint="Enter longitude"
         android:layout_alignRight="@+id/etQty2"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="70dp"
         android:layout_toRightOf="@+id/elat2"/>
 
@@ -86,7 +109,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/elat2"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:background="@color/colorPrimary"
         android:backgroundTint="@color/colorAccent"
         android:onClick="onClickSubmit2"

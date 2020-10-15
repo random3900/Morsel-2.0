@@ -62,7 +62,7 @@ public class DonateHistory extends AppCompatActivity implements DatePickerDialog
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
 
-        String d=i+"/"+i1+"/"+i2;
+        String d=i+"/"+(i1+1)+"/"+i2;
         e.setText(d);
         FirebaseUser u=mauth.getCurrentUser();
         Cursor c=db.rawQuery("select fname,qty,location from historydet where tdate='"+d+"' and email='"+u.getEmail()+"';",null);
