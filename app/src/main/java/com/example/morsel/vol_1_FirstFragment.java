@@ -94,9 +94,12 @@ public class vol_1_FirstFragment extends Fragment implements View.OnClickListene
                         if(f==1) {
                             Integer weight = Integer.parseInt(et_weight.getText().toString());
                             String loc = et_loc.getText().toString();
-                            Vol vol = new Vol(id, loc, weight);
                             mDatabase.setValue("vol" + id);
-                            mDatabase.child("vol" + id).setValue(vol);
+                            mDatabase.child("vol" + id).child("vol_id").setValue(id);
+                            mDatabase.child("vol" + id).child("vol_loc").setValue(loc);
+                            mDatabase.child("vol" + id).child("vol_weight").setValue(weight);
+                            //Vol vol = new Vol(id, loc, weight);
+                            //mDatabase.child("vol" + id).setValue(vol);
 
 
                         /*Cursor c = db.rawQuery("SELECT * FROM vol WHERE vol_id ='" + String.valueOf(reg_vol_id) + "'", null);
