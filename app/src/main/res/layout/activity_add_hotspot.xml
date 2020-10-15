@@ -109,7 +109,7 @@
                     android:layout_marginLeft="56dp"
                     android:layout_marginTop="0dp"
                     android:layout_toRightOf="@id/add_hotspot_area"
-                    android:paddingLeft="100dp" />
+                    />
 
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
