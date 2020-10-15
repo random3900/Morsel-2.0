@@ -145,6 +145,11 @@ public class donate2 extends AppCompatActivity {
             return;
         }
 
+        if(Integer.parseInt(fqty.getText().toString())==0)
+        {
+            showMessage("Error", "Please enter the quantity of food");
+            return;
+        }
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("hotspot list").child(c).child(a);
         mDatabase.addValueEventListener(new ValueEventListener() {

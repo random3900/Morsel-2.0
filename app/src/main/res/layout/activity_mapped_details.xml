@@ -24,11 +24,13 @@
         android:id="@+id/nameval"
         android:text="mailid"
         android:gravity="right"
+        android:paddingEnd="10dp"
         android:textStyle="italic"
         android:textColor="@color/colorAccent"
         android:layout_below="@+id/donorname"
         android:layout_marginTop="10dp"
-        android:layout_alignRight="@id/donorname"/>
+        android:layout_alignRight="@id/donorname"
+        android:paddingRight="10dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -45,6 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/areaval"
+        android:paddingRight="10dp"
         android:text="mailid"
         android:gravity="right"
         android:textStyle="italic"
@@ -69,6 +72,7 @@
         android:id="@+id/cityval"
         android:text="mailid"
         android:gravity="right"
+        android:paddingRight="10dp"
         android:textStyle="italic"
         android:textColor="@color/colorAccent"
         android:layout_below="@+id/citydet"
