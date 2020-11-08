@@ -170,7 +170,7 @@ public class MappedDetails extends AppCompatActivity {
 
 
             sms.sendTextMessage(i, null, msg, pi,null);
-            Toast.makeText(getApplicationContext(),"Message sent to: "+i,Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Message sent to : "+i,Toast.LENGTH_SHORT).show();
         }
     }
 }
