@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,10 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddHotspotActivity"></activity>
+        <service
+            android:name=".PushNotification"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <activity android:name=".AddHotspotActivity" />
         <activity android:name=".HotspotsActivity" />
         <activity android:name=".MappedDetails" />
-        <activity android:name=".DonateHistory"></activity>
+        <activity android:name=".DonateHistory" />
         <activity android:name=".donate2" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -26,7 +35,7 @@
         </activity>
         <activity android:name=".SecondScreen" />
         <activity android:name=".donate" />
-        <activity android:name=".vol_5"></activity>
+        <activity android:name=".vol_5" />
         <activity android:name=".vol_3" />
         <activity android:name=".vol_2" />
         <activity android:name=".vol_1" />

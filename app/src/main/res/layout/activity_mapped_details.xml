@@ -84,4 +84,13 @@
         android:id="@+id/mlv"
         android:layout_below="@+id/cityval"
         android:layout_marginTop="50dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mlv"
+        android:layout_marginTop="10dp"
+        android:text="Notify Volunteers"
+        android:layout_centerHorizontal="true"
+        android:onClick="notifyVols"/>
 </RelativeLayout>

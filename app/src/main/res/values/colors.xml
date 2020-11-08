@@ -19,4 +19,5 @@
     <color name="button_background_color">#808080</color>
     <color name="pink">#FFB6C1</color>
     <color name="green">#90EE90</color>
+    <color name="themegreen">#739b46</color>
 </resources>

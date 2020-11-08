@@ -76,6 +76,7 @@
 <!--                android:layout_toStartOf="@id/next_button"-->
 <!--                android:layout_toLeftOf="@id/next_button"-->
 <!--                android:text="@string/shr_button_cancel"/>-->
+
             <TextView
                 android:id="@+id/go_to_reg_button"
                 android:layout_width="match_parent"

@@ -257,7 +257,7 @@ public class donate2 extends AppCompatActivity {
                 i.putStringArrayListExtra("cl",cl);
                 i.putStringArrayListExtra("pl",pl);
                 i.putStringArrayListExtra("dl",dl);
-
+                i.putExtra("size",nl.size());
                 i.putExtra("area",a);
                 i.putExtra("city",c);
                 startActivity(i);

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SecondScreen"
     android:background="@color/colorPrimary">
 
@@ -17,47 +18,52 @@
         android:textColor="@color/colorAccent"
         android:text="Hello User: "/>
 
-    <TextView
-        android:id="@+id/contribute"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true"
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/cont"
+        android:layout_width="125dp"
+        android:layout_height="124dp"
+        android:layout_gravity="center"
+        android:contentDescription="Contribute"
+        app:srcCompat="@drawable/ic_baseline_add_task_48"
         android:layout_below="@+id/huser"
-        android:background="@drawable/circle"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:text="Contribute"
-        android:onClick="onClickContribute"/>
-
-    <TextView
-      android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="Volunteer"
-        android:background="@drawable/circle"
-        android:gravity="center"
-        android:id="@+id/volunteer"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="30dp"
+        app:fabCustomSize="100dp"
+        android:onClick="onClickContribute"
+        app:backgroundTint="@color/themegreen"
+        app:tint="@color/white"
         android:layout_centerInParent="true"
-        android:layout_below="@+id/contribute"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:layout_marginTop="50dp"
-       android:onClick="onClickVolunteer"/>
+        />
 
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="Hotspot List"
-        android:background="@drawable/circle"
-        android:gravity="center"
-        android:layout_centerVertical="true"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/vol"
+        android:layout_width="125dp"
+        android:layout_height="124dp"
+        android:layout_gravity="center"
+        android:contentDescription="Contribute"
+        app:srcCompat="@drawable/ic_baseline_thumb_up_24"
+        android:layout_below="@+id/cont"
+        android:layout_marginTop="75dp"
+        app:fabCustomSize="100dp"
+        android:onClick="onClickVolunteer"
+        app:backgroundTint="@color/themegreen"
+        app:tint="#FFFFFF"
         android:layout_centerInParent="true"
-        android:layout_below="@+id/volunteer"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:layout_marginTop="50dp"
-        android:onClick="onClickHotspot"/>
+        />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/hotspotlist"
+        android:layout_width="125dp"
+        android:layout_height="124dp"
+        android:layout_gravity="center"
+        android:contentDescription="Contribute"
+        app:srcCompat="@drawable/ic_baseline_location_on_24"
+        android:layout_below="@+id/vol"
+        android:layout_marginTop="75dp"
+        app:fabCustomSize="100dp"
+        android:onClick="onClickHotspot"
+        app:backgroundTint="@color/themegreen"
+        app:tint="#FFFFFF"
+        android:layout_centerInParent="true"
+        />
 </RelativeLayout>
