@@ -38,6 +38,10 @@ public class SecondScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_screen);
+
+        final FloatingActionButton btn = findViewById(R.id.add_moderator);
+        btn.setVisibility(View.INVISIBLE);
+
         mauth=FirebaseAuth.getInstance();
         FirebaseUser user=mauth.getCurrentUser();
         t=findViewById(R.id.huser);
@@ -51,12 +55,12 @@ public class SecondScreen extends AppCompatActivity {
                 Log.d("DC","Inside");
                 Boolean b = dataSnapshot.getValue(Boolean.class);
                 if(b==false){
-                    FloatingActionButton btn = findViewById(R.id.add_moderator);
+
                     btn.setVisibility(View.INVISIBLE);
                 }
                 else{
-                    FloatingActionButton btn = findViewById(R.id.add_moderator);
-                    btn.setVisibility(View.INVISIBLE);
+
+                    btn.setVisibility(View.VISIBLE);
                 }
             }
 

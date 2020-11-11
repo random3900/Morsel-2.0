@@ -74,16 +74,10 @@ public class HotspotsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hotspots);
 
+        final FloatingActionButton btn = findViewById(add_hotspot_button);
 
         Log.d("HOTSPOT","Inside Oncreate");
-        FloatingActionButton add_button = findViewById(R.id.add_hotspot_button);
-        add_button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent i=new Intent(HotspotsActivity.this,AddHotspotActivity.class);
-                startActivity(i);
-            }
-        });
+
 
         appLocationService = new AppLocationService(getApplicationContext());
 
@@ -106,6 +100,33 @@ public class HotspotsActivity extends AppCompatActivity {
 
         //FIREBASE AUTH
         mFirebaseAuth = FirebaseAuth.getInstance();
+
+        FirebaseDatabase.getInstance().getReference().child("Users").child(mFirebaseAuth.getCurrentUser().getUid()).child("isMod").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("DC","Inside");
+                Boolean b = dataSnapshot.getValue(Boolean.class);
+                if(b==false){
+                    btn.setVisibility(View.INVISIBLE);
+                }
+                else{
+                    btn.setOnClickListener(new View.OnClickListener(){
+                        @Override
+                        public void onClick(View view) {
+                            Intent i=new Intent(HotspotsActivity.this,AddHotspotActivity.class);
+                            startActivity(i);
+                        }
+                    });
+                    btn.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         if (mFirebaseUser == null) {
             // Not signed in, launch the Sign In activity
