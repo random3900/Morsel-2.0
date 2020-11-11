@@ -149,7 +149,9 @@ public class vol_2 extends AppCompatActivity implements
             lon2d = Double.parseDouble(ds.child("dlon").getValue().toString());
             //Toast.makeText(getApplicationContext(), lat2d+" "+lon2d, Toast.LENGTH_SHORT).show();
             double x=distanceEarth(lat2d, lon2d);
-            if (x<=50.0000)
+            String w=String.valueOf(x);
+            //Toast.makeText(getApplicationContext(),w,Toast.LENGTH_SHORT).show();
+            if (x<=50000.0000)
             {
                 place.add((ds.child("area").getValue().toString())+" "+lat2d+" "+lon2d);
                 distance.add(String.valueOf(x));

@@ -21,4 +21,23 @@
     <color name="green">#90EE90</color>
     <color name="beige">#f9e4b7</color>
     <color name="themegreen">#739b46</color>
+
+
+    <color name="colorPrimary1">#0288D1</color>
+    <color name="colorPrimaryDark1">#0097A7</color>
+    <color name="colorAccent1">#03DAC5</color>
+    <color name="colorText1">#000111</color>
+    <color name="colorWhite">#FFFFFF</color>
+
+
+
+    <color name="colorPrimary2">#008577</color>
+    <color name="colorPrimaryDark2">#293859</color>
+    <color name="colorAccent2">#D81B60</color>
+    <color name="white2">#ffffff</color>
+    <color name="grey">#E9EAEE</color>
+    <color name="yellow">#F8BA0F</color>
+    <color name="goodgrey">#535353</color>
+    <color name="blue">#293859</color>
+    <color name="lightgrey">#EEEEEE</color>
 </resources>
