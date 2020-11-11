@@ -148,7 +148,7 @@ public class MappedDetails extends AppCompatActivity {
         msg+="\n Area: "+area;
         msg+="\n City: "+city;
         DynamicLink dynamicLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
-                .setLink(Uri.parse("https://morsel.com/"+idl.get(0)))
+                .setLink(Uri.parse("https://morsel.com/"+"chat/"+idl.get(0)))
                 .setDomainUriPrefix("https://morsel.page.link")
                 // Open links with this app on Android
                 .setAndroidParameters(

@@ -51,37 +51,7 @@ public class SecondScreen extends AppCompatActivity {
         mreq= Volley.newRequestQueue(this);
         Toast.makeText(getApplicationContext(),"IN SECOND SCREEN",Toast.LENGTH_SHORT).show();
 
-        FirebaseDynamicLinks.getInstance()
-                .getDynamicLink(getIntent())
-                .addOnSuccessListener(this, new OnSuccessListener<PendingDynamicLinkData>() {
-                    @Override
-                    public void onSuccess(PendingDynamicLinkData pendingDynamicLinkData) {
-                        // Get deep link from result (may be null if no link is found)
-                        Uri deepLink = null;
-                        String s=getIntent().getData().toString();
-                        Toast.makeText(getApplicationContext(),"NO DEEP LINK "+s,Toast.LENGTH_SHORT).show();
 
-                        if (pendingDynamicLinkData != null) {
-                            deepLink = pendingDynamicLinkData.getLink();
-                            String l = deepLink.getQueryParameter("link");
-                            Toast.makeText(getApplicationContext(),deepLink.toString()+" "+l,Toast.LENGTH_SHORT).show();
-                        }
-
-
-                        // Handle the deep link. For example, open the linked
-                        // content, or apply promotional credit to the user's
-                        // account.
-                        // ...
-
-                        // ...
-                    }
-                })
-                .addOnFailureListener(this, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("failed", "getDynamicLink:onFailure", e);
-                    }
-                });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
