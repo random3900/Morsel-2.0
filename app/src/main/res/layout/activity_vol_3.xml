@@ -42,7 +42,7 @@
                     android:text="Sourse Location"
                     android:textSize="15sp"
                     android:textColor="@color/goodgrey"
-                    android:fontFamily="@font/proximanovaregular" />
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -67,7 +67,7 @@
                     android:textColor="@color/goodgrey"
                     android:text="Destination location"
                     android:textSize="15sp"
-                    android:fontFamily="@font/proximanovaregular" />
+                     />
             </LinearLayout>
 
             <LinearLayout
@@ -92,7 +92,7 @@
                     android:text="Distance to source"
                     android:textSize="15sp"
                     android:textColor="@color/goodgrey"
-                    android:fontFamily="@font/proximanovaregular" />
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -117,7 +117,7 @@
                     android:text="Distance between src and dst"
                     android:textSize="15sp"
                     android:textColor="@color/goodgrey"
-                    android:fontFamily="@font/proximanovaregular" />
+                     />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -141,7 +141,7 @@
                     android:text="Food weight"
                     android:textSize="15sp"
                     android:textColor="@color/goodgrey"
-                    android:fontFamily="@font/proximanovaregular" />
+                     />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -165,7 +165,7 @@
                     android:text="Food weight comparison"
                     android:textSize="15sp"
                     android:textColor="@color/goodgrey"
-                    android:fontFamily="@font/proximanovaregular" />
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -190,7 +190,7 @@
                     android:text=""
                     android:textSize="15sp"
                     android:textColor="@color/goodgrey"
-                    android:fontFamily="@font/proximanovaregular" />
+                     />
             </LinearLayout>
 
         </LinearLayout>
