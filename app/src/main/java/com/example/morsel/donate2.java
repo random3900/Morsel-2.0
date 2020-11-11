@@ -1,8 +1,10 @@
 package com.example.morsel;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -11,6 +13,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,6 +30,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -50,13 +54,13 @@ import java.util.UUID;
 
 public class donate2 extends AppCompatActivity {
 
-    private DatabaseReference mDatabase,mDBw,mDB1;
+    private DatabaseReference mDatabase, mDBw, mDB1;
     FirebaseAuth mauth;
     TextView txt;
-    String a,c;
+    String a, c,mPhoneNumber;
     int count;
-    EditText ftype,fqty,flat,flon;
-    Spinner fcity,farea;
+    EditText ftype, fqty, flat, flon,ph;
+    Spinner fcity, farea;
     ArrayList<String> cities;
     ArrayList<String> areas;
     ArrayAdapter<String> adap1;
@@ -83,17 +87,18 @@ public class donate2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donate2);
-        mauth=FirebaseAuth.getInstance();
+        mauth = FirebaseAuth.getInstance();
         db = openOrCreateDatabase("FoodsDB", Context.MODE_PRIVATE, null);
         db.execSQL("CREATE TABLE IF NOT EXISTS historydet(email VARCHAR,tdate date,fname VARCHAR,qty NUMERIC, location VARCHAR);");
-        bb=openOrCreateDatabase("BonuspDB", Context.MODE_PRIVATE, null);
+        bb = openOrCreateDatabase("BonuspDB", Context.MODE_PRIVATE, null);
         bb.execSQL("CREATE TABLE IF NOT EXISTS bonus(user VARCHAR, bonuspt NUMERIC);");
-        ftype=findViewById(R.id.etFoodType2);
-        fqty=findViewById(R.id.etQty2);
-        flat=findViewById(R.id.elat2);
-        flon=findViewById(R.id.elon2);
-        fcity=(Spinner)findViewById(R.id.ecity2);
-        farea=(Spinner)findViewById(R.id.earea2);
+        ftype = findViewById(R.id.etFoodType2);
+        fqty = findViewById(R.id.etQty2);
+        flat = findViewById(R.id.elat2);
+        flon = findViewById(R.id.elon2);
+        fcity = (Spinner) findViewById(R.id.ecity2);
+        farea = (Spinner) findViewById(R.id.earea2);
+        ph=findViewById(R.id.dphno);
         ActionBar actionBar;
         actionBar = getSupportActionBar();
         ColorDrawable colorDrawable
@@ -109,36 +114,35 @@ public class donate2 extends AppCompatActivity {
         // get the Firebase  storage reference
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
-        mDB1=FirebaseDatabase.getInstance().getReference().child("hotspot list");
+        mDB1 = FirebaseDatabase.getInstance().getReference().child("hotspot list");
 
         mDB1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                cities =new ArrayList<>();
-                for(DataSnapshot snap:snapshot.getChildren())
-                {
+                cities = new ArrayList<>();
+                for (DataSnapshot snap : snapshot.getChildren()) {
                     cities.add(snap.getKey().toString());
                 }
-                adap1=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,cities);
+                adap1 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, cities);
                 fcity.setAdapter(adap1);
                 fcity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                        c=cities.get(i);
-                        DatabaseReference ref=FirebaseDatabase.getInstance().getReference().child("hotspot list").child(c);
+                        c = cities.get(i);
+                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("hotspot list").child(c);
                         ref.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                areas=new ArrayList<>();
-                                for(DataSnapshot s:snapshot.getChildren()){
+                                areas = new ArrayList<>();
+                                for (DataSnapshot s : snapshot.getChildren()) {
                                     areas.add(s.getKey().toString());
                                 }
-                                adap2=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,areas);
+                                adap2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, areas);
                                 farea.setAdapter(adap2);
                                 farea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                     @Override
                                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                        a=areas.get(i);
+                                        a = areas.get(i);
                                     }
 
                                     @Override
@@ -165,8 +169,7 @@ public class donate2 extends AppCompatActivity {
                 // on pressing btnSelect SelectImage() is called
                 btnSelect.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v)
-                    {
+                    public void onClick(View v) {
                         SelectImage();
                     }
                 });
@@ -174,8 +177,7 @@ public class donate2 extends AppCompatActivity {
                 // on pressing btnUpload uploadImage() is called
                 btnUpload.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v)
-                    {
+                    public void onClick(View v) {
                         uploadImage();
                     }
                 });
@@ -188,8 +190,8 @@ public class donate2 extends AppCompatActivity {
         });
 
     }
-    private void SelectImage()
-    {
+
+    private void SelectImage() {
 
         // Defining Implicit Intent to mobile gallery
         Intent intent = new Intent();
@@ -206,8 +208,7 @@ public class donate2 extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode,
                                     int resultCode,
-                                    Intent data)
-    {
+                                    Intent data) {
 
         super.onActivityResult(requestCode,
                 resultCode,
@@ -234,9 +235,7 @@ public class donate2 extends AppCompatActivity {
                                 getContentResolver(),
                                 filePath);
 //                imageView.setImageBitmap(bitmap);
-            }
-
-            catch (IOException e) {
+            } catch (IOException e) {
                 // Log the exception
                 e.printStackTrace();
             }
@@ -244,8 +243,7 @@ public class donate2 extends AppCompatActivity {
     }
 
     // UploadImage method
-    private void uploadImage()
-    {
+    private void uploadImage() {
         if (filePath != null) {
 
             // Code for showing progressDialog while uploading
@@ -269,8 +267,7 @@ public class donate2 extends AppCompatActivity {
 
                                 @Override
                                 public void onSuccess(
-                                        UploadTask.TaskSnapshot taskSnapshot)
-                                {
+                                        UploadTask.TaskSnapshot taskSnapshot) {
 
                                     // Image uploaded successfully
                                     // Dismiss dialog
@@ -285,8 +282,7 @@ public class donate2 extends AppCompatActivity {
 
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
-                        public void onFailure(@NonNull Exception e)
-                        {
+                        public void onFailure(@NonNull Exception e) {
 
                             // Error, Image not uploaded
                             progressDialog.dismiss();
@@ -304,20 +300,20 @@ public class donate2 extends AppCompatActivity {
                                 // percentage on the dialog box
                                 @Override
                                 public void onProgress(
-                                        UploadTask.TaskSnapshot taskSnapshot)
-                                {
+                                        UploadTask.TaskSnapshot taskSnapshot) {
                                     double progress
                                             = (100.0
                                             * taskSnapshot.getBytesTransferred()
                                             / taskSnapshot.getTotalByteCount());
                                     progressDialog.setMessage(
                                             "Uploaded "
-                                                    + (int)progress + "%");
+                                                    + (int) progress + "%");
                                 }
                             });
         }
     }
-    public void showMessage(String title, String message){
+
+    public void showMessage(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setTitle(title);
@@ -325,22 +321,20 @@ public class donate2 extends AppCompatActivity {
         builder.show();
     }
 
-    public void onClickSubmit2(View view)
-    {
+    public void onClickSubmit2(View view) {
         final Calendar c1 = Calendar.getInstance();
         mYear = c1.get(Calendar.YEAR);
-        mMonth = c1.get(Calendar.MONTH)+1;
+        mMonth = c1.get(Calendar.MONTH) + 1;
         mDay = c1.get(Calendar.DAY_OF_MONTH);
 
         if (fqty.getText().toString().trim().length() == 0 || ftype.getText().toString().trim().length() == 0 ||
-                a.trim().length() == 0|| c.trim().length() == 0 || flat.getText().toString().trim().length() == 0 ||
-                flon.getText().toString().trim().length()==0) {
+                a.trim().length() == 0 || c.trim().length() == 0 || flat.getText().toString().trim().length() == 0 ||
+                flon.getText().toString().trim().length() == 0) {
             showMessage("Error", "Please enter all values");
             return;
         }
 
-        if(Integer.parseInt(fqty.getText().toString())==0)
-        {
+        if (Integer.parseInt(fqty.getText().toString()) == 0) {
             showMessage("Error", "Please enter the quantity of food");
             return;
         }
@@ -354,9 +348,9 @@ public class donate2 extends AppCompatActivity {
 //        if (cpr.moveToFirst()) {
         if (cpr.moveToFirst()) {
             // Displaying record if found 
-            bpr=cpr.getInt(1);
+            bpr = cpr.getInt(1);
 //            Toast.makeText(this, String.valueOf(bpr), Toast.LENGTH_LONG).show();
-            bb.execSQL("UPDATE bonus SET bonuspt='" + (Integer.toString(bpr+2) )+
+            bb.execSQL("UPDATE bonus SET bonuspt='" + (Integer.toString(bpr + 2)) +
                     "' WHERE user='" + "xyz" + "'");
         }
 //        db.execSQL("INSERT INTO bonus VALUES(" + Integer.toString(2) +");");
@@ -367,83 +361,77 @@ public class donate2 extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
 
-                ArrayList<Hotspot> hl=new ArrayList<>();
+                ArrayList<Hotspot> hl = new ArrayList<>();
                 Hotspot h;
-                for(DataSnapshot d:snapshot.getChildren())
-                {
-                    int a=Integer.parseInt(d.child("avgnum").getValue().toString());
-                    double lat=Double.parseDouble(d.child("lat").getValue().toString());
-                    double lon=Double.parseDouble(d.child("lon").getValue().toString());
-                    String n=d.child("name").getValue().toString();
-                    h=new Hotspot(a,lat,lon,n);
+                for (DataSnapshot d : snapshot.getChildren()) {
+                    int a = Integer.parseInt(d.child("avgnum").getValue().toString());
+                    double lat = Double.parseDouble(d.child("lat").getValue().toString());
+                    double lon = Double.parseDouble(d.child("lon").getValue().toString());
+                    String n = d.child("name").getValue().toString();
+                    h = new Hotspot(a, lat, lon, n);
                     hl.add(h);
                 }
 
-                String t=" ";
-                double ulat,ulon,hlat,hlon,dlat,dlon,a1,c1,r,ulat1,ulon1;
-                ulat1=Double.parseDouble(flat.getText().toString());
-                ulon1=Double.parseDouble(flon.getText().toString());
+                String t = " ";
+                double ulat, ulon, hlat, hlon, dlat, dlon, a1, c1, r, ulat1, ulon1;
+                ulat1 = Double.parseDouble(flat.getText().toString());
+                ulon1 = Double.parseDouble(flon.getText().toString());
 
-                if(hl.size()==0)
-                {
-                    showMessage("Oops","No requirement. Thank you for your initiative");
+                if (hl.size() == 0) {
+                    showMessage("Oops", "No requirement. Thank you for your initiative");
                     return;
                 }
-                String d=mYear+"/"+mMonth+"/"+mDay;
+                String d = mYear + "/" + mMonth + "/" + mDay;
 
 
-                ulat=Math.toRadians(ulat1);
-                ulon=Math.toRadians(ulon1);
-                for(Hotspot h1:hl)
-                {
-                    hlat=Math.toRadians(h1.getLat());
-                    hlon=Math.toRadians(h1.getLon());
-                    dlat=hlat-ulat;
-                    dlon=hlon-ulon;
+                ulat = Math.toRadians(ulat1);
+                ulon = Math.toRadians(ulon1);
+                for (Hotspot h1 : hl) {
+                    hlat = Math.toRadians(h1.getLat());
+                    hlon = Math.toRadians(h1.getLon());
+                    dlat = hlat - ulat;
+                    dlon = hlon - ulon;
                     a1 = Math.pow(Math.sin(dlat / 2), 2)
                             + Math.cos(ulat) * Math.cos(hlat)
-                            * Math.pow(Math.sin(dlon / 2),2);
+                            * Math.pow(Math.sin(dlon / 2), 2);
                     c1 = 2 * Math.asin(Math.sqrt(a1));
-                    r=6371;
+                    r = 6371;
                     h1.setDist(c1 * r);
 
                 }
 
 
-
                 Collections.sort(hl);
-                ArrayList<Hotspot> dnmap=new ArrayList<>();
-                double avail,req;
-                avail=Double.parseDouble(fqty.getText().toString());
-                for(Hotspot h1:hl)
-                {
-                    req=h1.getAvgnum()*450;
-                    String loc="("+h1.getLat()+","+h1.getLon()+")";
-                    FirebaseUser u=mauth.getCurrentUser();
-                    db.execSQL("INSERT INTO historydet VALUES('"+u.getEmail()+"','" + d + "','" + ftype.getText() +
-                            "','" + fqty.getText() + "','"+ loc+ "');");
-                    if(req>=avail)
-                    {
-                        h1.setPackets((int) Math.floor(avail/450));
-                        t+=h1.getName()+" "+h1.getPackets()+"\n";
+                ArrayList<Hotspot> dnmap = new ArrayList<>();
+                double avail, req;
+                avail = Double.parseDouble(fqty.getText().toString());
+                for (Hotspot h1 : hl) {
+                    req = h1.getAvgnum() * 450;
+                    String loc = "(" + h1.getLat() + "," + h1.getLon() + ")";
+                    FirebaseUser u = mauth.getCurrentUser();
+                    db.execSQL("INSERT INTO historydet VALUES('" + u.getEmail() + "','" + d + "','" + ftype.getText() +
+                            "','" + fqty.getText() + "','" + loc + "');");
+                    if (req >= avail) {
+                        h1.setPackets((int) Math.floor(avail / 450));
+                        t += h1.getName() + " " + h1.getPackets() + "\n";
                         dnmap.add(h1);
                         break;
-                    }
-                    else {
+                    } else {
                         avail -= req;
-                        h1.setPackets((int)h1.getAvgnum());
-                        t+=h1.getName()+" "+h1.getPackets()+"\n";
+                        h1.setPackets((int) h1.getAvgnum());
+                        t += h1.getName() + " " + h1.getPackets() + "\n";
                         dnmap.add(h1);
                     }
                 }
 
 
-                ArrayList<String> nl=new ArrayList<>();
-                ArrayList<String> cl=new ArrayList<>();
-                ArrayList<String> pl=new ArrayList<>();
-                ArrayList<String> dl=new ArrayList<>();
-                ArrayList<String> idl=new ArrayList<>();
-                mDBw=FirebaseDatabase.getInstance().getReference().child("dnmapping");
+                ArrayList<String> nl = new ArrayList<>();
+                ArrayList<String> cl = new ArrayList<>();
+                ArrayList<String> pl = new ArrayList<>();
+                ArrayList<String> dl = new ArrayList<>();
+                ArrayList<String> idl = new ArrayList<>();
+                mPhoneNumber=ph.getText().toString();
+                mDBw = FirebaseDatabase.getInstance().getReference().child("dnmapping");
 
                 for(Hotspot h1:hl)
                 {
@@ -462,8 +450,12 @@ public class donate2 extends AppCompatActivity {
                     mDBw.child(id).child("dlon").setValue(h1.getLon());
                     mDBw.child(id).child("dist").setValue(h1.getDist());
                     mDBw.child(id).child("packets").setValue(h1.getPackets());
+                    mDBw.child(id).child("place").setValue(h1.getName());
                     mDBw.child(id).child("area").setValue(a);
+                    mDBw.child(id).child("phone").setValue(mPhoneNumber);
                     mDBw.child(id).child("city").setValue(c);
+                    mDBw.child(id).child("vol?").setValue(0);
+                    mDBw.child(id).child("del?").setValue(0);
                     Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
 
                 }

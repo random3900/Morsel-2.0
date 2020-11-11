@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MsgVolStatus">
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/tidcard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="5dp"
+        android:layout_alignParentRight="true"
+        android:background="@color/beige">
+    <TextView
+        android:id="@+id/tid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trip ID: "
+        android:textColor="@color/colorAccent"
+        android:layout_alignParentRight="true"
+        android:paddingRight="5dp"
+        android:textSize="25sp"
+        />
+    </com.google.android.material.card.MaterialCardView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tidcard"
+        android:id="@+id/tidh"
+        android:text="Trip Id:  "
+        android:layout_marginLeft="2dp"/>
+
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/plcard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tidcard"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        android:background="@color/beige">
+    <TextView
+        android:id="@+id/pld"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Placeto "
+        android:textColor="@color/colorAccent"
+        android:textSize="25sp"
+        android:layout_alignParentRight="true"
+        android:paddingRight="5dp"/>
+    </com.google.android.material.card.MaterialCardView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/plcard"
+        android:layout_marginLeft="2dp"
+        android:text="Place to be delivered:  "/>
+
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/pkcard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/plcard"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        android:background="@color/beige">
+
+        <TextView
+        android:id="@+id/pkd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pkts "
+        android:textColor="@color/colorAccent"
+        android:textSize="25sp"
+        android:layout_alignParentRight="true"
+        android:paddingRight="5dp"/>
+    </com.google.android.material.card.MaterialCardView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/pkcard"
+        android:layout_marginLeft="2dp"
+        android:text="Packets to be delivered:  "/>
+
+    <TextView
+        android:id="@+id/trip_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pkcard"
+        android:layout_marginTop="20dp"
+        android:text="Check in Maps"
+        android:textColor="@color/colorAccent"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card1"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/trip_view"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:background="@color/colorPrimaryDark">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Has anyone volunteered?"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent">
+        </TextView>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/trip_view"
+        android:layout_toEndOf="@id/card1"
+        android:layout_marginTop="20dp"
+        android:background="@color/beige"
+        android:layout_marginLeft="10dp"
+        android:layout_alignBottom="@id/card1"
+        android:layout_toRightOf="@id/card1">
+
+
+        <TextView
+            android:id="@+id/volt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Y"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            >
+        </TextView>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/volb"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/card2"
+        android:layout_marginTop="20dp"
+        android:text="Volunteer"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/volb"
+        android:id="@+id/fvol"
+        />
+
+
+</RelativeLayout>

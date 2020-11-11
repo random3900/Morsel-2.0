@@ -110,8 +110,14 @@
         android:id="@+id/enterimage"
         android:text="Upload Food Image"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/elat2"
+        android:layout_below="@+id/dphno"
         android:layout_marginLeft="2dp" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/elat2"
+        android:id="@+id/dphno"
+        android:hint="Enter Phone Number"/>
 
     <LinearLayout
         android:id="@+id/layout_button"
@@ -119,7 +125,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/enterimage"
         android:layout_alignParentTop="false"
-        android:layout_marginTop="-7dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:weightSum="2">
 
@@ -150,7 +156,6 @@
             android:backgroundTint="@color/colorAccent"
             android:onClick="onClickSubmit2"
             android:text="Donate Now!!" />
-
 
     </LinearLayout>
 

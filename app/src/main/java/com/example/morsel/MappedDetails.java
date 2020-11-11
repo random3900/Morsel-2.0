@@ -33,6 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.dynamiclinks.DynamicLink;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -147,18 +148,23 @@ public class MappedDetails extends AppCompatActivity {
         msg="Food Packets to be delivered to the needy in your area. Can you please Volunteer?";
         msg+="\n Area: "+area;
         msg+="\n City: "+city;
-        DynamicLink dynamicLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
-                .setLink(Uri.parse("https://morsel.com/"+"trip/"+idl.get(0)))
-                .setDomainUriPrefix("https://morsel.page.link")
-                // Open links with this app on Android
-                .setAndroidParameters(
-                        new DynamicLink.AndroidParameters.Builder("com.example.android")
-                                .setMinimumVersion(125)
-                                .build())
-                .buildDynamicLink();
-        Uri dynamicLinkUri = dynamicLink.getUri();
-        String link=dynamicLinkUri.toString();
-        msg+="\n "+link;
+        msg+="\n Trip Links: ";
+        for (String i: idl) {
+            DynamicLink dynamicLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
+                    .setLink(Uri.parse("https://morsel.com/" + "trip/" + i))
+                    .setDomainUriPrefix("https://morsel.page.link")
+                    // Open links with this app on Android
+                    .setAndroidParameters(
+                            new DynamicLink.AndroidParameters.Builder("com.example.android")
+                                    .setMinimumVersion(125)
+                                    .build())
+                    .buildDynamicLink();
+            Uri dynamicLinkUri = dynamicLink.getUri();
+            String link = dynamicLinkUri.toString();
+            msg+="\n\n "+link;
+        }
+
+
         /*for(int i=0;i<sz;i++)
         {
             msg+="Place:"+nl.get(i)+"\n"+
@@ -178,13 +184,13 @@ public class MappedDetails extends AppCompatActivity {
             // }
         }
 
+
         Intent intent=new Intent(this,MappedDetails.class);
         PendingIntent pi=PendingIntent.getActivity(this, 0, intent,0);
         //Get the SmsManager instance and call the sendTextMessage method to send message
         for(String i :phl)
         {
             SmsManager sms=SmsManager.getDefault();
-            sms.sendTextMessage("9445970745", null, msg, null,null);
             ArrayList<String> parts = sms.divideMessage(msg);
 
             sms.sendMultipartTextMessage(i, null, parts, null, null);

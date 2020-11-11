@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -135,11 +136,17 @@ public class volCnf extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Signin Successful", Toast.LENGTH_SHORT).show();
 //                            ((NavigationHost) getContext()).navigateTo(new Hotspots(), false);
                             int startIndex = link.indexOf("https://morsel.com/trip/");
+                            String temp="https://morsel.com/trip/";
+                            startIndex+=temp.length();
                             int endIndex = link.indexOf(" ", startIndex);
                             if (endIndex == -1) {
                                 endIndex =link.length();
                             }
                             String tripid = link.substring(startIndex, endIndex);
+                            Intent j=new Intent(volCnf.this,MsgVolStatus.class);
+                            j.putExtra("tripid",tripid);
+                            Toast.makeText(getApplicationContext(),tripid,Toast.LENGTH_SHORT).show();
+                            startActivity(j);
 
                         } else {
                             // If sign in fails, display a message to the user.

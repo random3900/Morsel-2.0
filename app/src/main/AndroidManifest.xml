@@ -4,7 +4,10 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,34 +15,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".MsgVolStatus"></activity>
+
         <service
             android:name=".PushNotification"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
         <activity android:name=".volCnf">
             <intent-filter android:autoVerify="true">
-            <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.VIEW" />
 
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-            <data
-                android:host="morsel.com"
-                android:scheme="http" />
-            <data
-                android:host="morsel.com"
-                android:scheme="https" />
-            <data
-                android:host="morsel.page.link"
-                android:scheme="http" />
-            <data
-                android:host="morsel.page.link"
-                android:scheme="https" />
+                <data
+                    android:host="morsel.com"
+                    android:scheme="http" />
+                <data
+                    android:host="morsel.com"
+                    android:scheme="https" />
+                <data
+                    android:host="morsel.page.link"
+                    android:scheme="http" />
+                <data
+                    android:host="morsel.page.link"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
         <activity android:name=".aboutus" />
@@ -49,7 +54,7 @@
         <activity android:name=".MappedDetails" />
         <activity android:name=".DonateHistory" />
         <activity android:name=".donate2" />
-        <activity android:name=".BonusPoints"/>
+        <activity android:name=".BonusPoints" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -57,9 +62,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SecondScreen">
-
-        </activity>
+        <activity android:name=".SecondScreen"></activity>
         <activity android:name=".donate" />
         <activity android:name=".vol_5" />
         <activity android:name=".vol_3" />
