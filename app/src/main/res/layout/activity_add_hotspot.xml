@@ -109,7 +109,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
                     android:layout_marginRight="12dp"
-                    android:layout_="@+id/add_hotspot"
                     android:onClick="cancelButton"
                     android:text="@string/morsel_button_cancel"/>
 
