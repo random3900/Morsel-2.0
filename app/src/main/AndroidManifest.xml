@@ -21,6 +21,29 @@
             </intent-filter>
         </service>
 
+        <activity android:name=".volCnf">
+            <intent-filter android:autoVerify="true">
+            <action android:name="android.intent.action.VIEW" />
+
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+
+            <data
+                android:host="morsel.com"
+                android:scheme="http" />
+            <data
+                android:host="morsel.com"
+                android:scheme="https" />
+            <data
+                android:host="morsel.page.link"
+                android:scheme="http" />
+            <data
+                android:host="morsel.page.link"
+                android:scheme="https" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".aboutus" />
+        <activity android:name=".MainActivity2" />
         <activity android:name=".AddHotspotActivity" />
         <activity android:name=".HotspotsActivity" />
         <activity android:name=".MappedDetails" />
@@ -34,15 +57,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".SecondScreen">
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:host="morsel.com" android:scheme="http"/>
-                <data android:host="morsel.com" android:scheme="https"/>
-                <data android:host="morsel.page.link" android:scheme="http"/>
-                <data android:host="morsel.page.link" android:scheme="https"/>
-            </intent-filter>
 
         </activity>
         <activity android:name=".donate" />
