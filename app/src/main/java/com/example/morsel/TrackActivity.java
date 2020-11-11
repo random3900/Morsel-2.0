@@ -1,7 +1,6 @@
 package com.example.morsel;
 
 
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -26,7 +25,7 @@ public class TrackActivity extends AppCompatActivity {
         view_order_pickup=findViewById(R.id.view_order_pickup);
         placed_divider=findViewById(R.id.placed_divider);
         con_divider=findViewById(R.id.con_divider);
-        ready_divider=findViewById(R.id.con_divider1);
+       // ready_divider=findViewById(R.id.ready_divider);
 
         textorderpickup=findViewById(R.id.textorderpickup);
         text_confirmed=findViewById(R.id.text_confirmed);
@@ -35,17 +34,17 @@ public class TrackActivity extends AppCompatActivity {
         img_orderconfirmed=findViewById(R.id.img_orderconfirmed);
         orderprocessed=findViewById(R.id.orderprocessed);
         orderpickup=findViewById(R.id.orderpickup);
-        /*Intent intent=getIntent();
-        String orderStatus=intent.getStringExtra("orderStatus");*/
+        Intent intent=getIntent();
+        String orderStatus=intent.getStringExtra("orderStatus");
 
-       // getOrderStatus(orderStatus);
+        getOrderStatus(orderStatus);
 
 
 
 
     }
 
-   /* private void getOrderStatus(String orderStatus) {
+    private void getOrderStatus(String orderStatus) {
         if (orderStatus.equals("0")){
             float alfa= (float) 0.5;
             setStatus(alfa);
@@ -83,6 +82,7 @@ public class TrackActivity extends AppCompatActivity {
         view_order_pickup.setBackground(getResources().getDrawable(R.drawable.shape_status_current));
         ready_divider.setBackground(getResources().getDrawable(R.drawable.shape_status_current));
         orderpickup.setAlpha(alfa);
+
         textorderpickup.setAlpha(myf);
 
 
@@ -143,5 +143,5 @@ public class TrackActivity extends AppCompatActivity {
         ready_divider.setBackground(getResources().getDrawable(R.drawable.shape_status_completed));
         textorderpickup.setAlpha(alfa);
         orderpickup.setAlpha(alfa);
-    }*/
+    }
 }

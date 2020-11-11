@@ -22,7 +22,7 @@ public class MsgVolStatus extends AppCompatActivity {
 
     DatabaseReference mDatabase;
     MaterialCardView mc1,mc2;
-    String ti,slat,slon,dlat,dlon;
+    String ti;
     TextView trip,pl,pk,volt;
     Button vb;
     int volstatus;
@@ -75,10 +75,6 @@ public class MsgVolStatus extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 pl.setText(snapshot.child("place").getValue().toString());
                 pk.setText(snapshot.child("packets").getValue().toString());
-                slat=snapshot.child("slat").getValue().toString();
-                slon=snapshot.child("slon").getValue().toString();
-                dlat=snapshot.child("dlat").getValue().toString();
-                dlon=snapshot.child("dlon").getValue().toString();
                 volstatus=Integer.parseInt(snapshot.child("vol?").getValue().toString());
                 if(volstatus==0) {
                     int c=R.color.colorPrimaryDark;

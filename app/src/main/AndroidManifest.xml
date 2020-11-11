@@ -19,6 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -74,6 +75,15 @@
         <activity android:name=".donate2" />
         <activity android:name=".SetModerator" />
         <activity android:name=".BonusPoints" />
+        <activity android:name=".BonusPoints" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".TrackActivity" />
+
+        <service
+            android:name=".LocationTrackerService"
+            android:enabled="true"
+            android:exported="true" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -87,6 +97,7 @@
         <activity android:name=".vol_3" />
         <activity android:name=".vol_2" />
         <activity android:name=".vol_1" />
+         <activity android:name=".vol_6" />
     </application>
 
 </manifest>
