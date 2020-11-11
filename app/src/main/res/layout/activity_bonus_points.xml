@@ -4,15 +4,44 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-
+    android:layout_gravity="center_horizontal|center_vertical"
+    android:background="@color/colorPrimary">
     tools:context=".BonusPoints">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:id="@+id/bp1"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="View Bonus" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:paddingTop="16dp">
+        tools:context=".BonusPoints">
 
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/morsel_logo_description"
+            android:src="@drawable/morsel_logo" />
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bp1"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/bp1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image1"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:text="View Bonus" />
+
+    </LinearLayout>
 </RelativeLayout>

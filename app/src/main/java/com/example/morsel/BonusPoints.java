@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,7 +49,8 @@ public class BonusPoints extends AppCompatActivity implements View.OnClickListen
         if (cpr.moveToFirst()) {
             // Displaying record if found 
             bpr=cpr.getInt(1);
-            Toast.makeText(this, String.valueOf(bpr), Toast.LENGTH_LONG).show();
+            TextView t = findViewById(R.id.tv);
+            t.setText("Hello User, Congrats, Your bonus points is "+bpr);
         }
 
 

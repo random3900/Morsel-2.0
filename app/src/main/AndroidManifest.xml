@@ -26,8 +26,11 @@
         <activity android:name=".MappedDetails" />
         <activity android:name=".DonateHistory" />
         <activity android:name=".donate2" />
+        <activity android:name=".BonusPoints"/>
         <activity android:name=".SetModerator" />
+        <activity android:name=".aboutus" />
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

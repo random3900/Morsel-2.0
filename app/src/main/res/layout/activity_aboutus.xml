@@ -4,6 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal|center_vertical"
+    android:background="@color/colorPrimary"
     tools:context=".aboutus">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:paddingTop="16dp">
+        tools:context=".BonusPoints">
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/morsel_logo_description"
+        android:src="@drawable/morsel_logo"
+        tools:layout_editor_absoluteX="80dp"
+        tools:layout_editor_absoluteY="-23dp" />
 
+
+</LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
