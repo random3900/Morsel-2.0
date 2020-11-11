@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/plcard"
         android:layout_marginLeft="2dp"
-        android:text="Place to be delivered:  "/>
+        android:text="Place: "/>
 
 
 
@@ -88,13 +88,43 @@
         android:layout_marginLeft="2dp"
         android:text="Packets to be delivered:  "/>
 
-    <TextView
-        android:id="@+id/trip_view"
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/distcard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/pkcard"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        android:background="@color/beige">
+
+        <TextView
+            android:id="@+id/dist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Distance "
+            android:textColor="@color/colorAccent"
+            android:textSize="25sp"
+            android:layout_alignParentRight="true"
+            android:paddingRight="5dp"/>
+    </com.google.android.material.card.MaterialCardView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/distcard"
+        android:layout_marginLeft="2dp"
+        android:text="Distance:  "/>
+
+
+
+
+    <TextView
+        android:id="@+id/imgd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/distcard"
         android:layout_marginTop="20dp"
-        android:text="Check in Maps"
+        android:text="Click here to download images"
         android:textColor="@color/colorAccent"
         android:textSize="15sp"
         android:layout_centerHorizontal="true"/>
@@ -103,7 +133,7 @@
         android:id="@+id/card1"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/trip_view"
+        android:layout_below="@+id/imgd"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
         android:background="@color/colorPrimaryDark">
@@ -127,7 +157,7 @@
         android:id="@+id/card2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/trip_view"
+        android:layout_below="@+id/imgd"
         android:layout_toEndOf="@id/card1"
         android:layout_marginTop="20dp"
         android:background="@color/beige"

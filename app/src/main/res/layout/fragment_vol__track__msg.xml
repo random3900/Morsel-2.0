@@ -9,13 +9,13 @@
         android:id="@+id/nvdnr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Navigate to Donor"
+        android:text="TO Donor"
         android:layout_marginLeft="5dp"/>
     <Button
         android:id="@+id/nvneedy"
         android:layout_alignParentRight="true"
         android:layout_marginRight="5dp"
-        android:text="Navigate to needy"
+        android:text="To needy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <com.google.android.material.card.MaterialCardView
@@ -39,7 +39,7 @@
                 android:layout_toEndOf="@+id/pimg"
                 android:layout_toRightOf="@+id/pimg"
                 android:layout_marginLeft="2dp"
-                android:text="Phone the donor"
+                android:text="Call"
                 android:layout_alignBottom="@id/pimg"
                 android:textSize="20sp"/>
         </RelativeLayout>

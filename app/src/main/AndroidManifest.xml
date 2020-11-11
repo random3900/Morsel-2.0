@@ -66,6 +66,7 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
+        <activity android:name=".MsgVolStatus"/>
         <activity android:name=".aboutus" />
         <activity android:name=".MainActivity2" />
         <activity android:name=".AddHotspotActivity" />
