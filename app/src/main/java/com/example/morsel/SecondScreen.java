@@ -1,8 +1,5 @@
 package com.example.morsel;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,12 +11,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,12 +22,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class SecondScreen extends AppCompatActivity {
 
@@ -74,6 +63,18 @@ public class SecondScreen extends AppCompatActivity {
                 Intent i1=new Intent(this,MainActivity.class);
                 startActivity(i1);
                 break;
+
+            case R.id.abtus:
+                Intent i2=new Intent(this,aboutus.class);
+                startActivity(i2);
+                break;
+
+            case R.id.bonpts:
+                Intent i3=new Intent(this,BonusPoints.class);
+                startActivity(i3);
+                break;
+
+
         }
         return true;
     }
