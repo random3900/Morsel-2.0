@@ -58,64 +58,39 @@
                     android:inputType="number"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
-            <fragment android:id="@+id/add_hotspot_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-                />
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_height="wrap_content"
-                style="@style/Widget.Morsel.TextInputLayout"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_margin="4dp"
-                android:hint="@string/morsel_hint_loc_addr"
-                app:errorEnabled="true"
-                android:id="@+id/add_hotspot_location"
-                >
+                android:id="@+id/add_hotspot_addr"
+                style="@style/Widget.Morsel.TextInputLayout"
+                android:hint="Address">
+
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
+                    android:id="@+id/add_hotspot_addr_edit_text"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:inputType="textPostalAddress"
-                    android:maxLines="1"
-                    android:id="@+id/add_hotspot_location_edit_text"/>
+                    android:inputType="text"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
+            <ImageButton
+                style="@style/Widget.Morsel.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="68dp"
+                android:layout_toRightOf="@id/add_hotspot_addr"
+                android:src="@drawable/ic_baseline_add_location_24"
+                android:id="@+id/addr_btn"
+                />
+            </RelativeLayout>
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Enter Area"
-                    android:id="@+id/arTV"/>
-                <AutoCompleteTextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/add_hotspot_area"
-                    android:layout_below="@+id/arTV"/>
-
-                <TextView
-                    android:id="@+id/cTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="37dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_toRightOf="@+id/arTV"
-                    android:paddingLeft="100dp"
-                    android:text="Enter City" />
-
-                <AutoCompleteTextView
-                    android:id="@+id/add_hotspot_city"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/cTV"
-                    android:layout_marginLeft="56dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_toRightOf="@id/add_hotspot_area"
-                    />
 
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
@@ -123,7 +98,6 @@
                     android:id="@+id/add_hotspot"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_below="@+id/add_hotspot_area"
                     style="@style/Widget.Morsel.Button.TextButton"
                     android:onClick="addHotspot"
                     android:text="@string/morsel_button_add"/>
@@ -135,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
                     android:layout_marginRight="12dp"
-                    android:layout_below="@+id/add_hotspot_area"
+                    android:layout_="@+id/add_hotspot"
                     android:onClick="cancelButton"
                     android:text="@string/morsel_button_cancel"/>
 
