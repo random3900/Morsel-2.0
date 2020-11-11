@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,14 +17,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.Status;
-import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.api.net.PlacesClient;
-import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
-import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -33,170 +33,66 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.NotNull;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 public class AddHotspotActivity extends AppCompatActivity {
     private DatabaseReference mDatabase,mDBw,mDB1;
 
-    TextInputLayout addressTextInput;
-    TextInputEditText addressEditText;
+    TextInputLayout addrTextInput;
     TextInputLayout nameTextInput;
     TextInputEditText nameEditText;
     TextInputLayout avgNumTextInput;
     TextInputEditText avgNumEditText;
-    AutoCompleteTextView city,area;
-    ArrayList<String> cities ;
-    ArrayList<String> areas;
-    ArrayAdapter<String> adap_cities;
-    ArrayAdapter<String> adap_areas;
+    TextInputEditText addrEditText;
     MaterialButton addButton,cancel;
+    ImageButton addr_btn;
     String c,ar;
+    double lat,lon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_hotspot);
 
-        if (!Places.isInitialized()) {
-            Places.initialize(getApplicationContext(), getString(R.string.api_key), Locale.US);
-        }
+        addr_btn = (ImageButton)findViewById(R.id.addr_btn);
 
-        PlacesClient placesClient = Places.createClient(this);
-
-        // Initialize the AutocompleteSupportFragment.
-        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
-                getSupportFragmentManager().findFragmentById(R.id.add_hotspot_address);
-
-        // Specify the types of place data to return.
-        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
-
-        // Set up a PlaceSelectionListener to handle the response.
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+        addr_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onPlaceSelected(@NotNull Place place) {
-                // TODO: Get info about the selected place.
-                Log.i("onCreate", "Place: " + place.getName() + ", " + place.getId());
-            }
-
-
-            @Override
-            public void onError(@NotNull Status status) {
-                // TODO: Handle the error.
-                Log.i("onCreate", "An error occurred: " + status);
+            public void onClick(View view) {
+                pickPointOnMap();
             }
         });
-
-
-        addressTextInput = findViewById(R.id.add_hotspot_location);
-        addressEditText = findViewById(R.id.add_hotspot_location_edit_text);
         nameTextInput = findViewById(R.id.add_hotspot_name);
         nameEditText = findViewById(R.id.add_hotspot_name_edit_text);
         avgNumTextInput = findViewById(R.id.add_hotspot_num);
         avgNumEditText = findViewById(R.id.add_hotspot_num_edit_text);
-        city=(AutoCompleteTextView) findViewById(R.id.add_hotspot_city);
-        city.setThreshold(1);
-        area=(AutoCompleteTextView) findViewById(R.id.add_hotspot_area);
-        area.setThreshold(1);
+        addrEditText = findViewById(R.id.add_hotspot_addr_edit_text);
         addButton = findViewById(R.id.add_hotspot_button);
         cancel = findViewById(R.id.cancel_add_hotspot);
-
-        mDB1= FirebaseDatabase.getInstance().getReference().child("hotspot list");
-
-        mDB1.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                cities =new ArrayList<>();
-                for(DataSnapshot snap:snapshot.getChildren())
-                {
-                    cities.add(snap.getKey().toString());
-                }
-                adap_cities=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item, cities);
-                city.setAdapter(adap_cities);
-                city.setOnTouchListener(new View.OnTouchListener(){
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event){
-                        city.showDropDown();
-                        return false;
-                    }
-                });
-
-                city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                        c= cities.get(i);
-                        DatabaseReference ref=FirebaseDatabase.getInstance().getReference().child("hotspot list").child(c);
-                        ref.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                areas=new ArrayList<>();
-                                for(DataSnapshot s:snapshot.getChildren()){
-                                    areas.add(s.getKey().toString());
-                                }
-                                adap_areas=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,areas);
-                                area.setAdapter(adap_areas);
-                                area.setOnTouchListener(new View.OnTouchListener(){
-                                    @Override
-                                    public boolean onTouch(View v, MotionEvent event){
-                                        area.showDropDown();
-                                        return false;
-                                    }
-                                });
-
-                                area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                    @Override
-                                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                        ar=areas.get(i);
-                                    }
-
-                                    @Override
-                                    public void onNothingSelected(AdapterView<?> adapterView) {
-
-                                    }
-                                });
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> adapterView) {
-
-                    }
-                });
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        addrTextInput = findViewById(R.id.add_hotspot_addr);
 
     }
     public void addHotspot(View v){
         if(!isValid()){
             return;
         }
-            int a = Integer.parseInt(avgNumEditText.getText().toString());
-            double lat = Double.parseDouble(addressEditText.getText().toString().split(" ")[0]);
-            double lon = Double.parseDouble(addressEditText.getText().toString().split(" ")[1]);;
-            String n = nameEditText.getText().toString();
+        addrTextInput.setError("");
+        nameTextInput.setError("");
+        avgNumTextInput.setError("");
+        int a = Integer.parseInt(avgNumEditText.getText().toString());
+        String n = nameEditText.getText().toString();
 
-            Hotspot h = new
-                    Hotspot(a, lat, lon, n);
-            if(c==null)c=city.getText().toString();
-            if(ar==null)ar=area.getText().toString();
+        Hotspot h = new
+                Hotspot(a, lat, lon, n);
 
         FirebaseDatabase.getInstance().getReference().child("hotspot list").child(c).child(ar).push().setValue(h);
 
-            Intent i = new Intent(AddHotspotActivity.this, HotspotsActivity.class);
-            startActivity(i);
+        Intent i = new Intent(AddHotspotActivity.this, HotspotsActivity.class);
+        startActivity(i);
 
     }
     public boolean isValid(){
@@ -209,8 +105,8 @@ public class AddHotspotActivity extends AppCompatActivity {
             nameTextInput.setError("Enter Hotspot Name");
             to_ret = false;
         }
-        if(addressEditText.getText().toString()==null||addressEditText.getText().toString().equals("")){
-            addressTextInput.setError("Enter Address in Latitude Longitude Format");
+        if(addrEditText.getText().toString()==null){
+            addrTextInput.setError("Enter Address");
             to_ret = false;
         }
         return to_ret;
@@ -243,4 +139,52 @@ public class AddHotspotActivity extends AppCompatActivity {
         return true;
     }
 
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("OnActRes","Inside");
+        if (requestCode == PICK_MAP_POINT_REQUEST) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+
+                LatLng latLng = (LatLng) data.getParcelableExtra("picked_point");
+//hi;
+                getAddress(getApplicationContext(),latLng.latitude,latLng.longitude);
+
+                // venue_editText.setText((float) latLng.latitude +" "+ (float)latLng.longitude);
+                Toast.makeText(this, "Point Chosen: " + latLng.latitude + " " + latLng.longitude, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+
+    public void getAddress(Context context, double LATITUDE, double LONGITUDE) {
+
+//Set Address
+        try {
+            Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
+            if (addresses != null && addresses.size() > 0) {
+
+
+
+                String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+
+                c = addresses.get(0).getSubAdminArea();
+                ar = addresses.get(0).getLocality();
+                lat = addresses.get(0).getLatitude();
+                lon = addresses.get(0).getLongitude();
+
+                addrEditText.setText(address);
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return;
+    }
+    static final int PICK_MAP_POINT_REQUEST = 999;  // The request code
+    private void pickPointOnMap() {
+        Intent pickPointIntent = new Intent(this, MapsActivity.class);
+        startActivityForResult(pickPointIntent, PICK_MAP_POINT_REQUEST);
+    }
 }

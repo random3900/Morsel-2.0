@@ -57,7 +57,7 @@
         android:layout_height="124dp"
         android:layout_gravity="center"
         android:contentDescription="Contribute"
-        app:srcCompat="@drawable/ic_baseline_location_on_24"
+        app:srcCompat="@drawable/ic_location_24dp"
         android:layout_below="@+id/vol"
         android:layout_marginTop="33dp"
         app:fabCustomSize="100dp"
