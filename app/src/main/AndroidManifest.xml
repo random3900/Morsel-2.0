@@ -72,6 +72,7 @@
         <activity android:name=".vol_3" />
         <activity android:name=".vol_2" />
         <activity android:name=".vol_1" />
+         <activity android:name=".vol_6" />
     </application>
 
 </manifest>
