@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TrackActivity">
+
+
+    <!--<LinearLayout
+        android:id="@+id/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:src="@drawable/give"
+            app:tint="@color/colorWhite" />
+
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="Order Track"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp" />
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:background="@drawable/text_bg"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:text="Cancel"
+            android:textColor="@color/colorText1"
+            android:textSize="15sp" />
+
+    </LinearLayout>-->
+
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@drawable/drop_shadow"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="11dp"
+        android:text="Estimated time"
+        android:textAllCaps="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="88dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="62dp"
+        android:layout_marginRight="32dp"
+        android:text="Order number"
+        android:textAllCaps="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:text="30 minutes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginLeft="108dp"
+        android:layout_marginEnd="108dp"
+        android:layout_marginRight="108dp"
+        android:text="#6024"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <View
+        android:id="@+id/view_divider"
+        android:layout_width="409dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="14dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <View
+        android:id="@+id/view_order_placed"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:background="@drawable/shape_status_completed"
+        app:layout_constraintBottom_toBottomOf="@+id/orderplaced"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/orderplaced" />
+
+    <ImageView
+        android:id="@+id/orderplaced"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/donate_food"
+        app:layout_constraintStart_toEndOf="@+id/view_order_placed"
+        app:layout_constraintTop_toBottomOf="@+id/view_divider" />
+    <View
+        app:layout_constraintTop_toTopOf="@+id/orderplaced"
+        app:layout_constraintEnd_toEndOf="@+id/orderplaced"
+        app:layout_constraintStart_toStartOf="@+id/orderplaced"
+        app:layout_constraintBottom_toBottomOf="@+id/orderplaced"
+        android:id="@+id/supporter_placed"
+        android:layout_width="1dp"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:id="@+id/textorderplaced"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Donar identified"
+        android:textColor="@color/colorText1"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/supporter_placed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/orderplaced" />
+
+    <TextView
+        android:id="@+id/placed_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Thank you for willingness to donate food"
+        app:layout_constraintEnd_toEndOf="@id/textorderplaced"
+        app:layout_constraintStart_toStartOf="@+id/textorderplaced"
+        app:layout_constraintTop_toBottomOf="@+id/textorderplaced" />
+
+    <View
+        android:id="@+id/view_order_confirmed"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:background="@drawable/shape_status_completed"
+        app:layout_constraintBottom_toBottomOf="@+id/img_orderconfirmed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_orderconfirmed" />
+    <ImageView
+        android:id="@+id/img_orderconfirmed"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toEndOf="@+id/view_order_confirmed"
+        app:layout_constraintTop_toBottomOf="@+id/orderplaced"
+        android:src="@drawable/needy"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="20dp" />
+    <View
+        app:layout_constraintTop_toTopOf="@+id/img_orderconfirmed"
+        app:layout_constraintEnd_toEndOf="@+id/img_orderconfirmed"
+        app:layout_constraintStart_toStartOf="@+id/img_orderconfirmed"
+        app:layout_constraintBottom_toBottomOf="@+id/img_orderconfirmed"
+        android:id="@+id/supporter_confirmed"
+        android:layout_width="1dp"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:id="@+id/text_confirmed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Destination found"
+        android:textColor="@color/colorText1"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/supporter_confirmed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_orderconfirmed" />
+
+    <TextView
+        android:id="@+id/confirmed_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Hotspot identified near you"
+        app:layout_constraintEnd_toEndOf="@id/text_confirmed"
+        app:layout_constraintStart_toStartOf="@+id/text_confirmed"
+        app:layout_constraintTop_toBottomOf="@+id/text_confirmed" />
+
+    <View
+        android:id="@+id/placed_divider"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@+id/view_order_confirmed"
+        app:layout_constraintEnd_toEndOf="@+id/view_order_placed"
+        app:layout_constraintStart_toStartOf="@+id/view_order_placed"
+        app:layout_constraintTop_toBottomOf="@id/view_order_placed" />
+    <View
+        android:id="@+id/view_order_processed"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:background="@drawable/shape_status_completed"
+        app:layout_constraintBottom_toBottomOf="@+id/orderprocessed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/orderprocessed" />
+
+    <ImageView
+        android:id="@+id/orderprocessed"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/volunteer"
+        app:layout_constraintStart_toEndOf="@+id/view_order_processed"
+        app:layout_constraintTop_toBottomOf="@+id/img_orderconfirmed" />
+    <View
+        app:layout_constraintTop_toTopOf="@+id/orderprocessed"
+        app:layout_constraintEnd_toEndOf="@+id/orderprocessed"
+        app:layout_constraintStart_toStartOf="@+id/orderprocessed"
+        app:layout_constraintBottom_toBottomOf="@+id/orderprocessed"
+        android:id="@+id/supporter_processed"
+        android:layout_width="1dp"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:id="@+id/textorderprocessed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Volunteer"
+        android:textColor="@color/colorText1"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/supporter_processed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/orderprocessed" />
+
+    <TextView
+        android:id="@+id/processed_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Volunteer has accepted to carry your donation"
+        app:layout_constraintEnd_toEndOf="@id/textorderprocessed"
+        app:layout_constraintStart_toStartOf="@+id/textorderprocessed"
+        app:layout_constraintTop_toBottomOf="@+id/textorderprocessed" />
+
+    <View
+        android:id="@+id/con_divider"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@+id/view_order_processed"
+        app:layout_constraintEnd_toEndOf="@+id/view_order_confirmed"
+        app:layout_constraintStart_toStartOf="@+id/view_order_confirmed"
+        app:layout_constraintTop_toBottomOf="@id/view_order_confirmed" />
+    <View
+        android:id="@+id/view_order_pickup"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:background="@drawable/shape_status_current"
+        app:layout_constraintBottom_toBottomOf="@+id/orderpickup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/orderpickup" />
+
+    <ImageView
+
+        android:id="@+id/orderpickup"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/meet"
+        android:alpha="0.5"
+        app:layout_constraintStart_toEndOf="@+id/view_order_pickup"
+        app:layout_constraintTop_toBottomOf="@+id/orderprocessed" />
+    <View
+
+        app:layout_constraintTop_toTopOf="@+id/orderpickup"
+        app:layout_constraintEnd_toEndOf="@+id/orderpickup"
+        app:layout_constraintStart_toStartOf="@+id/orderpickup"
+        app:layout_constraintBottom_toBottomOf="@+id/orderpickup"
+        android:id="@+id/supporter_pickup"
+        android:layout_width="1dp"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:id="@+id/textorderpickup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Source reached"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/supporter_pickup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/orderpickup" />
+
+    <TextView
+        android:alpha="0.5"
+        android:id="@+id/pickup_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Volunteer collected the food"
+        app:layout_constraintEnd_toEndOf="@id/textorderpickup"
+        app:layout_constraintStart_toStartOf="@+id/textorderpickup"
+        app:layout_constraintTop_toBottomOf="@+id/textorderpickup" />
+    <View
+        android:id="@+id/con_divider1"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@+id/view_order_pickup"
+        app:layout_constraintEnd_toEndOf="@+id/view_order_confirmed"
+        app:layout_constraintStart_toStartOf="@+id/view_order_confirmed"
+        app:layout_constraintTop_toBottomOf="@id/view_order_confirmed" />
+
+    <View
+        android:id="@+id/view_order_pickup1"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:background="@drawable/shape_status_current"
+        app:layout_constraintBottom_toBottomOf="@+id/orderpickup1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/orderpickup1" />
+
+    <ImageView
+
+        android:id="@+id/orderpickup1"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:alpha="0.5"
+        android:src="@drawable/delivered"
+        app:layout_constraintStart_toEndOf="@+id/view_order_pickup1"
+        app:layout_constraintTop_toBottomOf="@+id/orderpickup" />
+    <View
+
+        app:layout_constraintTop_toTopOf="@+id/orderpickup1"
+        app:layout_constraintEnd_toEndOf="@+id/orderpickup1"
+        app:layout_constraintStart_toStartOf="@+id/orderpickup1"
+        app:layout_constraintBottom_toBottomOf="@+id/orderpickup1"
+        android:id="@+id/supporter_pickup1"
+        android:layout_width="1dp"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:id="@+id/textorderpickup1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Destination reached"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/supporter_pickup1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/orderpickup1" />
+
+    <TextView
+        android:alpha="0.5"
+        android:id="@+id/pickup_desc1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Success! Food delivered"
+        app:layout_constraintEnd_toEndOf="@id/textorderpickup1"
+        app:layout_constraintStart_toStartOf="@+id/textorderpickup1"
+        app:layout_constraintTop_toBottomOf="@+id/textorderpickup1" />
+    <View
+        android:id="@+id/con_divider2"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@+id/view_order_pickup1"
+        app:layout_constraintEnd_toEndOf="@+id/view_order_pickup"
+        app:layout_constraintStart_toStartOf="@+id/view_order_pickup"
+        app:layout_constraintTop_toBottomOf="@id/view_order_pickup" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

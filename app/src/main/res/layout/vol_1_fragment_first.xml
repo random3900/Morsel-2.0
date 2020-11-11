@@ -6,7 +6,7 @@
     android:background="@color/colorPrimary"
     tools:context=".vol_1_FirstFragment">
 
-    <EditText
+    <!--<EditText
         android:id="@+id/et_loc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         android:layout_marginRight="20dp"
         android:inputType="text"
         android:textColor="@color/textColorPrimary"
-        android:textSize="15sp" />
+        android:textSize="15sp" />-->
 
     <EditText
         android:id="@+id/et_weight"

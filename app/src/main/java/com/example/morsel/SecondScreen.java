@@ -103,6 +103,15 @@ public class SecondScreen extends AppCompatActivity {
                 startActivity(i3);
                 break;
 
+            case R.id.up:
+                Intent i4=new Intent(this,ProfileActivity.class);
+                startActivity(i4);
+                break;
+
+            case R.id.mtr:
+                Intent i5=new Intent(this,TrackActivity.class);
+                startActivity(i5);
+                break;
 
         }
         return true;

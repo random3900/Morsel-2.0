@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,15 +14,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class vol_3 extends AppCompatActivity implements View.OnClickListener {
     TextView tv_sn,tv_dn,tv_sd,tv_sdd,tv_wt,tv_wtc,tv_acc;
@@ -32,7 +33,7 @@ public class vol_3 extends AppCompatActivity implements View.OnClickListener {
     private DatabaseReference mDatabase, mdb,mdb1;
     int w1,w2;
     int id;
-    SQLiteDatabase bb;
+    final Double[] sh_loc = new Double[4];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +55,7 @@ public class vol_3 extends AppCompatActivity implements View.OnClickListener {
         lo=Double.parseDouble(s[2]);
         id=Integer.parseInt(b.getString("id_vol"));
         btn_va.setOnClickListener(this);
-        bb=openOrCreateDatabase("BonuspDB", Context.MODE_PRIVATE, null);
-        bb.execSQL("CREATE TABLE IF NOT EXISTS bonus(user VARCHAR, bonuspt NUMERIC);");
+
         mdb = FirebaseDatabase.getInstance().getReference().child("volunteer").child("vol"+(id));
         mdb.addValueEventListener(new ValueEventListener() {
             @Override
@@ -85,6 +85,10 @@ public class vol_3 extends AppCompatActivity implements View.OnClickListener {
                     if(lat2d==la && lon2d==lo) {
                         tv_sn.setText(tv_sn.getText()+" : "+ds.child("area").getValue().toString() + " , " + ds.child("city").getValue().toString());
                         tv_dn.setText(tv_dn.getText()+" : "+ds.child("slat").getValue().toString() + " , " + ds.child("slon").getValue().toString());
+                        sh_loc[0] = Double.valueOf((ds.child("slat").getValue().toString()));
+                        sh_loc[1] = Double.valueOf((ds.child("slat").getValue().toString()));
+                        sh_loc[2] = Double.valueOf((ds.child("dlat").getValue().toString()));
+                        sh_loc[3] = Double.valueOf((ds.child("dlon").getValue().toString()));
                         tv_sdd.setText(tv_sdd.getText()+" : "+ds.child("dist").getValue().toString()+" Kms");
                         w2=Integer.parseInt(ds.child("packets").getValue().toString());
                         tv_wt.setText(tv_wt.getText()+" : "+w2+" packets");
@@ -151,18 +155,37 @@ public class vol_3 extends AppCompatActivity implements View.OnClickListener {
                 // Modifying record if found 
                 db.execSQL("UPDATE menu SET order_status='" + true + "' WHERE vol_id='" + String.valueOf(reg_vol_id) + "'");
             }*/
-            int bpr;
-            Cursor cpr = bb.rawQuery("SELECT * FROM bonus WHERE user='" + "xyz" + "'", null);
-//        if (cpr.moveToFirst()) {
-            if (cpr.moveToFirst()) {
-                // Displaying record if found 
-                bpr=cpr.getInt(1);
-                bb.execSQL("UPDATE bonus SET bonuspt='" + (Integer.toString(bpr+2) )+
-                        "' WHERE user='" + "xyz" + "'");
-//                Toast.makeText(this, String.valueOf(bpr), Toast.LENGTH_LONG).show();
-            }
             tv_acc.setText("Thank you for accepting the order\nDon't turn off your location");
-//            counter=counter+1;
+            Intent i3 = new Intent(this,vol_6.class);
+            i3.putExtra("slat", sh_loc[0]);
+            i3.putExtra("slon", sh_loc[1]);
+            i3.putExtra("dlat", sh_loc[2]);
+            i3.putExtra("dlon", sh_loc[3]);
+            startActivity(i3);
+
+            /*Intent mapIntent;
+            Uri location;
+            String url = "http://maps.google.com/maps?q=loc:" + sh_loc[0] + "," + sh_loc[1]+ " (" + "Porur" + ")";
+            //String url=("geo:"+String.valueOf(sh_loc[0])+","+String.valueOf(sh_loc[1])+"?z=14");
+            // Or map point based on latitude/longitude
+            // location = Uri.parse("geo:37.422219,-122.08364?z=14");
+            location = Uri.parse(url);
+            // z param is zoom level
+           /*
+                1: World
+                5: Landmass/continent
+                10: City
+                15: Streets
+                20: Buildings
+               */
+
+            /*mapIntent = new Intent(Intent.ACTION_VIEW, location);
+            startActivity(mapIntent);*/
+            /*String orderStatus="1";
+            Intent intent=new Intent(getApplicationContext(),TrackActivity.class);
+            intent.putExtra("orderStatus",orderStatus);
+            startActivity(intent);*/
+
         }
     }
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -185,13 +208,6 @@ public class vol_3 extends AppCompatActivity implements View.OnClickListener {
                 Intent i1=new Intent(this,MainActivity.class);
                 startActivity(i1);
                 break;
-
-//            case R.id.bonpts:
-//                Intent i3=new Intent(this,BonusPoints.class);
-//                i3.putExtra("count",counter);
-//                Log.i("count is : "+counter, "the count is : "+counter);
-//                startActivity(i3);
-//                break;
         }
         return true;
     }

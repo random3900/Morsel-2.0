@@ -1,107 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     tools:context=".vol_3">
 
-    <TextView
-        android:id="@+id/tv_src_name"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="Source location"
-        android:textColor="@color/textColorPrimary"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textSize="15sp" />
-
-    <TextView
-        android:id="@+id/tv_dst_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"
-        android:text="Destination location"
-        android:textColor="@color/textColorPrimary"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textSize="15sp" />
-
-    <TextView
-        android:id="@+id/tv_src_dist"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="125dp"
-        android:text="Distance to source"
-        android:textColor="@color/textColorPrimary"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textSize="15sp" />
-
-    <TextView
-        android:id="@+id/tv_src_dst_dist"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="195dp"
-        android:textColor="@color/textColorPrimary"
-        android:text="Distance between src and dst"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textSize="15sp" />
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:padding="16dp">
 
 
-    <TextView
-        android:id="@+id/tv_weight"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="255dp"
-        android:textColor="@color/textColorPrimary"
-        android:text="Food weight"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textSize="15sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_weight_comp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="295dp"
-        android:textColor="@color/textColorPrimary"
-        android:text="Food weight comparison"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textSize="15sp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingRight="8dp">
 
-    <Button
-        android:id="@+id/btn_vol_accept"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="350dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:text="Accept to Volunteer"
-        android:background="@color/colorPrimaryDark"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/circular_grey_bordersolid"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/ic_call_24dp" />
 
-    <TextView
-        android:id="@+id/tv_acceppted"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="415dp"
-        android:text=""
-        android:textColor="@color/textColorPrimary"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/tv_src_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Sourse Location"
+                    android:textSize="15sp"
+                    android:textColor="@color/goodgrey"
+                    android:fontFamily="@font/proximanovaregular" />
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:paddingRight="8dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/circular_grey_bordersolid"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/ic_email_24dp" />
+
+                <TextView
+                    android:id="@+id/tv_dst_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/goodgrey"
+                    android:text="Destination location"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/proximanovaregular" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:paddingRight="8dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/circular_grey_bordersolid"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/ic_location_24dp" />
+
+                <TextView
+                    android:id="@+id/tv_src_dist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Distance to source"
+                    android:textSize="15sp"
+                    android:textColor="@color/goodgrey"
+                    android:fontFamily="@font/proximanovaregular" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:paddingRight="8dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/circular_grey_bordersolid"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/ic_location_24dp" />
+
+                <TextView
+                    android:id="@+id/tv_src_dst_dist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Distance between src and dst"
+                    android:textSize="15sp"
+                    android:textColor="@color/goodgrey"
+                    android:fontFamily="@font/proximanovaregular" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:paddingRight="8dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/circular_grey_bordersolid"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/ic_location_24dp" />
+
+                <TextView
+                    android:id="@+id/tv_weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Food weight"
+                    android:textSize="15sp"
+                    android:textColor="@color/goodgrey"
+                    android:fontFamily="@font/proximanovaregular" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:paddingRight="8dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/circular_grey_bordersolid"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/ic_location_24dp" />
+
+                <TextView
+                    android:id="@+id/tv_weight_comp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Food weight comparison"
+                    android:textSize="15sp"
+                    android:textColor="@color/goodgrey"
+                    android:fontFamily="@font/proximanovaregular" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:paddingRight="8dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/circular_grey_bordersolid"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/ic_location_24dp" />
+
+                <TextView
+                    android:id="@+id/tv_acceppted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text=""
+                    android:textSize="15sp"
+                    android:textColor="@color/goodgrey"
+                    android:fontFamily="@font/proximanovaregular" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_vol_accept"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Accept to Volunteer"
+            android:background="@color/colorPrimaryDark"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 </RelativeLayout>
