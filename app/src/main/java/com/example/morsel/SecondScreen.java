@@ -1,7 +1,9 @@
 package com.example.morsel;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,8 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
+import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 
 public class SecondScreen extends AppCompatActivity {
 
@@ -32,7 +38,39 @@ public class SecondScreen extends AppCompatActivity {
         t=findViewById(R.id.huser);
         t.setText("Hello User: "+user.getEmail());
         mreq= Volley.newRequestQueue(this);
+        Toast.makeText(getApplicationContext(),"IN SECOND SCREEN",Toast.LENGTH_SHORT).show();
 
+        FirebaseDynamicLinks.getInstance()
+                .getDynamicLink(getIntent())
+                .addOnSuccessListener(this, new OnSuccessListener<PendingDynamicLinkData>() {
+                    @Override
+                    public void onSuccess(PendingDynamicLinkData pendingDynamicLinkData) {
+                        // Get deep link from result (may be null if no link is found)
+                        Uri deepLink = null;
+                        String s=getIntent().getData().toString();
+                        Toast.makeText(getApplicationContext(),"NO DEEP LINK "+s,Toast.LENGTH_SHORT).show();
+
+                        if (pendingDynamicLinkData != null) {
+                            deepLink = pendingDynamicLinkData.getLink();
+                            String l = deepLink.getQueryParameter("link");
+                            Toast.makeText(getApplicationContext(),deepLink.toString()+" "+l,Toast.LENGTH_SHORT).show();
+                        }
+
+
+                        // Handle the deep link. For example, open the linked
+                        // content, or apply promotional credit to the user's
+                        // account.
+                        // ...
+
+                        // ...
+                    }
+                })
+                .addOnFailureListener(this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("failed", "getDynamicLink:onFailure", e);
+                    }
+                });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

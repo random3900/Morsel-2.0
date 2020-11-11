@@ -442,25 +442,30 @@ public class donate2 extends AppCompatActivity {
                 ArrayList<String> cl=new ArrayList<>();
                 ArrayList<String> pl=new ArrayList<>();
                 ArrayList<String> dl=new ArrayList<>();
-
+                ArrayList<String> idl=new ArrayList<>();
                 mDBw=FirebaseDatabase.getInstance().getReference().child("dnmapping");
-                int i1=1;
+
                 for(Hotspot h1:hl)
                 {
                     nl.add(h1.getName());
                     cl.add(h1.getLat()+","+h1.getLon());
                     pl.add(h1.getPackets()+"");
                     dl.add(String.format("%.20f",h1.getDist()));
-                    mDBw.child("Trip"+i1).child("slat").setValue(ulat1);
-                    mDBw.child("Trip"+i1).child("slon").setValue(ulon1);
-                    mDBw.child("Trip"+i1).child("dlat").setValue(h1.getLat());
-                    mDBw.child("Trip"+i1).child("dlon").setValue(h1.getLon());
-                    mDBw.child("Trip"+i1).child("dist").setValue(h1.getDist());
-                    mDBw.child("Trip"+i1).child("packets").setValue(h1.getPackets());
-                    mDBw.child("Trip"+i1).child("area").setValue(a);
-                    mDBw.child("Trip"+i1).child("city").setValue(c);
 
-                    i1++;
+                   
+
+                    String id=mDBw.push().getKey();
+                    idl.add(id);
+                    mDBw.child(id).child("slat").setValue(ulat1);
+                    mDBw.child(id).child("slon").setValue(ulon1);
+                    mDBw.child(id).child("dlat").setValue(h1.getLat());
+                    mDBw.child(id).child("dlon").setValue(h1.getLon());
+                    mDBw.child(id).child("dist").setValue(h1.getDist());
+                    mDBw.child(id).child("packets").setValue(h1.getPackets());
+                    mDBw.child(id).child("area").setValue(a);
+                    mDBw.child(id).child("city").setValue(c);
+                    Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
+
                 }
 
 
@@ -469,6 +474,7 @@ public class donate2 extends AppCompatActivity {
                 i.putStringArrayListExtra("cl",cl);
                 i.putStringArrayListExtra("pl",pl);
                 i.putStringArrayListExtra("dl",dl);
+                i.putStringArrayListExtra("idl",idl);
                 i.putExtra("size",nl.size());
                 i.putExtra("area",a);
                 i.putExtra("city",c);
