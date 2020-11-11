@@ -34,6 +34,8 @@ import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -59,7 +61,8 @@ public class donate2 extends AppCompatActivity {
     TextView txt;
     String a, c,mPhoneNumber;
     int count;
-    EditText ftype, fqty, flat, flon,ph;
+    TextInputEditText ftype, fqty, flat, flon,ph;
+    TextInputLayout ti_ftype, ti_fqty, ti_flat, ti_flon, ti_ph;
     Spinner fcity, farea;
     ArrayList<String> cities;
     ArrayList<String> areas;
@@ -92,13 +95,20 @@ public class donate2 extends AppCompatActivity {
         db.execSQL("CREATE TABLE IF NOT EXISTS historydet(email VARCHAR,tdate date,fname VARCHAR,qty NUMERIC, location VARCHAR);");
         bb = openOrCreateDatabase("BonuspDB", Context.MODE_PRIVATE, null);
         bb.execSQL("CREATE TABLE IF NOT EXISTS bonus(user VARCHAR, bonuspt NUMERIC);");
-        ftype = findViewById(R.id.etFoodType2);
-        fqty = findViewById(R.id.etQty2);
-        flat = findViewById(R.id.elat2);
-        flon = findViewById(R.id.elon2);
+        ftype = findViewById(R.id.et_d_foodtype);
+        fqty = findViewById(R.id.et_d_foodqty);
+        flat = findViewById(R.id.et_d_lat);
+        flon = findViewById(R.id.et_d_long);
         fcity = (Spinner) findViewById(R.id.ecity2);
         farea = (Spinner) findViewById(R.id.earea2);
-        ph=findViewById(R.id.dphno);
+        ph=findViewById(R.id.et_d_phno);
+
+        ti_flat = findViewById(R.id.tv_d_lat);
+        ti_flon = findViewById(R.id.tv_d_long);
+        ti_fqty = findViewById(R.id.tv_d_foodqty);
+        ti_ftype = findViewById(R.id.tv_d_foodtype);
+        ti_ph = findViewById(R.id.tv_d_phno);
+
         ActionBar actionBar;
         actionBar = getSupportActionBar();
         ColorDrawable colorDrawable

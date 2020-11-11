@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".donate2"
-    android:layout_margin="10dp">
-
+    android:layout_margin="10dp"
+    android:elevation="10dp"
+    android:background="@color/colorPrimary">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,150 +15,286 @@
         android:textSize="20dp"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
+        android:layout_marginLeft="10dp"
         android:id="@+id/tv2"/>
-
-
-    <EditText
-        android:id="@+id/etFoodType2"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv2"
-        android:layout_marginTop="20dp"
-        android:textCursorDrawable="@color/colorAccent"
-        android:hint="Enter the Food Type here"
-        android:selectAllOnFocus="true" />
-
-    <EditText
-        android:id="@+id/etQty2"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/etFoodType2"
-        android:layout_marginTop="20dp"
-        android:textCursorDrawable="@color/colorAccent"
-        android:hint="Enter the Quantity in grams here"
-        android:inputType="number" />
-
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/entcity"
-        android:text="Select City"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/etQty2"/>
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ecity2"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/entcity"
-        android:text="Enter city"
-        android:textCursorDrawable="@color/colorAccent"
-       android:layout_alignRight="@+id/elat2"
-        android:layout_alignLeft="@+id/elat2"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/entarea"
-        android:text="Select Area"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/etQty2"
-        android:layout_marginLeft="80dp"
-        android:layout_alignRight="@+id/elon2"
-        android:gravity="center"
-        android:layout_toRightOf="@+id/entcity"/>
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/earea2"
-        android:layout_below="@+id/entarea"
-        android:layout_marginTop="10dp"
-        android:textCursorDrawable="@color/colorAccent"
-        android:layout_alignRight="@+id/elon2"
-        android:layout_toRightOf="@+id/ecity2"
-        android:layout_marginLeft="80dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/elat2"
-        android:layout_below="@+id/ecity2"
-        android:hint="Enter latitude"
-        android:inputType="numberDecimal"
-        android:layout_marginTop="30dp"
-        android:textCursorDrawable="@color/colorAccent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:id="@+id/elon2"
-        android:layout_below="@+id/earea2"
-        android:hint="Enter longitude"
-        android:layout_alignRight="@+id/etQty2"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_toRightOf="@+id/elat2"/>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/enterimage"
-        android:text="Upload Food Image"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/dphno"
-        android:layout_marginLeft="2dp" />
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/elat2"
-        android:id="@+id/dphno"
-        android:hint="Enter Phone Number"/>
-
     <LinearLayout
-        android:id="@+id/layout_button"
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/enterimage"
-        android:layout_alignParentTop="false"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:weightSum="2">
+        android:layout_width="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:paddingTop="30dp">
 
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:hint="Enter the food type here"
+        android:id="@+id/tv_d_foodtype"
+        style="@style/Widget.Morsel.TextInputLayout">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1"
+            android:id="@+id/et_d_foodtype"
+            />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Enter the food quantity here"
+            android:id="@+id/tv_d_foodqty"
+            style="@style/Widget.Morsel.TextInputLayout">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:id="@+id/et_d_foodqty"
+                />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/entarea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/entcity"
+            android:gravity="center"
+            android:text="Select Area" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/entcity"
+            android:text="Select City"
+            android:layout_marginTop="10dp"/>
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ecity2"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/entcity"
+            android:text="Enter city"
+            android:textCursorDrawable="@color/colorAccent" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/earea2"
+            android:layout_below="@+id/entarea"
+            android:layout_marginTop="10dp"
+            android:textCursorDrawable="@color/colorAccent"
+            android:layout_toRightOf="@+id/ecity2"
+            android:layout_marginLeft="80dp" />
+        </RelativeLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Enter the latitude here"
+            android:id="@+id/tv_d_lat"
+            style="@style/Widget.Morsel.TextInputLayout">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:id="@+id/et_d_lat"
+                />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Enter the longitude here"
+            android:id="@+id/tv_d_long"
+            style="@style/Widget.Morsel.TextInputLayout">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:id="@+id/et_d_long"
+                />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Enter the Phone Number here"
+            android:id="@+id/tv_d_phno"
+            style="@style/Widget.Morsel.TextInputLayout">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:id="@+id/et_d_phno"
+                />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp">
         <Button
             android:id="@+id/btnChoose"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_weight="1"
+            android:layout_marginRight="10dp"
             android:text="Choose" />
 
         <Button
             android:id="@+id/btnUpload"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/btnChoose"
             android:text="Upload" />
 
         <Button
             android:id="@+id/submit2"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="50dp"
+            android:layout_toRightOf="@+id/btnUpload"
             android:background="@color/colorPrimary"
             android:backgroundTint="@color/colorAccent"
             android:onClick="onClickSubmit2"
             android:text="Donate Now!!" />
-
+        </RelativeLayout>
     </LinearLayout>
+
+
+
+<!--    <EditText-->
+<!--        android:id="@+id/etFoodType2"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/tv2"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:textCursorDrawable="@color/colorAccent"-->
+<!--        android:hint="Enter the Food Type here"-->
+<!--        android:selectAllOnFocus="true" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/etQty2"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/etFoodType2"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:textCursorDrawable="@color/colorAccent"-->
+<!--        android:hint="Enter the Quantity in grams here"-->
+<!--        android:inputType="number" />-->
+
+
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/entcity"-->
+<!--        android:text="Select City"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_below="@id/etQty2"/>-->
+<!--    <Spinner-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/ecity2"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_below="@+id/entcity"-->
+<!--        android:text="Enter city"-->
+<!--        android:textCursorDrawable="@color/colorAccent"-->
+<!--       android:layout_alignRight="@+id/elat2"-->
+<!--        android:layout_alignLeft="@+id/elat2"/>-->
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/entarea"-->
+<!--        android:text="Select Area"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_below="@id/etQty2"-->
+<!--        android:layout_marginLeft="80dp"-->
+<!--        android:layout_alignRight="@+id/elon2"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_toRightOf="@+id/entcity"/>-->
+<!--    <Spinner-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/earea2"-->
+<!--        android:layout_below="@+id/entarea"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:textCursorDrawable="@color/colorAccent"-->
+<!--        android:layout_alignRight="@+id/elon2"-->
+<!--        android:layout_toRightOf="@+id/ecity2"-->
+<!--        android:layout_marginLeft="80dp" />-->
+
+<!--    <EditText-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/elat2"-->
+<!--        android:layout_below="@+id/ecity2"-->
+<!--        android:hint="Enter latitude"-->
+<!--        android:inputType="numberDecimal"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:textCursorDrawable="@color/colorAccent"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_alignParentStart="true" />-->
+
+<!--    <EditText-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:inputType="numberDecimal"-->
+<!--        android:id="@+id/elon2"-->
+<!--        android:layout_below="@+id/earea2"-->
+<!--        android:hint="Enter longitude"-->
+<!--        android:layout_alignRight="@+id/etQty2"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:layout_marginLeft="30dp"-->
+<!--        android:layout_toRightOf="@+id/elat2"/>-->
+
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/enterimage"-->
+<!--        android:text="Upload Food Image"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_below="@+id/dphno"-->
+<!--        android:layout_marginLeft="2dp" />-->
+<!--    <EditText-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/elat2"-->
+<!--        android:id="@+id/dphno"-->
+<!--        android:hint="Enter Phone Number"/>-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/layout_button"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_below="@+id/enterimage"-->
+<!--        android:layout_alignParentTop="false"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:weightSum="2">-->
+
+
+<!--     -->
+
+<!--    </LinearLayout>-->
 
     <!--    <ImageView-->
 <!--        android:id="@+id/imgView"-->
