@@ -1,10 +1,8 @@
 package com.example.morsel;
 
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -13,7 +11,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,7 +19,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +28,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -72,7 +69,7 @@ public class donate2 extends AppCompatActivity {
     private Button btnSelect, btnUpload;
 
     // view for image view
-//    private ImageView imageView;
+    private ImageView imageView;
 
     // Uri indicates, where the image will be picked from
     public Uri filePath;
@@ -85,7 +82,7 @@ public class donate2 extends AppCompatActivity {
     StorageReference storageReference;
     SQLiteDatabase db;
     SQLiteDatabase bb;
-
+    final Uri[] link = new Uri[1];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,7 +116,7 @@ public class donate2 extends AppCompatActivity {
         // initialise views
         btnSelect = findViewById(R.id.btnChoose);
         btnUpload = findViewById(R.id.btnUpload);
-//        imageView = findViewById(R.id.imgView);
+        imageView = findViewById(R.id.imgView);
 
         // get the Firebase  storage reference
         storage = FirebaseStorage.getInstance();
@@ -244,7 +241,7 @@ public class donate2 extends AppCompatActivity {
                         .getBitmap(
                                 getContentResolver(),
                                 filePath);
-//                imageView.setImageBitmap(bitmap);
+                imageView.setImageBitmap(bitmap);
             } catch (IOException e) {
                 // Log the exception
                 e.printStackTrace();
@@ -263,18 +260,20 @@ public class donate2 extends AppCompatActivity {
             progressDialog.show();
 
             // Defining the child of storageReference
-            StorageReference ref
-                    = storageReference
-                    .child(
-                            "images/"
-                                    + UUID.randomUUID().toString());
+            final StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
+//            String apig =ref.toString();
+//            Toast.makeText(donate2.this,"OTP Received is: "+ apig ,Toast.LENGTH_LONG).show();
+//            Log.e("The url is", apig);
 
-            // adding listeners on upload
+
+
+                // Get the download URL for 'images/stars.jpg'
+                // This can be inserted into an <img> tag
+                // This can also be downloaded directly
+
+                    // adding listeners on upload
             // or failure of image
-            ref.putFile(filePath)
-                    .addOnSuccessListener(
-                            new OnSuccessListener<UploadTask.TaskSnapshot>() {
-
+            ref.putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onSuccess(
                                         UploadTask.TaskSnapshot taskSnapshot) {
@@ -282,11 +281,18 @@ public class donate2 extends AppCompatActivity {
                                     // Image uploaded successfully
                                     // Dismiss dialog
                                     progressDialog.dismiss();
-                                    Toast
-                                            .makeText(donate2.this,
-                                                    "Image Uploaded!!",
-                                                    Toast.LENGTH_SHORT)
-                                            .show();
+
+                                    ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
+                                    {
+                                        @Override
+                                        public void onSuccess(Uri downloadUrl){
+                                            //do something with downloadurl
+                                            link[0] =downloadUrl;
+                                            Toast.makeText(donate2.this,"The link: "+ link[0] ,Toast.LENGTH_LONG).show();
+                                            Log.e("The url is", String.valueOf(link[0]));
+                                        }});
+
+                                    Toast.makeText(donate2.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
                                 }
                             })
 
@@ -296,6 +302,7 @@ public class donate2 extends AppCompatActivity {
 
                             // Error, Image not uploaded
                             progressDialog.dismiss();
+
                             Toast
                                     .makeText(donate2.this,
                                             "Failed " + e.getMessage(),
@@ -320,6 +327,7 @@ public class donate2 extends AppCompatActivity {
                                                     + (int) progress + "%");
                                 }
                             });
+
         }
     }
 
@@ -466,6 +474,7 @@ public class donate2 extends AppCompatActivity {
                     mDBw.child(id).child("city").setValue(c);
                     mDBw.child(id).child("vol?").setValue(0);
                     mDBw.child(id).child("del?").setValue(0);
+//                    mDBw.child(id).child("imageUrl").setValue(link[0]);
                     Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
 
                 }
@@ -516,7 +525,6 @@ public class donate2 extends AppCompatActivity {
 
             case R.id.bonpts:
                 Intent i3=new Intent(this,BonusPoints.class);
-
                 startActivity(i3);
                 break;
         }

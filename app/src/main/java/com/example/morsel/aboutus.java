@@ -25,6 +25,7 @@ public class aboutus extends AppCompatActivity {
         Element adsElement = new Element();
         View aboutPage = new AboutPage(this)
                 .isRTL(false)
+                .setImage(R.drawable.morsel_logo)
                 .setDescription(" Morsel:No more left overs ")
                 .addItem(new Element().setTitle("Version 4.0"))
                 .addGroup("CONNECT WITH US!")
@@ -41,7 +42,8 @@ public class aboutus extends AppCompatActivity {
         Element copyright = new Element();
         @SuppressLint("DefaultLocale") final String copyrightString = String.format("Copyright %d Morsel", Calendar.getInstance().get(Calendar.YEAR));
         copyright.setTitle(copyrightString);
-        // copyright.setIcon(R.mipmap.ic_launcher);
+        copyright.setIconDrawable(R.drawable.morsel_logo);
+//        copyright.setIcon(R.mipmap.ic_launcher);
         copyright.setGravity(Gravity.CENTER);
         copyright.setOnClickListener(new View.OnClickListener() {
             @Override
