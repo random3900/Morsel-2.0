@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,8 +24,10 @@ public class MsgVolStatus extends AppCompatActivity {
 
     DatabaseReference mDatabase;
     MaterialCardView mc1,mc2;
-    String ti;
-    TextView trip,pl,pk,volt;
+    String ti,imgurl;
+    Double d;
+    Vol_Track_Msg vtm;
+    TextView trip,pl,pk,volt,img,dist;
     Button vb;
     int volstatus;
     @Override
@@ -39,49 +43,67 @@ public class MsgVolStatus extends AppCompatActivity {
         pk=findViewById(R.id.pkd);
         volt=findViewById(R.id.volt);
         vb=findViewById(R.id.volb);
-
+        dist=findViewById(R.id.dist);
+        img=findViewById(R.id.imgd);
         trip.setText(ti);
         mDatabase = FirebaseDatabase.getInstance().getReference().child("dnmapping").child(ti);
         vb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(volstatus==1)
-                {
-                    showMessage("Someone has already Volunteered","Thank you for your time.\n Pls check the same link at a later point of time or Pls do volunteer for some other trip. Thanks Again");
+                String disp;
+                disp=vb.getText().toString();
+                if(disp.equals("Volunteer")) {
+                    if (volstatus == 2) {
+                        showMessage("Someone has already Volunteered", "Thank you for your time.\n Pls check the same link at a later point of time or Pls do volunteer for some other trip. Thanks Again");
+                    } else {
+                        //intent for tracking
+                        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("dnmapping").child(ti);
+                        db.child("status").setValue(2);
+                        vtm=new Vol_Track_Msg();
+                        FragmentManager fm = getSupportFragmentManager();
+
+                        // create a FragmentTransaction to begin the transaction and replace the Fragment
+                        FragmentTransaction fragmentTransaction =
+                                fm.beginTransaction();
+
+                        // replace the FrameLayout with new Fragment
+                        fragmentTransaction.replace(R.id.fvol, vtm);
+
+                        //fragmentTransaction.add(R.id.firstFragment,fragment);
+                        fragmentTransaction.commit(); // save the changes
+
+                    }
+                    vb.setText("Cancel");
                 }
-
-                else
-                {
-                    //intent for tracking
-                    DatabaseReference db=FirebaseDatabase.getInstance().getReference().child("dnmapping").child(ti);
-                    db.child("vol?").setValue(1);
-                    FragmentManager fm = getSupportFragmentManager();
-
-                    // create a FragmentTransaction to begin the transaction and replace the Fragment
-                    FragmentTransaction fragmentTransaction =
-                            fm.beginTransaction();
-
-                    // replace the FrameLayout with new Fragment
-                    fragmentTransaction.replace(R.id.fvol, new Vol_Track_Msg());
-
-                    //fragmentTransaction.add(R.id.firstFragment,fragment);
-                    fragmentTransaction.commit(); // save the changes
-
+                else if(disp.equals("Cancel")){
+                    DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("dnmapping").child(ti);
+                    db.child("status").setValue(1);
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    if (vtm != null) {
+                        transaction.remove(vtm);
+                        transaction.commit();
+                        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+                        vtm = null;
                 }
+                    vb.setText("Volunteer");
             }
-        });
+        }});
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 pl.setText(snapshot.child("place").getValue().toString());
                 pk.setText(snapshot.child("packets").getValue().toString());
-                volstatus=Integer.parseInt(snapshot.child("vol?").getValue().toString());
-                if(volstatus==0) {
+                d=Double.parseDouble(snapshot.child("dist").getValue().toString());
+                String dt=String.format("%.2f", d);
+                dist.setText(dt+"km");
+                volstatus=Integer.parseInt(snapshot.child("status").getValue().toString());
+                imgurl=snapshot.child("imageurl").getValue().toString();
+                if(volstatus==1) {
                     int c=R.color.colorPrimaryDark;
                     mc2.setBackgroundResource(c);
                     volt.setText("N");
                 }
-                else {
+                else if(volstatus==2) {
                     int c=R.color.themegreen;
                     int c1=R.color.white;
                     mc2.setBackgroundResource(c);
@@ -92,6 +114,14 @@ public class MsgVolStatus extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent down=new Intent(Intent.ACTION_VIEW, Uri.parse(imgurl));
+                startActivity(down);
             }
         });
     }

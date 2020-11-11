@@ -472,8 +472,8 @@ public class donate2 extends AppCompatActivity {
                     mDBw.child(id).child("area").setValue(a);
                     mDBw.child(id).child("phone").setValue(mPhoneNumber);
                     mDBw.child(id).child("city").setValue(c);
-                    mDBw.child(id).child("vol?").setValue(0);
-                    mDBw.child(id).child("del?").setValue(0);
+                    mDBw.child(id).child("status").setValue(1);
+                    mDBw.child(id).child("imageurl").setValue(link[0].toString());
 //                    mDBw.child(id).child("imageUrl").setValue(link[0]);
                     Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
 
