@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SetModerator"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal|center_vertical"
+    android:background="@color/colorPrimary">
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:paddingTop="16dp">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/morsel_logo"
+        android:contentDescription="@string/morsel_logo_description"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_margin="4dp"
+        android:id="@+id/tv_sm_username"
+        style="@style/Widget.Morsel.TextInputLayout"
+        android:hint="@string/morsel_hint_username">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1"
+            android:id="@+id/et_sm_username"
+            />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/grant_button"
+                style="@style/Widget.Morsel.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Grant"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/revoke_button"
+                style="@style/Widget.Morsel.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/grant_button"
+                android:text="Revoke" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

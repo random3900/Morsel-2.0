@@ -58,6 +58,12 @@
                     android:inputType="number"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
+            <fragment android:id="@+id/add_hotspot_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_height="wrap_content"
                 style="@style/Widget.Morsel.TextInputLayout"

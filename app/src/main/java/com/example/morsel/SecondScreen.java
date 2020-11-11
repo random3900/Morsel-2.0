@@ -86,4 +86,9 @@ public class SecondScreen extends AppCompatActivity {
         startActivity(i);
     }
 
+    public  void onClickModerator(View v){
+        Intent i=new Intent(this,SetModerator.class);
+        startActivity(i);
+    }
+
 }

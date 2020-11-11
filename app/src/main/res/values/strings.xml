@@ -17,4 +17,5 @@
     <string name="morsel_hint_loc_num">Number of Residents</string>
     <string name="morsel_button_add">Add</string>
     <string name="morsel_button_cancel">Cancel</string>
+    <string name="api_key">AIzaSyAghNbJCrl0OhLPLh9vnFRjT7OpEwfh6lg</string>
 </resources>

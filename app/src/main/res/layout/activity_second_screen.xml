@@ -66,4 +66,20 @@
         app:tint="#FFFFFF"
         android:layout_centerInParent="true"
         />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_moderator"
+        android:layout_width="125dp"
+        android:layout_height="124dp"
+        android:layout_gravity="center"
+        android:contentDescription="Add Moderator"
+        app:srcCompat="@drawable/ic_add_24"
+        android:layout_below="@+id/hotspotlist"
+        android:layout_marginTop="75dp"
+        app:fabCustomSize="100dp"
+        android:onClick="onClickModerator"
+        app:backgroundTint="@color/themegreen"
+        app:tint="#FFFFFF"
+        android:layout_centerInParent="true"
+        />
 </RelativeLayout>
