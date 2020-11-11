@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:background="#293859"
     android:orientation="vertical"
-    tools:context=".ProfileActivity">
+    tools:context=".vol_6">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="240dp"
-         />
+        />
 
     <!--Top Header Layout-->
     <LinearLayout
@@ -89,7 +89,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/proximanovaregular"
                         android:text="Smriti"
                         android:textColor="#424242"
                         android:textSize="21sp"
@@ -98,7 +97,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/proximanovaregular"
                         android:text="Volunteer"
                         android:textSize="14sp" />
 
@@ -229,7 +227,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:fontFamily="@font/proximanovaregular"
                             android:text="Smriti"
                             android:textColor="#424242"
                             android:textSize="21sp"
@@ -238,7 +235,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/proximanovaregular"
                             android:text="Volunteer"
                             android:textSize="14sp" />
 
@@ -328,14 +324,14 @@
                     </LinearLayout>
 
 
-            </LinearLayout>
-
-
-
-
-
                 </LinearLayout>
+
+
+
+
+
             </LinearLayout>
+        </LinearLayout>
 
 
 
