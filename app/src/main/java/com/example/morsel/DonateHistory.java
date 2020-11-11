@@ -1,15 +1,12 @@
 package com.example.morsel;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,6 +15,10 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.GridView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -83,6 +84,10 @@ public class DonateHistory extends AppCompatActivity implements DatePickerDialog
         ArrayAdapter<String> adap=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,q);
         gv.setAdapter(adap);
 
+        Cursor ci = db.rawQuery("select * from historydet",null);
+        Log.i("Number of Records"," :: "+ci.getCount());
+        showMessage("Error", "No records found"+ci.getCount());
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -103,6 +108,11 @@ public class DonateHistory extends AppCompatActivity implements DatePickerDialog
             case R.id.mlog:
                 Intent i1=new Intent(this,MainActivity.class);
                 startActivity(i1);
+                break;
+
+            case R.id.abtus:
+                Intent i2=new Intent(this,aboutus.class);
+                startActivity(i2);
                 break;
         }
         return true;

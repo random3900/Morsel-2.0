@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,14 +12,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class vol_3 extends AppCompatActivity implements View.OnClickListener {
     TextView tv_sn,tv_dn,tv_sd,tv_sdd,tv_wt,tv_wtc,tv_acc;
@@ -32,6 +32,7 @@ public class vol_3 extends AppCompatActivity implements View.OnClickListener {
     private DatabaseReference mDatabase, mdb,mdb1;
     int w1,w2;
     int id;
+    SQLiteDatabase bb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +54,8 @@ public class vol_3 extends AppCompatActivity implements View.OnClickListener {
         lo=Double.parseDouble(s[2]);
         id=Integer.parseInt(b.getString("id_vol"));
         btn_va.setOnClickListener(this);
-
+        bb=openOrCreateDatabase("BonuspDB", Context.MODE_PRIVATE, null);
+        bb.execSQL("CREATE TABLE IF NOT EXISTS bonus(user VARCHAR, bonuspt NUMERIC);");
         mdb = FirebaseDatabase.getInstance().getReference().child("volunteer").child("vol"+(id));
         mdb.addValueEventListener(new ValueEventListener() {
             @Override
@@ -149,7 +151,18 @@ public class vol_3 extends AppCompatActivity implements View.OnClickListener {
                 // Modifying record if found 
                 db.execSQL("UPDATE menu SET order_status='" + true + "' WHERE vol_id='" + String.valueOf(reg_vol_id) + "'");
             }*/
+            int bpr;
+            Cursor cpr = bb.rawQuery("SELECT * FROM bonus WHERE user='" + "xyz" + "'", null);
+//        if (cpr.moveToFirst()) {
+            if (cpr.moveToFirst()) {
+                // Displaying record if found 
+                bpr=cpr.getInt(1);
+                bb.execSQL("UPDATE bonus SET bonuspt='" + (Integer.toString(bpr+2) )+
+                        "' WHERE user='" + "xyz" + "'");
+//                Toast.makeText(this, String.valueOf(bpr), Toast.LENGTH_LONG).show();
+            }
             tv_acc.setText("Thank you for accepting the order\nDon't turn off your location");
+//            counter=counter+1;
         }
     }
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -172,6 +185,13 @@ public class vol_3 extends AppCompatActivity implements View.OnClickListener {
                 Intent i1=new Intent(this,MainActivity.class);
                 startActivity(i1);
                 break;
+
+//            case R.id.bonpts:
+//                Intent i3=new Intent(this,BonusPoints.class);
+//                i3.putExtra("count",counter);
+//                Log.i("count is : "+counter, "the count is : "+counter);
+//                startActivity(i3);
+//                break;
         }
         return true;
     }

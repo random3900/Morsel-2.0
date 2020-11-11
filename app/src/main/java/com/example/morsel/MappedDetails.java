@@ -30,7 +30,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.dynamiclinks.DynamicLink;
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -45,6 +48,7 @@ public class MappedDetails extends AppCompatActivity {
     ArrayList<String> pl=new ArrayList<String>();
     ArrayList<String> dl=new ArrayList<String>();
     ArrayList<String> phl=new ArrayList<String>();
+    ArrayList<String> idl=new ArrayList<>();
     TextView tn,ta,tc;
     ListView lv;
     @Override
@@ -57,6 +61,7 @@ public class MappedDetails extends AppCompatActivity {
         cl=getIntent().getStringArrayListExtra("cl");
         pl=getIntent().getStringArrayListExtra("pl");
         dl=getIntent().getStringArrayListExtra("dl");
+        idl=getIntent().getStringArrayListExtra("idl");
         area=getIntent().getStringExtra("area");
         city=getIntent().getStringExtra("city");
         sz=getIntent().getIntExtra("size",0);
@@ -140,14 +145,31 @@ public class MappedDetails extends AppCompatActivity {
 
     public void notifyVols(View v)
     {
-        msg="Food Packets to be delivered. Can you please Volunteer?\n" +
-                "City:"+city+"\n"+
-                "Area:"+area+"\n";
-        for(int i=0;i<sz;i++)
+        msg="Food Packets to be delivered to the needy in your area. Can you please Volunteer?";
+        msg+="\n Area: "+area;
+        msg+="\n City: "+city;
+        msg+="\n Trip Links: ";
+        for (String i: idl) {
+            DynamicLink dynamicLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
+                    .setLink(Uri.parse("https://morsel.com/" + "trip/" + i))
+                    .setDomainUriPrefix("https://morsel.page.link")
+                    // Open links with this app on Android
+                    .setAndroidParameters(
+                            new DynamicLink.AndroidParameters.Builder("com.example.android")
+                                    .setMinimumVersion(125)
+                                    .build())
+                    .buildDynamicLink();
+            Uri dynamicLinkUri = dynamicLink.getUri();
+            String link = dynamicLinkUri.toString();
+            msg+="\n\n "+link;
+        }
+
+
+        /*for(int i=0;i<sz;i++)
         {
             msg+="Place:"+nl.get(i)+"\n"+
-                    "Coordinates:"+cl.get(i);
-        }
+                    "   Coordinates:"+cl.get(i)+"\n";
+        }*/
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.SEND_SMS)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -155,21 +177,25 @@ public class MappedDetails extends AppCompatActivity {
             //       Manifest.permission.SEND_SMS)) {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.SEND_SMS},
-                    111);
+                    112);
             return;
         } else {
             // Permission already granted
             // }
         }
-        SmsManager sms=SmsManager.getDefault();
+
+
+        Intent intent=new Intent(this,MappedDetails.class);
+        PendingIntent pi=PendingIntent.getActivity(this, 0, intent,0);
+        //Get the SmsManager instance and call the sendTextMessage method to send message
         for(String i :phl)
         {
-            Intent intent=new Intent(this,MappedDetails.class);
-            PendingIntent pi=PendingIntent.getActivity(this, 0, intent,0);
-            //Get the SmsManager instance and call the sendTextMessage method to send message
+            SmsManager sms=SmsManager.getDefault();
+            ArrayList<String> parts = sms.divideMessage(msg);
+
+            sms.sendMultipartTextMessage(i, null, parts, null, null);
 
 
-            sms.sendTextMessage(i, null, msg, pi,null);
             Toast.makeText(getApplicationContext(),"Message sent to : "+i,Toast.LENGTH_SHORT).show();
         }
     }

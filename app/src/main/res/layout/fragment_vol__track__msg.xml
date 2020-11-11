@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Vol_Track_Msg">
+
+    <Button
+        android:id="@+id/nvdnr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Navigate to Donor"
+        android:layout_marginLeft="5dp"/>
+    <Button
+        android:id="@+id/nvneedy"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:text="Navigate to needy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cphone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/nvdnr">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/pimg"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/ic_baseline_local_phone_24"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/pimg"
+                android:layout_toRightOf="@+id/pimg"
+                android:layout_marginLeft="2dp"
+                android:text="Phone the donor"
+                android:layout_alignBottom="@id/pimg"
+                android:textSize="20sp"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cchat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_alignEnd="@+id/nvneedy"
+        android:layout_below="@id/nvdnr"
+        android:layout_alignStart="@+id/nvneedy"
+        android:layout_alignRight="@+id/nvneedy"
+        android:layout_alignLeft="@+id/nvneedy">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/pchat"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_toStartOf="@+id/tchat"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_baseline_chat_24"
+                android:layout_toLeftOf="@+id/tchat" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:text="Chat"
+                android:id="@+id/tchat"
+                android:layout_alignBottom="@id/pchat"
+                android:textSize="20sp"
+                />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>

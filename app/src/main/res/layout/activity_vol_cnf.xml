@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".volCnf"
+    android:layout_gravity="center_horizontal|center_vertical"
+    android:background="@color/colorPrimary">
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:paddingTop="16dp">
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/morsel_logo"
+            android:contentDescription="@string/morsel_logo_description"
+            />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_margin="4dp"
+            android:id="@+id/username_text_input1"
+            style="@style/Widget.Morsel.TextInputLayout"
+            android:hint="@string/morsel_hint_username">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:id="@+id/username_edit_text1"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_height="wrap_content"
+            style="@style/Widget.Morsel.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_margin="4dp"
+            android:hint="@string/morsel_hint_password"
+            app:errorEnabled="true"
+            android:id="@+id/password_text_input1"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:id="@+id/password_edit_text1"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout    android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cnf_button"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                style="@style/Widget.Morsel.Button.TextButton"
+                android:text="CONFIRM"/>
+
+            <!--            <com.google.android.material.button.MaterialButton-->
+            <!--                android:id="@+id/cancel_button"-->
+            <!--                style="@style/Widget.Morsel.Button.TextButton"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginEnd="12dp"-->
+            <!--                android:layout_marginRight="12dp"-->
+            <!--                android:layout_toStartOf="@id/next_button"-->
+            <!--                android:layout_toLeftOf="@id/next_button"-->
+            <!--                android:text="@string/shr_button_cancel"/>-->
+
+
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>
