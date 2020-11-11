@@ -2,5 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="Donation History" android:id="@+id/dhist"/>
     <item android:title="Logout" android:id="@+id/mlog"/>
+    <item android:title="About Us" android:id="@+id/abtus"/>
+    <item android:title="Bonus Points" android:id="@+id/bonpts"/>
+
 
 </menu>

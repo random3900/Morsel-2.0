@@ -1,22 +1,13 @@
 package com.example.morsel;
 
 
-import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,13 +15,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import java.util.ArrayList;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class vol_1 extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
     private DatabaseReference mDatabase,mDBw;
     ToggleButton tb_mode;
-    SQLiteDatabase db;
+
+
     //Button btn_ods;
 
     @Override
@@ -54,6 +47,7 @@ public class vol_1 extends AppCompatActivity implements CompoundButton.OnChecked
             db.execSQL("INSERT INTO vol VALUES('" + 2 + "','" + 0+","+0 + "','" + 0 + "');");
             db.execSQL("INSERT INTO vol VALUES('" + 3 + "','" + 0+","+0 + "','" + 0 + "');");*/
             loadFragment(new vol_1_FirstFragment());
+
 
         }
         else
@@ -105,6 +99,12 @@ public class vol_1 extends AppCompatActivity implements CompoundButton.OnChecked
                 Intent i1=new Intent(this,MainActivity.class);
                 startActivity(i1);
                 break;
+
+            case R.id.bonpts:
+                Intent i3=new Intent(this,BonusPoints.class);
+                startActivity(i3);
+                break;
+
         }
         return true;
     }

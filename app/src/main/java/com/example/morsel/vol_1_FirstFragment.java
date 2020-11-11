@@ -2,7 +2,6 @@ package com.example.morsel;
 
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,19 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.Toast;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import java.util.ArrayList;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class vol_1_FirstFragment extends Fragment implements View.OnClickListener {
 
@@ -35,6 +27,7 @@ public class vol_1_FirstFragment extends Fragment implements View.OnClickListene
     int reg_vol_id = 1;
     Integer id = 1;
     int f=1;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -98,6 +91,7 @@ public class vol_1_FirstFragment extends Fragment implements View.OnClickListene
                             mDatabase.child("vol" + id).child("vol_id").setValue(id);
                             mDatabase.child("vol" + id).child("vol_loc").setValue(loc);
                             mDatabase.child("vol" + id).child("vol_weight").setValue(weight);
+
                             //Vol vol = new Vol(id, loc, weight);
                             //mDatabase.child("vol" + id).setValue(vol);
 
@@ -133,5 +127,6 @@ public class vol_1_FirstFragment extends Fragment implements View.OnClickListene
             builder.setMessage(message);
             builder.show();
         }
+
 
 }
