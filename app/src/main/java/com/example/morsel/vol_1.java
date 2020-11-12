@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
@@ -23,9 +24,6 @@ public class vol_1 extends AppCompatActivity implements CompoundButton.OnChecked
     private DatabaseReference mDatabase,mDBw;
     ToggleButton tb_mode;
 
-
-    //Button btn_ods;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,17 +39,12 @@ public class vol_1 extends AppCompatActivity implements CompoundButton.OnChecked
         mDatabase = FirebaseDatabase.getInstance().getReference().child("volunteer");
         if(isChecked)
         {
-            /*db = openOrCreateDatabase("VolDB", Context.MODE_PRIVATE, null);
-            db.execSQL("CREATE TABLE IF NOT EXISTS vol(vol_id VARCHAR, location VARCHAR,weight VARCHAR);");
-            db.execSQL("INSERT INTO vol VALUES('" + 1 + "','" + 0+","+0 + "','" + 0 + "');");
-            db.execSQL("INSERT INTO vol VALUES('" + 2 + "','" + 0+","+0 + "','" + 0 + "');");
-            db.execSQL("INSERT INTO vol VALUES('" + 3 + "','" + 0+","+0 + "','" + 0 + "');");*/
             loadFragment(new vol_1_FirstFragment());
-
-
         }
         else
         {
+            stopService(new Intent(this,LocationTrackerService.class));
+            Toast.makeText(this,"Location sharing stopped", Toast.LENGTH_SHORT).show();
             loadFragment(new vol_1_SecondFragment());
         }
     }
@@ -71,14 +64,6 @@ public class vol_1 extends AppCompatActivity implements CompoundButton.OnChecked
         fragmentTransaction.commit(); // save the changes
     }
 
-    //@Override
-    /*public void onClick(View view) {
-        if(view.getId()==btn_ods.getId())
-        {
-            //Intent i3=new Intent(this,vol_5.class);
-            //startActivity(i3);
-        }
-    }*/
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_file, menu);
