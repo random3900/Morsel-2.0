@@ -26,7 +26,9 @@ public class aboutus extends AppCompatActivity {
         View aboutPage = new AboutPage(this)
                 .isRTL(false)
                 .setImage(R.drawable.morsel_logo)
-                .setDescription(" Morsel:No more left overs ")
+                .setDescription(" Morsel:No more left overs " +
+                        "An initiative to feed all the hungry people." +
+                        "Make a difference through just one click")
                 .addItem(new Element().setTitle("Version 4.0"))
                 .addGroup("CONNECT WITH US!")
                 .addEmail("sudarshana0602@gmail.com")
