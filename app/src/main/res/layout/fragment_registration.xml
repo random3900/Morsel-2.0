@@ -72,15 +72,30 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:layout_margin="4dp"
-            android:id="@+id/tv_r_address"
+            android:id="@+id/tv_r_area"
             style="@style/Widget.Morsel.TextInputLayout"
-            android:hint="@string/morsel_hint_address">
+            android:hint="Area">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:maxLines="1"
-                android:id="@+id/et_r_address"
+                android:id="@+id/et_r_area"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_margin="4dp"
+            android:id="@+id/tv_r_city"
+            style="@style/Widget.Morsel.TextInputLayout"
+            android:hint="City">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1"
+                android:id="@+id/et_r_city"
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
