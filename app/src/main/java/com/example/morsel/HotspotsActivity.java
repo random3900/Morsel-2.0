@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -50,7 +51,7 @@ import static com.example.morsel.R.id.add_hotspot_button;
 import static java.security.AccessController.getContext;
 
 public class HotspotsActivity extends AppCompatActivity {
-
+    ProgressDialog progressDialog;
     AppLocationService appLocationService;
     private String locAddr;
 
@@ -73,6 +74,11 @@ public class HotspotsActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hotspots);
+
+        progressDialog
+                = new ProgressDialog(HotspotsActivity.this);
+        progressDialog.setTitle("Loading...");
+        progressDialog.show();
 
         final FloatingActionButton btn = findViewById(add_hotspot_button);
 
@@ -119,6 +125,7 @@ public class HotspotsActivity extends AppCompatActivity {
                     });
                     btn.setVisibility(View.VISIBLE);
                 }
+                progressDialog.dismiss();
             }
 
             @Override

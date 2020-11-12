@@ -6,25 +6,18 @@
     tools:context=".Vol_Track_Msg">
 
     <Button
-        android:id="@+id/nvdnr"
+        android:id="@+id/dir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TO Donor"
-        android:layout_marginLeft="5dp"/>
-    <Button
-        android:id="@+id/nvneedy"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="5dp"
-        android:text="To needy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_centerHorizontal="true"
+        android:text="Directions"/>
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cphone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="10dp"
-        android:layout_below="@id/nvdnr">
+        android:layout_below="@id/dir">
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -50,11 +43,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_alignEnd="@+id/nvneedy"
-        android:layout_below="@id/nvdnr"
-        android:layout_alignStart="@+id/nvneedy"
-        android:layout_alignRight="@+id/nvneedy"
-        android:layout_alignLeft="@+id/nvneedy">
+        android:layout_below="@+id/dir"
+        android:layout_toEndOf="@+id/cphone"
+        android:layout_toRightOf="@+id/cphone"
+        >
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">

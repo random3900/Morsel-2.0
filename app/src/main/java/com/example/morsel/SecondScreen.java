@@ -1,5 +1,6 @@
 package com.example.morsel;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,10 +35,15 @@ public class SecondScreen extends AppCompatActivity {
     private FirebaseAuth mauth;
     RequestQueue mreq;
     TextView t;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_screen);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Loading...");
+        progressDialog.show();
 
         final FloatingActionButton btn = findViewById(R.id.add_moderator);
         btn.setVisibility(View.INVISIBLE);
@@ -62,6 +68,7 @@ public class SecondScreen extends AppCompatActivity {
 
                     btn.setVisibility(View.VISIBLE);
                 }
+                progressDialog.cancel();
             }
 
             @Override
@@ -109,7 +116,7 @@ public class SecondScreen extends AppCompatActivity {
                 break;
 
             case R.id.mtr:
-                Intent i5=new Intent(this,TrackActivity.class);
+                Intent i5=new Intent(this,TrackList.class);
                 startActivity(i5);
                 break;
 

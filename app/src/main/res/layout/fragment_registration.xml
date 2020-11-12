@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Registration"
     android:layout_gravity="center_horizontal|center_vertical"
+    android:layout_margin="10dp"
+    android:elevation="10dp"
     android:background="@color/colorPrimary">
     <LinearLayout
         android:layout_height="match_parent"

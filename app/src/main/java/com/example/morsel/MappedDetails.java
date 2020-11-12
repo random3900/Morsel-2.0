@@ -35,14 +35,15 @@ import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class MappedDetails extends AppCompatActivity {
 
     String area,city,msg;
-    int sz;
+    int sz,mYear,mMonth,mDay,mhr,mmin;
     private FirebaseAuth mauth;
-    DatabaseReference mdb;
+    DatabaseReference mdb,mdb1;
     ArrayList<String> nl=new ArrayList<String>();
     ArrayList<String> cl=new ArrayList<String>();
     ArrayList<String> pl=new ArrayList<String>();
@@ -72,6 +73,14 @@ public class MappedDetails extends AppCompatActivity {
         tc=findViewById(R.id.cityval);
         tc.setText(city);
         lv=findViewById(R.id.mlv);
+
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH)+1;
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+        mhr= c.get(Calendar.HOUR_OF_DAY);
+        mmin = c.get(Calendar.MINUTE);
+
 
         HashMap<String,String> hm;
         ArrayList<HashMap<String,String>> lvl=new ArrayList<>();
@@ -118,6 +127,9 @@ public class MappedDetails extends AppCompatActivity {
 
             }
         });
+        for(String i:idl) {
+            FirebaseDatabase.getInstance().getReference().child("Users").child(mauth.getCurrentUser().getUid()).child("trips").child(i).setValue(mDay+"/"+mMonth+"/"+mYear+":"+mhr+":"+mmin);
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

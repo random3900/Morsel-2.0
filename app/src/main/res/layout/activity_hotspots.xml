@@ -29,8 +29,8 @@
                 android:layout_gravity="bottom|right"
                 android:layout_margin="16dp"
                 android:contentDescription="Add"
-                android:backgroundTint="#739B46"
-                app:srcCompat="@drawable/ic_add_24"/>
+                android:backgroundTint="@color/colorPrimaryDark"
+                app:srcCompat="@drawable/ic_baseline_add_24"/>
         </LinearLayout>
 
     </ScrollView>
