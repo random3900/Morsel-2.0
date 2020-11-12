@@ -21,7 +21,7 @@ public class Registeration extends AppCompatActivity {
         uname=findViewById(R.id.et_r_username);
 //        password = findViewById(R.id.et_r_password);
         email = findViewById(R.id.et_r_email);
-        address = findViewById(R.id.et_r_address);
+//        address = findViewById(R.id.et_r_address);
         phoneno= findViewById(R.id.et_r_phoneno);
   //      result = findViewById(R.id.resultView);
 
