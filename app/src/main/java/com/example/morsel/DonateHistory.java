@@ -84,7 +84,7 @@ public class DonateHistory extends AppCompatActivity implements DatePickerDialog
         gv.setAdapter(adap);
 
         Cursor ci = db.rawQuery("select * from historydet",null);
-        showMessage("Error", "No records found");
+//        showMessage("Error", "No records found");
 
     }
 
