@@ -57,16 +57,16 @@ public class vol_3 extends AppCompatActivity implements View.OnClickListener {
         id=b.getString("id_vol");
         btn_va.setOnClickListener(this);
 
-        mdb = FirebaseDatabase.getInstance().getReference().child("volunteer");
+        mdb = FirebaseDatabase.getInstance().getReference().child("volunteer").child(id);
         mdb.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                if (snapshot.child("vol_id").getValue()!=null && snapshot.child("weight").getValue()!=null) {
-                    String id1=mdb.push().getKey();
-                    if (id1 == (id)) {
+                if (snapshot.getValue()!=null && snapshot.child("weight").getValue()!=null) {
+                    //String id1=mdb.push().getKey();
+                    //if (id1 == (id)) {
                         w1 = Integer.parseInt(snapshot.child("weight").getValue().toString());
                         //Toast.makeText(getApplicationContext(), lat1d+" "+lon1d, Toast.LENGTH_SHORT).show();
-                    }
+                    //}
                 }
             }
 
@@ -86,7 +86,7 @@ public class vol_3 extends AppCompatActivity implements View.OnClickListener {
                         tv_sn.setText(tv_sn.getText()+" : "+ds.child("area").getValue().toString() + " , " + ds.child("city").getValue().toString());
                         tv_dn.setText(tv_dn.getText()+" : "+ds.child("slat").getValue().toString() + " , " + ds.child("slon").getValue().toString());
                         sh_loc[0] = Double.valueOf((ds.child("slat").getValue().toString()));
-                        sh_loc[1] = Double.valueOf((ds.child("slat").getValue().toString()));
+                        sh_loc[1] = Double.valueOf((ds.child("slon").getValue().toString()));
                         sh_loc[2] = Double.valueOf((ds.child("dlat").getValue().toString()));
                         sh_loc[3] = Double.valueOf((ds.child("dlon").getValue().toString()));
                         tv_sdd.setText(tv_sdd.getText()+" : "+ds.child("dist").getValue().toString()+" Kms");
@@ -161,6 +161,9 @@ public class vol_3 extends AppCompatActivity implements View.OnClickListener {
             i3.putExtra("slon", sh_loc[1]);
             i3.putExtra("dlat", sh_loc[2]);
             i3.putExtra("dlon", sh_loc[3]);
+            i3.putExtra("idkey",idk);
+            i3.putExtra("idv",id);
+            i3.putExtra("dist2",distance);
             startActivity(i3);
 
             /*Intent mapIntent;

@@ -16,7 +16,7 @@
       <scope value="GLOBAL" />
       <destination value="FILE" />
       <format value="EXCEL" />
-      <charset value="windows-1252" />
+      <charset value="UTF-8" />
     </export-instructions>
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -33,10 +33,10 @@
       <console name="Connection 1" type="STANDARD" schema="" session="Main" />
     </connection>
     <connection id="b92dea63-cee4-4534-97c7-a2f7d727a586">
-      <console name="Connection 2" type="STANDARD" schema="" session="Main"><![CDATA[select * from bonus;]]></console>
+      <console name="Connection 2" type="STANDARD" schema="" session="Main" />
     </connection>
     <connection id="b164e51c-7bf0-432d-9664-e737c05b1079">
-      <console name="Connection 3" type="STANDARD" schema="" session="Main"><![CDATA[select * from bonus;]]></console>
+      <console name="Connection 3" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
