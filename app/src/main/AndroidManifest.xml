@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.morsel">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -18,8 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
+        <activity android:name=".TrackMsgMap"></activity>
+        <activity android:name=".TrackList" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -34,7 +33,7 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
 
         <service
             android:name=".PushNotification"
@@ -66,7 +65,7 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
-        <activity android:name=".MsgVolStatus"/>
+        <activity android:name=".MsgVolStatus" />
         <activity android:name=".aboutus" />
         <activity android:name=".MainActivity2" />
         <activity android:name=".AddHotspotActivity" />
@@ -75,7 +74,6 @@
         <activity android:name=".DonateHistory" />
         <activity android:name=".donate2" />
         <activity android:name=".SetModerator" />
-        <activity android:name=".BonusPoints" />
         <activity android:name=".BonusPoints" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".TrackActivity" />
@@ -92,13 +90,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SecondScreen"></activity>
+        <activity android:name=".SecondScreen" />
         <activity android:name=".donate" />
         <activity android:name=".vol_5" />
         <activity android:name=".vol_3" />
         <activity android:name=".vol_2" />
         <activity android:name=".vol_1" />
-         <activity android:name=".vol_6" />
+        <activity android:name=".vol_6" />
     </application>
 
 </manifest>

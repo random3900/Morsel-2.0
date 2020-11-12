@@ -26,7 +26,7 @@ import java.net.URLEncoder;
 public class Vol_Track_Msg extends Fragment {
 
 
-    Button nd,nn;
+    Button dir;
     MaterialCardView cp,cc;
     DatabaseReference ref;
     String t,phno,slat,slon,dlat,dlon,pl;
@@ -36,58 +36,15 @@ public class Vol_Track_Msg extends Fragment {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_vol__track__msg, container, false);
         t=getActivity().getIntent().getStringExtra("tripid");
-        nd=v.findViewById(R.id.nvdnr);
-        nn=v.findViewById(R.id.nvneedy);
+        dir=v.findViewById(R.id.dir);
         cp=v.findViewById(R.id.cphone);
         cc=v.findViewById(R.id.cchat);
-        nd.setOnClickListener(new View.OnClickListener() {
+        dir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
-                // map to donor
-                Intent mapIntent;
-                Uri location;
-                String url = "http://maps.google.com/maps?q=loc:" + slat + "," + slon + " (" + pl + ")";
-                //String url=("geo:"+String.valueOf(sh_loc[0])+","+String.valueOf(sh_loc[1])+"?z=14");
-                // Or map point based on latitude/longitude
-                // location = Uri.parse("geo:37.422219,-122.08364?z=14");
-                location = Uri.parse(url);
-                // z param is zoom level
-           /*
-                1: World
-                5: Landmass/continent
-                10: City
-                15: Streets
-                20: Buildings
-               */
-
-                mapIntent = new Intent(Intent.ACTION_VIEW, location);
-                startActivity(mapIntent);
-            }
-        });
-
-        nn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //map to needy
-                Intent mapIntent;
-                Uri location;
-                String url = "http://maps.google.com/maps?q=loc:" + dlat + "," + dlon + " (" + pl + ")";
-                //String url=("geo:"+String.valueOf(sh_loc[0])+","+String.valueOf(sh_loc[1])+"?z=14");
-                // Or map point based on latitude/longitude
-                // location = Uri.parse("geo:37.422219,-122.08364?z=14");
-                location = Uri.parse(url);
-                // z param is zoom level
-           /*
-                1: World
-                5: Landmass/continent
-                10: City
-                15: Streets
-                20: Buildings
-               */
-
-                mapIntent = new Intent(Intent.ACTION_VIEW, location);
-                startActivity(mapIntent);
+                Intent i=new Intent(getActivity(),TrackMsgMap.class);
+                i.putExtra("tripid",t);
+                getActivity().startActivity(i);
             }
         });
 
