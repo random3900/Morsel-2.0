@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:background="#293859"
     android:orientation="vertical"
-    tools:context=".ProfileActivity">
+    tools:context=".vol_6">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="240dp"
-         />
+        />
 
     <!--Top Header Layout-->
     <LinearLayout
@@ -324,14 +324,14 @@
                     </LinearLayout>
 
 
-            </LinearLayout>
-
-
-
-
-
                 </LinearLayout>
+
+
+
+
+
             </LinearLayout>
+        </LinearLayout>
 
 
 

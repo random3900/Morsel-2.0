@@ -29,7 +29,7 @@ public class Vol_Track_Msg extends Fragment {
     Button nd,nn;
     MaterialCardView cp,cc;
     DatabaseReference ref;
-    String t,phno;
+    String t,phno,slat,slon,dlat,dlon,pl;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,7 +43,26 @@ public class Vol_Track_Msg extends Fragment {
         nd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //map to donor
+                //
+                // map to donor
+                Intent mapIntent;
+                Uri location;
+                String url = "http://maps.google.com/maps?q=loc:" + slat + "," + slon + " (" + pl + ")";
+                //String url=("geo:"+String.valueOf(sh_loc[0])+","+String.valueOf(sh_loc[1])+"?z=14");
+                // Or map point based on latitude/longitude
+                // location = Uri.parse("geo:37.422219,-122.08364?z=14");
+                location = Uri.parse(url);
+                // z param is zoom level
+           /*
+                1: World
+                5: Landmass/continent
+                10: City
+                15: Streets
+                20: Buildings
+               */
+
+                mapIntent = new Intent(Intent.ACTION_VIEW, location);
+                startActivity(mapIntent);
             }
         });
 
@@ -51,6 +70,24 @@ public class Vol_Track_Msg extends Fragment {
             @Override
             public void onClick(View v) {
                 //map to needy
+                Intent mapIntent;
+                Uri location;
+                String url = "http://maps.google.com/maps?q=loc:" + dlat + "," + dlon + " (" + pl + ")";
+                //String url=("geo:"+String.valueOf(sh_loc[0])+","+String.valueOf(sh_loc[1])+"?z=14");
+                // Or map point based on latitude/longitude
+                // location = Uri.parse("geo:37.422219,-122.08364?z=14");
+                location = Uri.parse(url);
+                // z param is zoom level
+           /*
+                1: World
+                5: Landmass/continent
+                10: City
+                15: Streets
+                20: Buildings
+               */
+
+                mapIntent = new Intent(Intent.ACTION_VIEW, location);
+                startActivity(mapIntent);
             }
         });
 
@@ -89,6 +126,11 @@ public class Vol_Track_Msg extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 phno=snapshot.child("phone").getValue().toString();
+                slat=snapshot.child("slat").getValue().toString();
+                slon=snapshot.child("slon").getValue().toString();
+                dlat=snapshot.child("dlat").getValue().toString();
+                dlon=snapshot.child("dlon").getValue().toString();
+                pl=snapshot.child("place").getValue().toString();
             }
 
             @Override
