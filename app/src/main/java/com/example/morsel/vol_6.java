@@ -223,11 +223,11 @@ public class vol_6 extends AppCompatActivity implements View.OnClickListener {
                                 }
                             });
                             Toast.makeText(getApplicationContext(), "Succesfully donated food.Thank you for your service", Toast.LENGTH_SHORT).show();
-                            Intent i6=new Intent(getApplicationContext(),SecondScreen.class);
+               //             Intent i6=new Intent(getApplicationContext(),SecondScreen.class);
                             //stopService(new Intent(getApplicationContext(),LocationTrackerService.class));
-                            startActivity(i6);
+                 //           startActivity(i6);
                         }
-                        //}
+                        //}g
                     }
                 }
 
