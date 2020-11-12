@@ -113,6 +113,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Smriti"
+                        android:id="@+id/tv_p_name"
                         android:textColor="#424242"
                         android:textSize="21sp"
                         android:textStyle="bold" />
@@ -158,6 +159,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="17%"
+                                android:id="@+id/tv_p_effective_contribution"
                                 android:textSize="12sp"
                                 android:textStyle="bold" />
 
@@ -194,6 +196,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="100"
+                                android:id="@+id/tv_p_bonus_points"
                                 android:textSize="12sp"
                                 android:textStyle="bold" />
 
@@ -386,6 +389,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="+91 7123456890"
+                                android:id="@+id/tv_p_phno"
                                 android:textSize="15sp"
                                 android:textColor="@color/goodgrey" />
                         </LinearLayout>
@@ -410,6 +414,7 @@
                                 android:layout_marginLeft="20dp"
                                 android:textColor="@color/goodgrey"
                                 android:text="smriti@gmail.com"
+                                android:id="@+id/tv_p_email"
                                 android:textSize="15sp" />
                         </LinearLayout>
 
@@ -432,6 +437,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Porur"
+                                android:id="@+id/tv_p_area"
                                 android:textSize="15sp"
                                 android:textColor="@color/goodgrey" />
                         </LinearLayout>

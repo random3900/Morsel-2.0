@@ -5,6 +5,7 @@ public class User {
     private String Id;
     private Boolean isMod;
 
+    public User(){}
 
     public User(String uName, Boolean isMod) {
         this.uName = uName;
