@@ -235,7 +235,9 @@ public class vol_2 extends AppCompatActivity implements
             content.put("pl", place.get(i));
             content.put("di", distance.get(i));
             //Toast.makeText(getApplicationContext(),"added", Toast.LENGTH_SHORT).show();
-            messages.add(content);
+            if(!messages.contains(content)) {
+                messages.add(content);
+            }
         }
 
         String[] entry = new String[] {"pl", "di"};

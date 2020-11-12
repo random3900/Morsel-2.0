@@ -116,7 +116,7 @@ public class SecondScreen extends AppCompatActivity {
                 break;
 
             case R.id.mtr:
-                Intent i5=new Intent(this,TrackActivity.class);
+                Intent i5=new Intent(this,TrackList.class);
                 startActivity(i5);
                 break;
 
