@@ -80,7 +80,6 @@ public class Registration extends Fragment {
                                 FirebaseDatabase.getInstance().getReference().child("volunteers-by-place").child(city_et.getText().toString()).child(area_et.getText().toString()).push().setValue(v);
 
                                 User u = new User(uname_et.getText().toString(), false);
-                                FirebaseDatabase.getInstance().getReference().child("Users").push().setValue(mAuth.getUid());
                                 FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getUid()).setValue(u);
                             } else {
                                 // If sign in fails, display a message to the user.
