@@ -109,7 +109,7 @@ public class donate2 extends AppCompatActivity {
         mauth = FirebaseAuth.getInstance();
         db = openOrCreateDatabase("FoodsDB", Context.MODE_PRIVATE, null);
         db.execSQL("CREATE TABLE IF NOT EXISTS historydet(email VARCHAR,tdate date,fname VARCHAR,qty NUMERIC, location VARCHAR);");
-        bb = openOrCreateDatabase("BonuspDB", Context.MODE_PRIVATE, null);
+        bb = openOrCreateDatabase("122BonuspDB", Context.MODE_PRIVATE, null);
         bb.execSQL("CREATE TABLE IF NOT EXISTS bonus(user VARCHAR, bonuspt NUMERIC);");
         ftype = findViewById(R.id.et_d_foodtype);
         fqty = findViewById(R.id.et_d_foodqty);
@@ -473,13 +473,17 @@ public class donate2 extends AppCompatActivity {
 
         int bpr;
         Cursor cpr = bb.rawQuery("SELECT * FROM bonus WHERE user='" + "xyz" + "'", null);
-//        if (cpr.moveToFirst()) {
         if (cpr.moveToFirst()) {
             // Displaying record if found 
             bpr = cpr.getInt(1);
-//            Toast.makeText(this, String.valueOf(bpr), Toast.LENGTH_LONG).show();
+//            Toast.makeText(this, "hi"+String.valueOf(bpr), Toast.LENGTH_LONG).show();
             bb.execSQL("UPDATE bonus SET bonuspt='" + (Integer.toString(bpr + 2)) +
                     "' WHERE user='" + "xyz" + "'");
+        }
+        else
+        {
+            bb.execSQL("Insert into bonus values('"+"xyz"+"','" + Integer.toString(0)+"');");
+//            Toast.makeText(this, "I am in Donate but wont update", Toast.LENGTH_LONG).show();
         }
 //        db.execSQL("INSERT INTO bonus VALUES(" + Integer.toString(2) +");");
 
