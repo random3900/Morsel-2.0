@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -19,6 +21,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,6 +32,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -49,6 +53,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 public class donate2 extends AppCompatActivity {
@@ -67,7 +73,10 @@ public class donate2 extends AppCompatActivity {
     ArrayAdapter<String> adap2;
     private int mYear, mMonth, mDay;
     private Button btnSelect, btnUpload;
-
+    TextInputLayout addrTextInput;
+    TextInputEditText addrEditText;
+    String cr,ar;
+    double lat,lon;
     // view for image view
     private ImageView imageView;
 
@@ -81,12 +90,22 @@ public class donate2 extends AppCompatActivity {
     FirebaseStorage storage;
     StorageReference storageReference;
     SQLiteDatabase db;
+    ImageButton addr_btn;
     SQLiteDatabase bb;
     final Uri[] link = new Uri[1];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donate2);
+        addr_btn = (ImageButton)findViewById(R.id.addr_btn);
+
+        addr_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pickPointOnMap();
+            }
+        });
+        addrEditText = findViewById(R.id.add_hotspot_addr_edit_text);
         mauth = FirebaseAuth.getInstance();
         db = openOrCreateDatabase("FoodsDB", Context.MODE_PRIVATE, null);
         db.execSQL("CREATE TABLE IF NOT EXISTS historydet(email VARCHAR,tdate date,fname VARCHAR,qty NUMERIC, location VARCHAR);");
@@ -198,6 +217,54 @@ public class donate2 extends AppCompatActivity {
 
     }
 
+//    protected void onActivityResults(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        Log.d("OnActRes","Inside");
+//        if (requestCode == PICK_MAP_POINT_REQUEST) {
+//            // Make sure the request was successful
+//            if (resultCode == RESULT_OK) {
+//
+//                LatLng latLng = (LatLng) data.getParcelableExtra("picked_point");
+////hi;
+//                getAddress(getApplicationContext(),latLng.latitude,latLng.longitude);
+//
+//                // venue_editText.setText((float) latLng.latitude +" "+ (float)latLng.longitude);
+//                Toast.makeText(this, "Point Chosen: " + latLng.latitude + " " + latLng.longitude, Toast.LENGTH_LONG).show();
+//            }
+//        }
+//    }
+//
+//
+//    public void getAddress(Context context, double LATITUDE, double LONGITUDE) {
+//
+////Set Address
+//        try {
+//            Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+//            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
+//            if (addresses != null && addresses.size() > 0) {
+//
+//
+//
+//                String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+//
+//                cr = addresses.get(0).getSubAdminArea();
+//                ar = addresses.get(0).getLocality();
+//                lat = addresses.get(0).getLatitude();
+//                lon = addresses.get(0).getLongitude();
+//
+//                addrEditText.setText(address);
+//
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return;
+//    }
+    static final int PICK_MAP_POINT_REQUEST = 999;  // The request code
+    private void pickPointOnMap() {
+        Intent pickPointIntent = new Intent(this, MapsActivity.class);
+        startActivityForResult(pickPointIntent, PICK_MAP_POINT_REQUEST);
+    }
     private void SelectImage() {
 
         // Defining Implicit Intent to mobile gallery
@@ -213,13 +280,9 @@ public class donate2 extends AppCompatActivity {
 
     // Override onActivityResult method
     @Override
-    protected void onActivityResult(int requestCode,
-                                    int resultCode,
-                                    Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        super.onActivityResult(requestCode,
-                resultCode,
-                data);
+        super.onActivityResult(requestCode, resultCode, data);
 
         // checking request code and result code
         // if request code is PICK_IMAGE_REQUEST and
@@ -247,7 +310,55 @@ public class donate2 extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        Log.d("OnActRes","Inside");
+        if (requestCode == PICK_MAP_POINT_REQUEST) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+
+                LatLng latLng = (LatLng) data.getParcelableExtra("picked_point");
+//hi;
+                getAddress(getApplicationContext(),latLng.latitude,latLng.longitude);
+                double llat=latLng.latitude;
+                String finallat = new Double(llat).toString();
+                flat.setText(finallat);
+                double llong=latLng.longitude;
+                String finallong = new Double(llong).toString();
+                flon.setText(finallong);
+
+                // venue_editText.setText((float) latLng.latitude +" "+ (float)latLng.longitude);
+                Toast.makeText(this, "Point Chosen: " + latLng.latitude + " " + latLng.longitude, Toast.LENGTH_LONG).show();
+            }
+        }
     }
+
+
+    public void getAddress(Context context, double LATITUDE, double LONGITUDE) {
+
+//Set Address
+        try {
+            Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
+            if (addresses != null && addresses.size() > 0) {
+
+
+
+                String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+
+                cr = addresses.get(0).getSubAdminArea();
+                ar = addresses.get(0).getLocality();
+                lat = addresses.get(0).getLatitude();
+                lon = addresses.get(0).getLongitude();
+
+                addrEditText.setText(address);
+
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return;
+    }
+
 
     // UploadImage method
     private void uploadImage() {
