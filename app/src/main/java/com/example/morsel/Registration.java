@@ -22,12 +22,13 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Pattern;
 
 public class Registration extends Fragment {
-    TextInputLayout uname_ti, password_ti, email_ti, address_ti, phoneno_ti;
-    TextInputEditText uname_et, password_et, email_et, address_et, phoneno_et;
+    TextInputLayout uname_ti, password_ti, email_ti, area_ti, phoneno_ti, city_ti;
+    TextInputEditText uname_et, password_et, email_et, area_et, phoneno_et, city_et;
     MaterialButton registerButton;
 
     private FirebaseAuth mAuth;
@@ -39,12 +40,14 @@ public class Registration extends Fragment {
         uname_et=view.findViewById(R.id.et_r_username);
         password_et = view.findViewById(R.id.et_r_password);
         email_et = view.findViewById(R.id.et_r_email);
-        address_et = view.findViewById(R.id.et_r_address);
+        area_et = view.findViewById(R.id.et_r_area);
+        city_et = view.findViewById(R.id.et_r_city);
         phoneno_et= view.findViewById(R.id.et_r_phoneno);
         uname_ti=view.findViewById(R.id.tv_r_username);
         password_ti = view.findViewById(R.id.tv_r_password);
         email_ti = view.findViewById(R.id.tv_r_email);
-        address_ti = view.findViewById(R.id.tv_r_address);
+        area_ti = view.findViewById(R.id.tv_r_area);
+        city_ti = view.findViewById(R.id.tv_r_city);
         phoneno_ti= view.findViewById(R.id.tv_r_phoneno);
         mAuth = FirebaseAuth.getInstance();
         registerButton = view.findViewById(R.id.register_button);
@@ -73,7 +76,12 @@ public class Registration extends Fragment {
                                 Toast.makeText(getActivity(), "Successfully Registered!!!",
                                         Toast.LENGTH_SHORT).show();
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                VolunteerByPlace v = new VolunteerByPlace(uname_et.getText().toString(),phoneno_et.getText().toString());
+                                FirebaseDatabase.getInstance().getReference().child("volunteers-by-place").child(city_et.getText().toString()).child(area_et.getText().toString()).push().setValue(v);
 
+                                User u = new User(uname_et.getText().toString(), false);
+                                FirebaseDatabase.getInstance().getReference().child("Users").push().setValue(mAuth.getUid());
+                                FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getUid()).setValue(u);
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w("REG", "createUserWithEmail:failure", task.getException());
@@ -83,6 +91,7 @@ public class Registration extends Fragment {
 
                         }
                     });
+
         }
     }
 
@@ -137,8 +146,12 @@ public class Registration extends Fragment {
             to_ret = false;
         }
 
-        if(address_et.getText().toString().isEmpty()){
-            address_ti.setError("Please enter an address");
+        if(area_et.getText().toString().isEmpty()){
+            area_ti.setError("Please enter an area");
+            to_ret = false;
+        }
+        if(city_et.getText().toString().isEmpty()){
+            city_ti.setError("Please enter a city");
             to_ret = false;
         }
 
