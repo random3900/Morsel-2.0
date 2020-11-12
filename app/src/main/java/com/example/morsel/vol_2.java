@@ -148,6 +148,10 @@ public class vol_2 extends AppCompatActivity implements
         {
             //Toast.makeText(getApplicationContext(),ds.getKey(), Toast.LENGTH_SHORT).show();
             ids.add(String.valueOf(ds.getKey()));
+            if(Integer.parseInt(ds.child("status").getValue().toString())>1)
+            {
+                continue;
+            }
             lat2d = Double.parseDouble(ds.child("dlat").getValue().toString());
             lon2d = Double.parseDouble(ds.child("dlon").getValue().toString());
             //Toast.makeText(getApplicationContext(), lat2d+" "+lon2d, Toast.LENGTH_SHORT).show();

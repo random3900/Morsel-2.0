@@ -155,6 +155,29 @@ public class vol_3 extends AppCompatActivity implements View.OnClickListener {
                 // Modifying record if found 
                 db.execSQL("UPDATE menu SET order_status='" + true + "' WHERE vol_id='" + String.valueOf(reg_vol_id) + "'");
             }*/
+
+            final DatabaseReference mdb = FirebaseDatabase.getInstance().getReference().child("dnmapping").child(idk);
+            mdb.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot snapshot) {
+
+                    if(snapshot.getValue()!=null) {
+                        //String id1=Object.keys(snapshot.val())[0];
+                        //Toast.makeText(getApplicationContext(),id1,Toast.LENGTH_SHORT).show();
+                        //f (id1 == id2) {
+                        mdb.child("status").setValue(2);
+                        //Toast.makeText(getApplicationContext(), lat1d+" "+lon1d, Toast.LENGTH_SHORT).show();
+                    }
+                    //}
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getApplicationContext(), "Database error", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
             tv_acc.setText("Thank you for accepting the order\nDon't turn off your location");
             Intent i3 = new Intent(this,vol_6.class);
             i3.putExtra("slat", sh_loc[0]);
