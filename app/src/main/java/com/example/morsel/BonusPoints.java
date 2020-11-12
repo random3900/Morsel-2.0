@@ -45,6 +45,7 @@ public class BonusPoints extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View view) {
         int bpr;
+
         Cursor cpr = db.rawQuery("SELECT * FROM bonus WHERE user='" + "xyz" + "'", null);
         if (cpr.moveToFirst()) {
             // Displaying record if found 

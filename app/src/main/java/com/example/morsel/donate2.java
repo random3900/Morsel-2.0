@@ -348,7 +348,6 @@ public class donate2 extends AppCompatActivity {
                 ar = addresses.get(0).getLocality();
                 lat = addresses.get(0).getLatitude();
                 lon = addresses.get(0).getLongitude();
-
                 addrEditText.setText(address);
 
 
