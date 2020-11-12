@@ -39,7 +39,7 @@ public class vol_2 extends AppCompatActivity implements
     ListView lv_vol;
     EditText et_dis;
     SQLiteDatabase db;
-    Integer id;
+    String id;
     private DatabaseReference mDatabase, mdb,mdb1;
     int reg_vol_id=1;
     double lat1d;
@@ -57,6 +57,7 @@ public class vol_2 extends AppCompatActivity implements
     List<String> place = new ArrayList<>();
     //StringBuffer food_item = new StringBuffer();
     List<String> distance = new ArrayList<>();
+    List<String> ids = new ArrayList<>();
     //StringBuffer price = new StringBuffer();
     //List<Integer> ps = new ArrayList<>();
     //List<Integer> cs = new ArrayList<>();
@@ -70,7 +71,7 @@ public class vol_2 extends AppCompatActivity implements
         lv_vol=findViewById(R.id.lv_vol);
         et_dis=findViewById(R.id.et_dis);
         Bundle b=getIntent().getExtras();
-        id=Integer.parseInt(b.getString("id_vol"));
+        id=b.getString("id_vol");
 
         //add=findViewById(R.id.add);
         //bill=findViewById(R.id.bill);
@@ -118,18 +119,18 @@ public class vol_2 extends AppCompatActivity implements
 
 
         //mdb = FirebaseDatabase.getInstance().getReference().child("volunteer");
-        mdb = FirebaseDatabase.getInstance().getReference().child("volunteer").child("vol"+(id));
+        mdb = FirebaseDatabase.getInstance().getReference().child("volunteer").child(id);
         mdb.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                if(snapshot.child("vol_id").getValue()!=null&&snapshot.child("vol_loc").getValue()!=null) {
-                    int ids = Integer.parseInt(snapshot.child("vol_id").getValue().toString());
-                    if (ids == (id)) {
-                        String[] loc2 = (snapshot.child("vol_loc").getValue().toString()).split(",");
+                //String id1=mdb.push().getKey();
+                if(snapshot.getValue()!=null&&snapshot.child("location").getValue()!=null) {
+                    //if (id1 == id) {
+                        String[] loc2 = (snapshot.child("location").getValue().toString()).split(",");
                         lat1d = Double.parseDouble(loc2[0]);
                         lon1d = Double.parseDouble(loc2[1]);
-                        //Toast.makeText(getApplicationContext(), lat1d+" "+lon1d, Toast.LENGTH_SHORT).show();
-                    }
+                        Toast.makeText(getApplicationContext(), lat1d+" "+lon1d, Toast.LENGTH_SHORT).show();
+                    //}
                 }
             }
 
@@ -145,11 +146,14 @@ public class vol_2 extends AppCompatActivity implements
             int i1=1;
         for(DataSnapshot ds:snapshot.getChildren())
         {
+            //Toast.makeText(getApplicationContext(),ds.getKey(), Toast.LENGTH_SHORT).show();
+            ids.add(String.valueOf(ds.getKey()));
             lat2d = Double.parseDouble(ds.child("dlat").getValue().toString());
             lon2d = Double.parseDouble(ds.child("dlon").getValue().toString());
             //Toast.makeText(getApplicationContext(), lat2d+" "+lon2d, Toast.LENGTH_SHORT).show();
             double x=distanceEarth(lat2d, lon2d);
             String w=String.valueOf(x);
+            //String id2=ds.push().getKey();
             //Toast.makeText(getApplicationContext(),w,Toast.LENGTH_SHORT).show();
             if (x<=50000.0000)
             {
@@ -213,6 +217,8 @@ public class vol_2 extends AppCompatActivity implements
         Intent i2 = new Intent(this,vol_3.class);
         i2.putExtra("place", place.get(position));
         i2.putExtra("distance", distance.get(position));
+        i2.putExtra("key", ids.get(position));
+        //id2=mDBw.push().getKey();
         i2.putExtra("id_vol",String.valueOf(id));
         startActivity(i2);
     }

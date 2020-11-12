@@ -112,7 +112,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/proximanovaregular"
                         android:text="Smriti"
                         android:textColor="#424242"
                         android:textSize="21sp"
@@ -121,7 +120,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/proximanovaregular"
                         android:text="Volunteer"
                         android:textSize="14sp" />
 
@@ -246,7 +244,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:fontFamily="@font/proximanovaregular"
                     android:gravity="center"
                     android:padding="13dp"
                     android:text="Experience"
@@ -265,7 +262,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:fontFamily="@font/proximanovaregular"
                     android:gravity="center"
                     android:padding="13dp"
                     android:text="Review"
@@ -304,7 +300,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/about_me"
-                                android:fontFamily="@font/proximanovaregular"
                                 android:textSize="17sp"
                                 android:textStyle="bold" />
 
@@ -317,7 +312,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Edit"
-                                android:fontFamily="@font/proximanovaregular"
                                 android:textColor="#FFCF66"
                                 android:layout_marginEnd="10dp"
                                 android:textSize="14sp"
@@ -351,7 +345,6 @@
                             android:layout_height="wrap_content"
                             android:text="@string/contact"
                             android:textSize="17sp"
-                            android:fontFamily="@font/proximanovaregular"
                             android:textStyle="bold" />
 
                         <Space
@@ -394,8 +387,7 @@
                                 android:layout_marginLeft="20dp"
                                 android:text="+91 7123456890"
                                 android:textSize="15sp"
-                                android:textColor="@color/goodgrey"
-                                android:fontFamily="@font/proximanovaregular" />
+                                android:textColor="@color/goodgrey" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -418,8 +410,7 @@
                                 android:layout_marginLeft="20dp"
                                 android:textColor="@color/goodgrey"
                                 android:text="smriti@gmail.com"
-                                android:textSize="15sp"
-                                android:fontFamily="@font/proximanovaregular" />
+                                android:textSize="15sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -442,8 +433,7 @@
                                 android:layout_marginLeft="20dp"
                                 android:text="Porur"
                                 android:textSize="15sp"
-                                android:textColor="@color/goodgrey"
-                                android:fontFamily="@font/proximanovaregular" />
+                                android:textColor="@color/goodgrey" />
                         </LinearLayout>
 
                     </LinearLayout>

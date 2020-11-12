@@ -1,9 +1,5 @@
 package com.example.morsel;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,14 +11,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Spinner;
 
-import com.google.android.gms.common.api.Status;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+/*import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
-import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;*/
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -59,7 +57,7 @@ public class AddHotspotActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_hotspot);
 
-        if (!Places.isInitialized()) {
+        /*if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(), getString(R.string.api_key), Locale.US);
         }
 
@@ -86,7 +84,7 @@ public class AddHotspotActivity extends AppCompatActivity {
                 // TODO: Handle the error.
                 Log.i("onCreate", "An error occurred: " + status);
             }
-        });
+        });*/
 
 
         addressTextInput = findViewById(R.id.add_hotspot_location);
