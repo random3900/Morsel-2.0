@@ -86,6 +86,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/tv_area"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -95,6 +96,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tv_city"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Volunteer"
@@ -132,6 +134,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/tv_dist"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="17%"
@@ -142,7 +145,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text="@string/job_success"
+                                android:text="Distance"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -168,6 +171,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/tv_packets"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="100"
@@ -178,11 +182,18 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text="@string/ratings"
+                                android:text="Packets"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </LinearLayout>
 
+
+                    </LinearLayout>
+                <Button
+                android:id="@+id/btn_src"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reached Source" />
                 </LinearLayout>
 
                 <View
@@ -224,6 +235,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <TextView
+                            android:id="@+id/tv_place"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
@@ -233,6 +245,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tv_city1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Volunteer"
@@ -270,6 +283,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/tv_dist1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="17%"
@@ -280,7 +294,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
-                                    android:text="@string/job_success"
+                                    android:text="Distance"
                                     android:textSize="12sp" />
                             </LinearLayout>
                         </LinearLayout>
@@ -306,6 +320,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/tv_packets1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="100"
@@ -316,7 +331,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
-                                    android:text="@string/ratings"
+                                    android:text="Packets"
                                     android:textSize="12sp" />
                             </LinearLayout>
                         </LinearLayout>
@@ -324,14 +339,18 @@
                     </LinearLayout>
 
 
+                    <Button
+                        android:id="@+id/btn_dst"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reached Destination" />
                 </LinearLayout>
 
 
 
 
-
             </LinearLayout>
-        </LinearLayout>
+
 
 
 

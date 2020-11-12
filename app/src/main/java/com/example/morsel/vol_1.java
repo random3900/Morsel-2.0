@@ -33,6 +33,16 @@ public class vol_1 extends AppCompatActivity implements CompoundButton.OnChecked
         //btn_ods =  findViewById(R.id.btn_ord_status);
         //btn_ods.setOnClickListener(this);
         tb_mode.setOnCheckedChangeListener(this);
+        Bundle b = getIntent().getExtras();
+        if(b!=null)
+        {
+            //Toast.makeText(this,"Reached", Toast.LENGTH_SHORT).show();
+            tb_mode.setChecked(false);
+            stopService(new Intent(this,LocationTrackerService.class));
+            Toast.makeText(this,"Location sharing stopped", Toast.LENGTH_SHORT).show();
+            loadFragment(new vol_1_SecondFragment());
+        }
+        tb_mode.setOnCheckedChangeListener(this);
     }
 
     public void onCheckedChanged(CompoundButton compoundButton, final boolean isChecked) {

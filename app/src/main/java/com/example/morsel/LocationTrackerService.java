@@ -55,8 +55,8 @@ public class LocationTrackerService extends Service {
 
     private void setUpLocationRequest() {
         locationRequest = LocationRequest.create();
-        locationRequest.setInterval(10000);
-        locationRequest.setFastestInterval(5000);
+        locationRequest.setInterval(100000000);
+        locationRequest.setFastestInterval(500000);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
@@ -94,7 +94,7 @@ public class LocationTrackerService extends Service {
                     //DatabaseReference ref = database.getReference().child("volunteer");
                     //String id1=ref.push().getKey();
                     final String loc=lastLocation.getLatitude()+","+lastLocation.getLongitude();
-                    Toast.makeText(getApplicationContext(),loc,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),loc,Toast.LENGTH_SHORT).show();
                     //ref.child(id1).child("location").setValue(loc);
 
 
