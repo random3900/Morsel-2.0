@@ -47,7 +47,6 @@ public class vol_1_FirstFragment extends Fragment implements View.OnClickListene
     private DatabaseReference mDatabase, mdb;
     EditText et_loc, et_weight;
     Button btn_volunteer;
-    SQLiteDatabase db;
     int reg_vol_id = 1;
     Integer id = 1;
     int f=1;
@@ -70,12 +69,8 @@ public class vol_1_FirstFragment extends Fragment implements View.OnClickListene
         checkLocationSettingsRequest();
         setUpLocationRequest();
 
-
-        // perform setOnClickListener on first Button
-        //db = new DatabaseHandler(getContext());
-        //db = getActivity().openOrCreateDatabase("DATABASE",android.content.Context.MODE_PRIVATE ,null);
         btn_volunteer.setOnClickListener(this);
-        getActivity().startService(new Intent(getActivity(), LocationTrackerService.class));
+
         return view;
 
     }
@@ -159,28 +154,7 @@ public class vol_1_FirstFragment extends Fragment implements View.OnClickListene
                 f=0;
             }
             else{
-                        /*String[] loc2 =(et_loc.getText().toString()).split(",");
-                        if(loc2.length!=2)
-                        {
-                            Toast.makeText(getActivity(),"Enter a valid location",Toast.LENGTH_SHORT).show();
-                            f=0;
-                        }
-                        if(loc2.length==2)
-                        {
-                            try {
-                                double number = Double.parseDouble(loc2[0]);
-                            } catch (NumberFormatException e) {
-                                f=0;
-                                Toast.makeText(getActivity(),"Enter a valid location",Toast.LENGTH_SHORT).show();
-                            }
-                            try {
-                                double number1 = Double.parseDouble(loc2[1]);
-                            } catch (NumberFormatException ex) {
-                                f=0;
-                                Toast.makeText(getActivity(),"Enter a valid location",Toast.LENGTH_SHORT).show();
-                            }
 
-                        }*/
                 if(Integer.parseInt(et_weight.getText().toString())<=0)
                 {
                     f=0;
@@ -189,13 +163,15 @@ public class vol_1_FirstFragment extends Fragment implements View.OnClickListene
                 if(f==1) {
                     Integer weight = Integer.parseInt(et_weight.getText().toString());
                     //String loc = et_loc.getText().toString();
-                    mDatabase.setValue("vol" + id);
-                    mDatabase.child("vol" + id).child("vol_id").setValue(id);
+                    String id1=mDatabase.push().getKey();
+                    //mDatabase.child(id1).child("vol_id").setValue(id);
                     //mDatabase.child("vol" + id).child("vol_loc").setValue(loc);
-                    mDatabase.child("vol" + id).child("vol_weight").setValue(weight);
+                    mDatabase.child(id1).child("weight").setValue(weight);
                     //Vol vol = new Vol(id, loc, weight);
                     //mDatabase.child("vol" + id).setValue(vol);
-
+                    Intent i5=new Intent(getActivity(), LocationTrackerService.class);
+                    i5.putExtra("vol_id",id1);
+                    getActivity().startService(i5);
 
                         /*Cursor c = db.rawQuery("SELECT * FROM vol WHERE vol_id ='" + String.valueOf(reg_vol_id) + "'", null);
                         if (c.moveToFirst()) {
@@ -210,7 +186,7 @@ public class vol_1_FirstFragment extends Fragment implements View.OnClickListene
                             Toast.makeText(getActivity(), c1.getString(1), Toast.LENGTH_LONG).show();
                         }*/
                     Intent i1 = new Intent(getActivity(), vol_2.class);
-                    i1.putExtra("id_vol", String.valueOf(id));
+                    i1.putExtra("id_vol", id1);
                     startActivity(i1);
                 }
             }

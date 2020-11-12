@@ -27,12 +27,12 @@ public class vol_3 extends AppCompatActivity implements View.OnClickListener {
     TextView tv_sn,tv_dn,tv_sd,tv_sdd,tv_wt,tv_wtc,tv_acc;
     Button btn_va;
     SQLiteDatabase db;
-    String distance,place,w;
+    String distance,place,w,idk;
     double la,lo;
     int reg_vol_id=1;
     private DatabaseReference mDatabase, mdb,mdb1;
     int w1,w2;
-    int id;
+    String id;
     final Double[] sh_loc = new Double[4];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,21 +49,22 @@ public class vol_3 extends AppCompatActivity implements View.OnClickListener {
         Bundle b=getIntent().getExtras();
         place=b.getString("place");
         distance=b.getString("distance");
+        idk=b.getString("key");
         tv_sd.setText(tv_sd.getText()+" : "+distance+" Kms");
         String s[]=place.split(" ");
         la=Double.parseDouble(s[1]);
         lo=Double.parseDouble(s[2]);
-        id=Integer.parseInt(b.getString("id_vol"));
+        id=b.getString("id_vol");
         btn_va.setOnClickListener(this);
 
-        mdb = FirebaseDatabase.getInstance().getReference().child("volunteer").child("vol"+(id));
+        mdb = FirebaseDatabase.getInstance().getReference().child("volunteer");
         mdb.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                if (snapshot.child("vol_id").getValue()!=null && snapshot.child("vol_weight").getValue()!=null) {
-                    int ids = Integer.parseInt(snapshot.child("vol_id").getValue().toString());
-                    if (ids == (id)) {
-                        w1 = Integer.parseInt(snapshot.child("vol_weight").getValue().toString());
+                if (snapshot.child("vol_id").getValue()!=null && snapshot.child("weight").getValue()!=null) {
+                    String id1=mdb.push().getKey();
+                    if (id1 == (id)) {
+                        w1 = Integer.parseInt(snapshot.child("weight").getValue().toString());
                         //Toast.makeText(getApplicationContext(), lat1d+" "+lon1d, Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -75,14 +76,13 @@ public class vol_3 extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        mdb1=FirebaseDatabase.getInstance().getReference().child("dnmapping");
+        mdb1=FirebaseDatabase.getInstance().getReference().child("dnmapping").child(idk);
         mdb1.addValueEventListener(new ValueEventListener() {
-            public void onDataChange(DataSnapshot snapshot) {
-                int i1 = 1;
-                for (DataSnapshot ds : snapshot.getChildren()) {
+            public void onDataChange(DataSnapshot ds) {
+
                     double lat2d = Double.parseDouble(ds.child("dlat").getValue().toString());
                     double lon2d = Double.parseDouble(ds.child("dlon").getValue().toString());
-                    if(lat2d==la && lon2d==lo) {
+                    //if(ds.getKey()==idk) {
                         tv_sn.setText(tv_sn.getText()+" : "+ds.child("area").getValue().toString() + " , " + ds.child("city").getValue().toString());
                         tv_dn.setText(tv_dn.getText()+" : "+ds.child("slat").getValue().toString() + " , " + ds.child("slon").getValue().toString());
                         sh_loc[0] = Double.valueOf((ds.child("slat").getValue().toString()));
@@ -102,8 +102,8 @@ public class vol_3 extends AppCompatActivity implements View.OnClickListener {
                             tv_wtc.setText("The food weight is "+w+ " packets\ngreater than your expected level");
                         }
                     }
-                }
-            }
+
+            //}
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
