@@ -227,7 +227,7 @@ public class vol_6 extends AppCompatActivity implements View.OnClickListener {
                             //stopService(new Intent(getApplicationContext(),LocationTrackerService.class));
                  //           startActivity(i6);
                         }
-                        //}
+                        //}g
                     }
                 }
 
