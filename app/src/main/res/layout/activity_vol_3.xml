@@ -32,7 +32,7 @@
                     android:layout_height="40dp"
                     android:background="@drawable/circular_grey_bordersolid"
                     android:padding="10dp"
-                    app:srcCompat="@drawable/ic_call_24dp" />
+                    app:srcCompat="@drawable/ic_location_24dp" />
 
                 <TextView
                     android:id="@+id/tv_src_name"
@@ -56,7 +56,7 @@
                     android:layout_height="40dp"
                     android:background="@drawable/circular_grey_bordersolid"
                     android:padding="10dp"
-                    app:srcCompat="@drawable/ic_email_24dp" />
+                    app:srcCompat="@drawable/ic_location_24dp" />
 
                 <TextView
                     android:id="@+id/tv_dst_name"
@@ -170,12 +170,12 @@
                 android:gravity="center_vertical"
                 android:paddingRight="8dp">
 
-                <ImageView
+                <!--<ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:background="@drawable/circular_grey_bordersolid"
                     android:padding="10dp"
-                    app:srcCompat="@drawable/ic_location_24dp" />
+                    app:srcCompat="@drawable/ic_location_24dp" />-->
 
                 <TextView
                     android:id="@+id/tv_acceppted"

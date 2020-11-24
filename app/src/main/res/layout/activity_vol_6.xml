@@ -75,9 +75,9 @@
                     <ImageView
                         android:id="@+id/img_src"
                         android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_height="166dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/pp" />
+                        android:src="@drawable/resloc" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -85,6 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tv_area"
                         android:layout_width="wrap_content"
@@ -226,7 +227,7 @@
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/pp" />
+                            android:src="@drawable/needy" />
 
                     </androidx.cardview.widget.CardView>
 

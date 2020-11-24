@@ -22,8 +22,8 @@ public class vol_6 extends AppCompatActivity implements View.OnClickListener {
     ImageView img_src1, img_dst1;
     TextView area,place,city,city1,packets,packets1,dist,dist1;
     Button btn_src,btn_dst;
-    String idk1,idv;
-    Double dist3,lat1d,lon1d,x,y;
+    String idk1,idv,dist3;
+    Double lat1d,lon1d,x,y;
     final Double[] sh_loc = new Double[4];
     private DatabaseReference mDatabase, mdb,mdb1;
     double pi = 3.14159265358979323846;
@@ -56,8 +56,8 @@ public class vol_6 extends AppCompatActivity implements View.OnClickListener {
         sh_loc[3] = b.getDouble("dlon");
         idk1=b.getString("idkey");
         idv=b.getString("idv");
-        dist3 = b.getDouble("dist2");
-        dist1.setText(dist3.toString());
+        dist3 = b.getString("dist2");
+        dist1.setText(dist3);
         mdb1= FirebaseDatabase.getInstance().getReference().child("dnmapping").child(idk1);
         mdb1.addValueEventListener(new ValueEventListener() {
             public void onDataChange(DataSnapshot ds) {
@@ -173,7 +173,7 @@ public class vol_6 extends AppCompatActivity implements View.OnClickListener {
                                 }
                             });
 
-                            Toast.makeText(getApplicationContext(), "Succesfully completed half trip.Take up the remaining trip quickly to donate food", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Succesfully completed half trip.Take up the remaining trip quickly to donate food", Toast.LENGTH_SHORT).show();
                         }
                         //}
                     }
@@ -222,9 +222,9 @@ public class vol_6 extends AppCompatActivity implements View.OnClickListener {
                                     Toast.makeText(getApplicationContext(), "Database error", Toast.LENGTH_SHORT).show();
                                 }
                             });
-                            Toast.makeText(getApplicationContext(), "Succesfully donated food.Thank you for your service", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Succesfully donated food.Thank you for your service", Toast.LENGTH_SHORT).show();
                             Intent i6=new Intent(getApplicationContext(),SecondScreen.class);
-                            //stopService(new Intent(getApplicationContext(),LocationTrackerService.class));
+                            stopService(new Intent(getApplicationContext(),LocationTrackerService.class));
                             startActivity(i6);
                         }
                         //}
