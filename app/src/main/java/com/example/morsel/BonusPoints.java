@@ -28,7 +28,7 @@ public class BonusPoints extends AppCompatActivity implements View.OnClickListen
         counter = getIntent().getIntExtra("count 2", counter);
 //        Log.i("count 2 is : "+counter, "the count 2 is : "+counter);
 //        Toast.makeText(this,String.valueOf(count),Toast.LENGTH_LONG).show();
-        db = openOrCreateDatabase("BonuspDB", Context.MODE_PRIVATE, null);
+        db = openOrCreateDatabase("122BonuspDB", Context.MODE_PRIVATE, null);
         db.execSQL("CREATE TABLE IF NOT EXISTS bonus(user VARCHAR, bonuspt NUMERIC);");
 
 
@@ -44,13 +44,21 @@ public class BonusPoints extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        int bpr;
+        int bpr, apr;
+        int k=0;
+
         Cursor cpr = db.rawQuery("SELECT * FROM bonus WHERE user='" + "xyz" + "'", null);
         if (cpr.moveToFirst()) {
-            // Displaying record if found 
+            // Displaying record if found
             bpr=cpr.getInt(1);
             TextView t = findViewById(R.id.tv);
             t.setText("Hello User, Congrats, Your bonus points is "+bpr);
+        }
+        else
+        {  db.execSQL("Insert into bonus values('"+"xyz"+"','" + Integer.toString(0)+"');");
+            TextView t = findViewById(R.id.tv);
+            t.setText("Hello User, Please make your first step to earn more points" );
+
         }
 
 

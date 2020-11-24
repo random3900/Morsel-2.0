@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -85,8 +84,7 @@ public class DonateHistory extends AppCompatActivity implements DatePickerDialog
         gv.setAdapter(adap);
 
         Cursor ci = db.rawQuery("select * from historydet",null);
-        Log.i("Number of Records"," :: "+ci.getCount());
-        showMessage("Error", "No records found"+ci.getCount());
+//        showMessage("Error", "No records found");
 
     }
 
